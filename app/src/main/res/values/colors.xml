@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="loginbutton">#2c80e3</color>
+    <color name="color1">#345996</color>
+    <color name="color2">#ffc948</color>
+    <color name="color3">#ffff</color>
+    <color name="GridColor">#2c80e3</color>
+     <color name="toolbar">#2859a2</color>
+    <color name="gradienttop">#b9d9f2</color>
+    <color name="gradientend">#edf0f3</color>
+
+</resources>
