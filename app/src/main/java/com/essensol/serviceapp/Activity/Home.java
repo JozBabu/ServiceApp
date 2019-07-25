@@ -20,9 +20,9 @@ public class Home extends AppCompatActivity {
 
    SimpleDraweeView logout_icon,profpic,serviceImg,taskImg,productImg,profileicon;
    TextView name,role,empid,serviceText,serviceCount,sigin,taskText,taskCount,
-    productText,productCount,profileText,appname;
+            productText,productCount,profileText,appname;
    LinearLayout service,task,productDelivery,profile,signInbtn;
-   FrameLayout framelayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

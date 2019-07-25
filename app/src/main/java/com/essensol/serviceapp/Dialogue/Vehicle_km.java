@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.Home;
 import com.essensol.serviceapp.R;
@@ -27,8 +29,8 @@ import com.essensol.serviceapp.R;
 public class Vehicle_km extends DialogFragment {
 
     Spinner vehicleNo;
-String array_vehicleNo[]={"KL-07 BR 6831","KL-07 CC 2087","KL - 07 CV 4054"};
-
+    String array_vehicleNo[]={"KL-07 BR 6831","KL-07 CC 2087","KL - 07 CV 4054"};
+    TextView title;
 
     public Vehicle_km() {
         // Required empty public constructor
@@ -59,12 +61,18 @@ String array_vehicleNo[]={"KL-07 BR 6831","KL-07 CC 2087","KL - 07 CV 4054"};
 
         final EditText editText = view.findViewById(R.id.inKm);
 
+        title=view.findViewById(R.id.title);
         vehicleNo=view.findViewById(R.id.vehicleNo);
 
+        //Font
+        Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/MontserratBold.ttf");
+        Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/MontserratMedium.ttf");
+        title.setTypeface(custom_font2);
+
+        //Set Value to spinner
         final ArrayAdapter<String> spinner_adapter_day = new ArrayAdapter<String>(getContext() ,
                 android.R.layout.simple_spinner_item, array_vehicleNo);
         spinner_adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         vehicleNo.setAdapter(spinner_adapter_day);
 
 

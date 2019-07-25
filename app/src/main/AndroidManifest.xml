@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/employeeicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activity.WorkReport"></activity>
+        <activity android:name=".Activity.ServiceDetails" />
         <activity android:name=".Activity.Profile" />
         <activity android:name=".Activity.Product_Delivery" />
         <activity android:name=".Activity.Task" />
