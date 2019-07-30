@@ -35,16 +35,16 @@ public class ProductDeliveryAdapter extends RecyclerView.Adapter<ProductDelivery
     @Override
     public void onBindViewHolder(@NonNull ProductDeliveryViewholder productDeliveryViewholder, int i) {
 
-        if(i %2 == 1)
-        {
-            productDeliveryViewholder.productclick.setBackgroundColor(Color.parseColor("#2c80e3"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-        else
-        {
-            productDeliveryViewholder.productclick.setBackgroundColor(Color.parseColor("#345996"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-        }
+//        if(i %2 == 1)
+//        {
+//            productDeliveryViewholder.productclick.setBackgroundColor(Color.parseColor("#2c80e3"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+//        }
+//        else
+//        {
+//            productDeliveryViewholder.productclick.setBackgroundColor(Color.parseColor("#345996"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+//        }
 
 
     }

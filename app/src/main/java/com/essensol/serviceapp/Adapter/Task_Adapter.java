@@ -34,16 +34,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.Task_ViewHol
     @Override
     public void onBindViewHolder(@NonNull Task_ViewHolder task_viewHolder, int i) {
 
-        if(i %2 == 1)
-        {
-            task_viewHolder.taskclick.setBackgroundColor(Color.parseColor("#2c80e3"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-        else
-        {
-            task_viewHolder.taskclick.setBackgroundColor(Color.parseColor("#345996"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-        }
+//
     }
 
     @Override

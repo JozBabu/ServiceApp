@@ -8,20 +8,19 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-
+        android:background="@drawable/item_grad"
         android:id="@+id/taskclick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-       // android:layout_marginLeft="10dp"
+
 
         <LinearLayout
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginBottom="5dp"
-
+            android:layout_marginBottom="2dp"
             android:padding="10dp"
             android:layout_gravity="center"
            >

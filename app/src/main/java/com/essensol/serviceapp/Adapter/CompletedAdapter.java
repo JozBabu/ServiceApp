@@ -31,16 +31,16 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
     @Override
     public void onBindViewHolder(@NonNull CompletedViewholder completedViewholder, int i) {
 
-        if(i %2 == 1)
-        {
-            completedViewholder.completedclick.setBackgroundColor(Color.parseColor("#2c80e3"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-        else
-        {
-            completedViewholder.completedclick.setBackgroundColor(Color.parseColor("#345996"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-        }
+//        if(i %2 == 1)
+//        {
+//            completedViewholder.completedclick.setBackgroundColor(Color.parseColor("#2c80e3"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
+//        }
+//        else
+//        {
+//            completedViewholder.completedclick.setBackgroundColor(Color.parseColor("#345996"));
+//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
+//        }
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_test);
 
         logout_icon=(SimpleDraweeView)findViewById(R.id.logout);
         profpic=(SimpleDraweeView)findViewById(R.id.profpic);
@@ -86,6 +86,15 @@ public class Home extends AppCompatActivity {
         productCount.setTypeface(custom_font2);
         profileText.setTypeface(custom_font2);
         appname.setTypeface(custom_font2);
+
+        //ProfilePic Click
+        profpic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Home.this, Profile.class);
+                startActivity(intent);
+            }
+        });
 
         //Logout Click
         logout_icon.setOnClickListener(new View.OnClickListener() {
