@@ -9,7 +9,7 @@
     tools:context=".Activity.Profile">
 
     <ScrollView
-        android:background="#E4EEF2F3"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollcmp"
@@ -19,110 +19,109 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/Scroll_lay3"
-            android:layout_gravity="center">
+           >
 
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_margin="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 >
 
 
                 <FrameLayout
                     android:id="@+id/userprofpic"
-                    android:padding="10dp"
-                    android:background="@android:color/white"
-                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+                    <com.facebook.drawee.view.SimpleDraweeView
 
-                    <android.support.v7.widget.CardView
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@android:color/white"
-                        app:cardElevation="5dp"
-                        android:layout_width="135dp"
-                        android:layout_height="140dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                      app:placeholderImageScaleType="fitXY"
+                        app:placeholderImage="@drawable/employe_pic"/>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#B2000000">
 
                         <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_gravity="center"
                             android:id="@+id/profpic"
-                            android:layout_width="133dp"
-                            android:layout_height="128dp"
-                            android:layout_marginStart="1dp"
-                            android:layout_marginLeft="1dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginEnd="1dp"
-                            android:layout_marginRight="1dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            android:layout_marginTop="15dp"
                             android:scaleType="fitXY"
                             app:placeholderImage="@drawable/employe_pic"
                             app:placeholderImageScaleType="fitXY"
                             fresco:scaleType="fitXY" />
 
-                    </android.support.v7.widget.CardView>
 
 
+                    </FrameLayout>
 
 
                 </FrameLayout>
 
 
                 <TextView
+                    android:background="#B2000000"
                     android:id="@+id/employeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/userprofpic"
-                    android:layout_marginTop="2dp"
+
                     android:gravity="center"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:text="Karthik A R"
-                    android:textColor="@color/color1"
-                    android:textSize="18dp"
+                    android:textColor="@color/GridColor"
+                    android:textSize="20dp"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/color1"
+                    android:textColor="@color/gradienttop"
                     android:padding="2dp"
+                    android:textStyle="bold"
+                    android:background="#B2000000"
                     android:text="Computer Technician"
                     android:id="@+id/empDesignation"
                   />
 
-                <!--<android.support.v7.widget.CardView-->
-                    <!--android:layout_margin="10dp"-->
-                    <!--app:cardCornerRadius="5dp"-->
-                    <!--app:cardElevation="5dp"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:background="@android:color/white"-->
-                    <!--android:id="@+id/frame1"-->
-                   <!--&gt;-->
+                <android.support.v7.widget.CardView
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:id="@+id/frame1"
+                   >
                     <LinearLayout
-                        android:layout_margin="10dp"
-                        android:orientation="vertical"
-                        android:padding="10dp"
 
+                        android:gravity="center"
+                        android:orientation="vertical"
+                      android:layout_margin="15dp"
+                        android:layout_gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
 
 
                         <LinearLayout
-                            android:layout_marginBottom="10dp"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/classlabel"
-                                android:layout_weight="1"
+                                android:layout_weight="1.5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
@@ -145,14 +144,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginBottom="10dp"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/categorylabel"
-                                android:layout_weight="1"
+                                android:layout_weight="1.5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
@@ -174,14 +173,14 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginBottom="10dp"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/doblabel"
-                                android:layout_weight="1"
+                                android:layout_weight="1.5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
@@ -209,7 +208,7 @@
 
                             <TextView
                                 android:id="@+id/busnolabel"
-                                android:layout_weight="1"
+                                android:layout_weight="1.5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
@@ -231,7 +230,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                <!--</android.support.v7.widget.CardView>-->
+                </android.support.v7.widget.CardView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
