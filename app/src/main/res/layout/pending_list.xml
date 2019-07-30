@@ -8,24 +8,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:id="@+id/pendingserivceclick"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-
-    <LinearLayout
         android:background="@android:color/white"
+        android:id="@+id/pendingserivceclick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="5dp"
-        android:padding="10dp"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
 
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/studentName"
@@ -51,6 +45,14 @@
             android:text="System Issue"
 
             />
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:padding="2dp"
+            android:background="@drawable/item_grad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     </LinearLayout>
 

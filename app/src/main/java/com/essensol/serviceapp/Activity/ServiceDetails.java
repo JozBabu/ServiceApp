@@ -1,5 +1,6 @@
 package com.essensol.serviceapp.Activity;
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,16 +37,17 @@ public class ServiceDetails extends ToolBar {
 
                     focus.start();
                     flag=1;
+                    submitbtn.setText("Job SignOut");
                 }
                 else
                 {
                     focus.setBase(SystemClock.elapsedRealtime());
                     focus.stop();
                     flag=0;
+                    Intent i = new Intent(ServiceDetails.this,WorkReport.class);
+                    startActivity(i);
 
                 }
-
-
 
             }
         });
