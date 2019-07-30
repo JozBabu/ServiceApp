@@ -166,11 +166,11 @@
 
             <LinearLayout
                 android:id="@+id/signInbtn"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/signinbttn"
+                android:background="@drawable/testbackground_grad"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -179,8 +179,7 @@
                     android:id="@+id/sigin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/logbtn"
+
                     android:text="Sign In"
                     android:textColor="@android:color/white"
                     android:textSize="15dp" />
