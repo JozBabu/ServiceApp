@@ -1,5 +1,6 @@
 package com.essensol.serviceapp.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentTransaction;
@@ -7,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.essensol.serviceapp.Dialogue.Vehicle_km;
 import com.essensol.serviceapp.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -22,19 +25,27 @@ public class Home extends AppCompatActivity {
    TextView name,role,empid,serviceText,serviceCount,sigin,taskText,taskCount,
             productText,productCount,profileText,appname;
    LinearLayout service,task,productDelivery,profile,signInbtn;
-
+   ImageView profpic_glide,serviceImg_glide,taskImg_glide,productImg_glide,profileicon_glide;
+    private Context context=Home.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_test);
 
-        logout_icon=(SimpleDraweeView)findViewById(R.id.logout);
-        profpic=(SimpleDraweeView)findViewById(R.id.profpic);
-        serviceImg=(SimpleDraweeView)findViewById(R.id.serviceImg);
-        taskImg=(SimpleDraweeView)findViewById(R.id.taskImg);
-        productImg=(SimpleDraweeView)findViewById(R.id.productImg);
-        profileicon=(SimpleDraweeView)findViewById(R.id.profileicon);
+        profpic_glide=(ImageView) findViewById(R.id.profpic);
+        serviceImg_glide=(ImageView)findViewById(R.id.serviceImg);
+        taskImg_glide=(ImageView)findViewById(R.id.taskImg);
+        productImg_glide=(ImageView)findViewById(R.id.productImg);
+        profileicon_glide=(ImageView)findViewById(R.id.profileicon);
+
+
+     logout_icon=(SimpleDraweeView)findViewById(R.id.logout);
+//        profpic=(SimpleDraweeView)findViewById(R.id.profpic);
+//        serviceImg=(SimpleDraweeView)findViewById(R.id.serviceImg);
+//        taskImg=(SimpleDraweeView)findViewById(R.id.taskImg);
+//        productImg=(SimpleDraweeView)findViewById(R.id.productImg);
+//        profileicon=(SimpleDraweeView)findViewById(R.id.profileicon);
 
         appname=(TextView)findViewById(R.id.appname);
         name=(TextView)findViewById(R.id.name);
@@ -58,17 +69,55 @@ public class Home extends AppCompatActivity {
 
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logouticon).build();
-        ImageRequest imageRequest2 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.employe_pic).build();
-        ImageRequest imageRequest3=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.service_icon).build();
-        ImageRequest imageRequest4 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.list).build();
-        ImageRequest imageRequest5 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.user).build();
-        ImageRequest imageRequest6=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.shopping_bag).build();
+//        ImageRequest imageRequest2 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.employe_pic).build();
+//        ImageRequest imageRequest3=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.service_icon).build();
+//        ImageRequest imageRequest4 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.list).build();
+//        ImageRequest imageRequest5 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.user).build();
+//        ImageRequest imageRequest6=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.shopping_bag).build();
         logout_icon.setImageURI(imageRequest1.getSourceUri());
-        profpic.setImageURI(imageRequest2.getSourceUri());
-        serviceImg.setImageURI(imageRequest3.getSourceUri());
-        taskImg.setImageURI(imageRequest4.getSourceUri());
-        productImg.setImageURI(imageRequest6.getSourceUri());
-        profileicon.setImageURI(imageRequest5.getSourceUri());
+//        profpic.setImageURI(imageRequest2.getSourceUri());
+//        serviceImg.setImageURI(imageRequest3.getSourceUri());
+//        taskImg.setImageURI(imageRequest4.getSourceUri());
+//        productImg.setImageURI(imageRequest6.getSourceUri());
+//        profileicon.setImageURI(imageRequest5.getSourceUri());
+
+
+        //Glide Image Loading
+        int profilepic= R.drawable.employe_pic;
+        int serviceicon= R.drawable.service_icon;
+        int list= R.drawable.list;
+        int user= R.drawable.user;
+        int product=R.drawable.shopping_bag;
+
+        //Employee Pic
+        Glide
+                .with(context)
+                .load(profilepic)
+                .into(profpic_glide);
+
+        //Service Icon
+        Glide
+                .with(context)
+                .load(serviceicon)
+                .into(serviceImg_glide);
+
+        //Task Icon
+        Glide
+                .with(context)
+                .load(list)
+                .into(taskImg_glide);
+
+        //Product Icon
+        Glide
+                .with(context)
+                .load(product)
+                .into(productImg_glide);
+
+        //Profile Icon
+        Glide
+                .with(context)
+                .load(user)
+                .into(profileicon_glide);
 
 
         //Fonts
@@ -88,7 +137,7 @@ public class Home extends AppCompatActivity {
         appname.setTypeface(custom_font2);
 
         //ProfilePic Click
-        profpic.setOnClickListener(new View.OnClickListener() {
+        profpic_glide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Home.this, Profile.class);

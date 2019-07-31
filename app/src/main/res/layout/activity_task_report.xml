@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+<ScrollView
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+//Action Taken///////////////////////////
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:tint="@color/color1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/tick_mark"/>
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action Taken"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:padding="8dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/actionTaken"
+                    android:background="@drawable/spinnerbg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:hint="Enter Here"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+  /////////Charged Amount
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:tint="@color/color1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/rupees"/>
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Charged Amount"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:padding="8dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/chargedamount"
+                    android:background="@drawable/spinnerbg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:hint="Enter Here"
+
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        ///Collected Amount
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:tint="@color/color1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/rupees"/>
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Collected Amount"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:padding="8dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/collectedamount"
+                    android:background="@drawable/spinnerbg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:hint="Enter Here"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        //Service Report No
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_gravity="center">
+
+
+            <ImageView
+                android:tint="@color/color1"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/detail_icon"/>
+
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Service Report No"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    />
+                <EditText
+                    android:padding="8dp"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/servicereport"
+                    android:background="@drawable/spinnerbg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:hint="Enter Here"
+
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        //Submit Button
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/submit"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/logbtn"
+            android:clickable="true">
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Sumbit"
+                android:textSize="18dp"
+                android:textColor="@android:color/white"
+                />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+</LinearLayout>

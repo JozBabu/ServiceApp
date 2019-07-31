@@ -35,7 +35,7 @@
                     android:layout_gravity="center"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="225dp">
                     <com.facebook.drawee.view.SimpleDraweeView
 
                         android:layout_width="match_parent"
@@ -50,8 +50,8 @@
                         <com.facebook.drawee.view.SimpleDraweeView
                             android:layout_gravity="center"
                             android:id="@+id/profpic"
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
                             android:layout_marginTop="15dp"
                             android:scaleType="fitXY"
                             app:placeholderImage="@drawable/employe_pic"

@@ -98,13 +98,17 @@
                 app:cardCornerRadius="40dp"
                 app:cardElevation="5dp">
 
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/profpic"
+                <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                    <!--android:id="@+id/profpic"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--app:placeholderImageScaleType="fitXY"-->
+                    <!--fresco:scaleType="fitXY" />-->
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:placeholderImageScaleType="fitXY"
-                    fresco:scaleType="fitXY" />
+                    android:id="@+id/profpic"/>
 
             </android.support.v7.widget.CardView>
         </android.support.v7.widget.CardView>
@@ -271,14 +275,24 @@
 
                 </LinearLayout>
 
-                    <com.facebook.drawee.view.SimpleDraweeView
+                    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                        <!--android:id="@+id/serviceImg"-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:tint="#FCD26D" />-->
+
+                    <ImageView
                         android:id="@+id/serviceImg"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
-                        android:tint="#FCD26D" />
+                        android:tint="#FCD26D"
+                        />
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -338,14 +352,24 @@
 
                     </LinearLayout>
 
-                        <com.facebook.drawee.view.SimpleDraweeView
+                        <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                            <!--android:id="@+id/taskImg"-->
+                            <!--android:layout_width="40dp"-->
+                            <!--android:layout_height="40dp"-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:layout_alignParentBottom="true"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:tint="#FCD26D" />-->
+
+                        <ImageView
                             android:id="@+id/taskImg"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_gravity="center"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentRight="true"
-                            android:tint="#FCD26D" />
+                            android:tint="#FCD26D"
+                            />
                     </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
@@ -407,14 +431,24 @@
 
                     </LinearLayout>
 
-                    <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/productImg"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:tint="#FCD26D" />
+                    <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                        <!--android:id="@+id/productImg"-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:tint="#FCD26D" />-->
+
+                        <ImageView
+                            android:id="@+id/productImg"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:tint="#FCD26D"
+                            />
                 </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
@@ -455,18 +489,24 @@
 
                     </LinearLayout>
 
-                            <com.facebook.drawee.view.SimpleDraweeView
-                                android:id="@+id/profileicon"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_gravity="center"
-                                android:tint="#FCD26D"
-                               />
-
-
-
+                            <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                                <!--android:id="@+id/profileicon"-->
+                                <!--android:layout_width="40dp"-->
+                                <!--android:layout_height="40dp"-->
+                                <!--android:layout_alignParentBottom="true"-->
+                                <!--android:layout_alignParentRight="true"-->
+                                <!--android:layout_gravity="center"-->
+                                <!--android:tint="#FCD26D"-->
+                               <!--/>-->
+                        <ImageView
+                            android:id="@+id/profileicon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:tint="#FCD26D"
+                            />
 
 
                     </RelativeLayout>
