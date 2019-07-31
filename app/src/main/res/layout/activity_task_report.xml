@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Activity.TaskReport"
    >
 
 <ScrollView
     android:padding="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -32,7 +33,7 @@
                 android:tint="@color/color1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/detail_icon"/>
+                android:src="@drawable/progress"/>
 
             <LinearLayout
 

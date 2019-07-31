@@ -90,8 +90,11 @@ public class Vehicle_km extends DialogFragment {
                startActivity(i);
 
                 dismiss();
+
             }
         });
+
+        setCancelable(false);
     }
 
     @Override
@@ -123,4 +126,8 @@ public class Vehicle_km extends DialogFragment {
     public interface DialogListener {
         void onFinishEditDialog(String inputText);
     }
+
+
+
+
 }

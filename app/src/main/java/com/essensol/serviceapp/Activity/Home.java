@@ -39,13 +39,7 @@ public class Home extends AppCompatActivity {
         productImg_glide=(ImageView)findViewById(R.id.productImg);
         profileicon_glide=(ImageView)findViewById(R.id.profileicon);
 
-
-     logout_icon=(SimpleDraweeView)findViewById(R.id.logout);
-//        profpic=(SimpleDraweeView)findViewById(R.id.profpic);
-//        serviceImg=(SimpleDraweeView)findViewById(R.id.serviceImg);
-//        taskImg=(SimpleDraweeView)findViewById(R.id.taskImg);
-//        productImg=(SimpleDraweeView)findViewById(R.id.productImg);
-//        profileicon=(SimpleDraweeView)findViewById(R.id.profileicon);
+        logout_icon=(SimpleDraweeView)findViewById(R.id.logout);
 
         appname=(TextView)findViewById(R.id.appname);
         name=(TextView)findViewById(R.id.name);
@@ -69,18 +63,7 @@ public class Home extends AppCompatActivity {
 
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logouticon).build();
-//        ImageRequest imageRequest2 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.employe_pic).build();
-//        ImageRequest imageRequest3=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.service_icon).build();
-//        ImageRequest imageRequest4 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.list).build();
-//        ImageRequest imageRequest5 =ImageRequestBuilder.newBuilderWithResourceId(R.drawable.user).build();
-//        ImageRequest imageRequest6=ImageRequestBuilder.newBuilderWithResourceId(R.drawable.shopping_bag).build();
         logout_icon.setImageURI(imageRequest1.getSourceUri());
-//        profpic.setImageURI(imageRequest2.getSourceUri());
-//        serviceImg.setImageURI(imageRequest3.getSourceUri());
-//        taskImg.setImageURI(imageRequest4.getSourceUri());
-//        productImg.setImageURI(imageRequest6.getSourceUri());
-//        profileicon.setImageURI(imageRequest5.getSourceUri());
-
 
         //Glide Image Loading
         int profilepic= R.drawable.employe_pic;
@@ -158,11 +141,9 @@ public class Home extends AppCompatActivity {
         signInbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Vehicle_km dialogFragment = new Vehicle_km();
 
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.framelayout, dialogFragment);
-                ft.commit();
+                dialogue_box();
+
             }
         });
 
@@ -202,11 +183,23 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        moveTaskToBack(true);
-//    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+    }
+
+    public void dialogue_box()
+    {
+        Vehicle_km dialogFragment = new Vehicle_km();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.framelayout, dialogFragment);
+        ft.commit();
+
+    }
+
+
 }

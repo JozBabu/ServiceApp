@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.Task_Details"></activity>
+        <activity android:name=".Activity.TaskReport"></activity>
         <activity android:name=".Activity.WorkReport" />
         <activity android:name=".Activity.ServiceDetails" />
         <activity android:name=".Activity.Profile" />
