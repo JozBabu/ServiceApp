@@ -32,7 +32,7 @@
                 android:tint="@color/color1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/tick_mark"/>
+                android:src="@drawable/detail_icon"/>
 
             <LinearLayout
 
@@ -47,22 +47,25 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Action Taken"
+                    android:text="Task Status"
                     android:textColor="@android:color/black"
                     android:textSize="18dp"
                     />
-                <EditText
-                    android:padding="8dp"
+                <RelativeLayout
                     android:layout_marginTop="10dp"
-                    android:id="@+id/actionTaken"
+                    android:layout_width="wrap_content"
                     android:background="@drawable/spinnerbg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:hint="Enter Here"
+                    android:layout_height="wrap_content">
+                    <Spinner
 
-                    />
+                        android:id="@+id/taskstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        >
+
+                    </Spinner>
+
+                </RelativeLayout>
 
             </LinearLayout>
 

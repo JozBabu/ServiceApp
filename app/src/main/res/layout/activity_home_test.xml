@@ -489,15 +489,7 @@
 
                     </LinearLayout>
 
-                            <!--<com.facebook.drawee.view.SimpleDraweeView-->
-                                <!--android:id="@+id/profileicon"-->
-                                <!--android:layout_width="40dp"-->
-                                <!--android:layout_height="40dp"-->
-                                <!--android:layout_alignParentBottom="true"-->
-                                <!--android:layout_alignParentRight="true"-->
-                                <!--android:layout_gravity="center"-->
-                                <!--android:tint="#FCD26D"-->
-                               <!--/>-->
+
                         <ImageView
                             android:id="@+id/profileicon"
                             android:layout_width="40dp"
