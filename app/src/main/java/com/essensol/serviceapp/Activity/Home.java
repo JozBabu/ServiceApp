@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.essensol.serviceapp.Dialogue.LogoutDialogue;
 import com.essensol.serviceapp.Dialogue.Vehicle_km;
 import com.essensol.serviceapp.R;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -21,7 +22,7 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 public class Home extends AppCompatActivity {
 
-   SimpleDraweeView logout_icon,profpic,serviceImg,taskImg,productImg,profileicon;
+   SimpleDraweeView logout_icon;
    TextView name,role,empid,serviceText,serviceCount,sigin,taskText,taskCount,
             productText,productCount,profileText,appname;
    LinearLayout service,task,productDelivery,profile,signInbtn;
@@ -132,8 +133,7 @@ public class Home extends AppCompatActivity {
         logout_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Home.this, Login.class);
-                startActivity(intent);
+                Logout_dialogue();
             }
         });
 
@@ -183,7 +183,6 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
@@ -192,13 +191,23 @@ public class Home extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
+
+    //KM Entering Dialogue
     public void dialogue_box()
     {
         Vehicle_km dialogFragment = new Vehicle_km();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout, dialogFragment);
         ft.commit();
+    }
 
+    //Logout Dialogue
+    public void Logout_dialogue()
+    {
+        LogoutDialogue dialogFragment = new LogoutDialogue();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.framelayout, dialogFragment);
+        ft.commit();
     }
 
 
