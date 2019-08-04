@@ -12,12 +12,12 @@
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#10366D"
+        app:cardBackgroundColor="#492b51"
         android:layout_margin="15dp"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
-            android:background="#10366D"
+            android:background="#492b51"
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"

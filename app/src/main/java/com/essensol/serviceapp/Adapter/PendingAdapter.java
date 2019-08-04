@@ -44,16 +44,6 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
             }
         });
 
-//        if(i %2 == 1)
-//        {
-//            pendingViewholder.pendingserivceclick.setBackgroundColor(Color.parseColor("#2c80e3"));
-//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
-//        }
-//        else
-//        {
-//            pendingViewholder.pendingserivceclick.setBackgroundColor(Color.parseColor("#345996"));
-//            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
-//        }
     }
 
     @Override

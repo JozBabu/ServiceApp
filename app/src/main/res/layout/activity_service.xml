@@ -7,10 +7,10 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/serviceTab"
-        android:background="@color/color1"
+        android:background="#492b51"
         app:tabTextColor="@android:color/white"
-        app:tabSelectedTextColor="#61A6F7"
-        app:tabIndicatorColor="#61A6F7"
+        app:tabSelectedTextColor="#7e4c77"
+        app:tabIndicatorColor="#7e4c77"
         app:tabIndicatorHeight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

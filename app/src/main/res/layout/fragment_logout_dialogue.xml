@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#10366D"
+        app:cardBackgroundColor="#44274D"
         android:layout_margin="15dp"
         app:cardCornerRadius="5dp">
 
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="#10366D"
+            android:background="#492b51"
             android:orientation="vertical">
 
             <TextView
