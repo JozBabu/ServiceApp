@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AA000000"
+    android:background="#C8000000"
     tools:context=".Dialogue.DeliveryDialogue">
 
 
@@ -50,21 +50,21 @@
             </RelativeLayout>
 
 
-            <TextView
-                android:layout_marginTop="15dp"
-                android:id="@+id/title2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:text="Remarks" />
+            <!--<TextView-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:id="@+id/title2"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:text="Remarks" />-->
 
-            <EditText
-                android:hint="Enter Here"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:background="@drawable/spinnerbg"/>
+            <!--<EditText-->
+                <!--android:hint="Enter Here"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="8dp"-->
+                <!--android:background="@drawable/spinnerbg"/>-->
 
             <LinearLayout
 

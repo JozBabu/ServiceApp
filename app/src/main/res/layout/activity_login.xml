@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:tint="@android:color/white"
+                    android:tint="#F1ECBD"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_width="15dp"
@@ -52,7 +52,7 @@
                     android:textSize="18dp"
                     android:background="@android:color/transparent"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
+                    android:textColorHint="#F1ECBD"
                     android:gravity="start"
                     android:hint="Username"
                     android:inputType="textCapSentences"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:tint="@android:color/white"
+                    android:tint="#F1ECBD"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_width="15dp"
@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:background="@android:color/transparent"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
+                    android:textColorHint="#F1ECBD"
                     android:gravity="start"
                     android:hint="Password"
                     android:imeOptions="actionDone"/>

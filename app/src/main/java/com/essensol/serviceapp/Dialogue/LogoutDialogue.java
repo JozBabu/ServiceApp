@@ -89,8 +89,7 @@ public class LogoutDialogue extends DialogFragment {
         NoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(), Home.class);
-                startActivity(i);
+
 
                 dismiss();
             }
