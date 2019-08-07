@@ -88,6 +88,16 @@ public class DeliveryDialogue extends DialogFragment {
 
                 dismiss();
 
+
+            }
+        });
+        Button cncelbutton= view.findViewById(R.id.cncelbutton);
+
+        cncelbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dismiss();
             }
         });
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#AA000000"
+    android:id="@+id/parentlay"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Dialogue.LogoutDialogue">
 
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="5dp"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#44274D"
+        app:cardBackgroundColor="#492b51"
         android:layout_margin="15dp"
         app:cardCornerRadius="5dp">
 

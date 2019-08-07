@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.Home;
@@ -92,6 +93,16 @@ public class LogoutDialogue extends DialogFragment {
                 startActivity(i);
 
                 dismiss();
+            }
+        });
+
+        LinearLayout parentlay=view.findViewById(R.id.parentlay);
+        parentlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                dismiss();
+
             }
         });
 

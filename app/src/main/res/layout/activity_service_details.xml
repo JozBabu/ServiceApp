@@ -9,7 +9,8 @@
     tools:context=".Activity.ServiceDetails">
 
     <ScrollView
-
+        android:padding="5dp"
+        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -70,6 +71,58 @@
                     />
 
             </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:tint="@color/color1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/detail_icon"/>
+
+                <LinearLayout
+
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Job No"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/jobNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        android:text="1"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
             <LinearLayout
 
@@ -243,13 +296,13 @@
                 android:text="Chronometer" />
 
             <Button
-                android:background="@drawable/logbtn"
+                android:background="#976090"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="center"
                 android:id="@+id/submitbtn"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:text="Job Sign In" />
 
 

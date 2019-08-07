@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -80,6 +81,7 @@ public class Vehicle_km extends DialogFragment {
             editText.setText(getArguments().getString("email"));
 
         Button btnDone = view.findViewById(R.id.submitbtn);
+        Button cncelbutton=view.findViewById(R.id.cncelbutton);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +92,24 @@ public class Vehicle_km extends DialogFragment {
                startActivity(i);
 
                 dismiss();
+
+            }
+        });
+
+        cncelbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dismiss();
+            }
+        });
+
+        LinearLayout parentlay=view.findViewById(R.id.parentlay);
+        parentlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                dismiss();
 
             }
         });

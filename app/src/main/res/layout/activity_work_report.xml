@@ -6,293 +6,28 @@
     android:layout_height="match_parent"
    >
 
-    <ScrollView
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
-        <LinearLayout
+        <ScrollView
+            android:padding="5dp"
+            android:fillViewport="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            //Action Taken///////////////////////////
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-
-                <ImageView
-                    android:tint="@color/color1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/detail_icon"/>
+                <!--//JobNo//////////////////////////////-->
 
                 <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Product"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <EditText
-                        android:padding="8dp"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/actionTaken"
-                        android:background="@drawable/spinnerbg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:hint="Enter Here"
-
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
-
-
-                <ImageView
-                    android:tint="@color/color1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/detail_icon"/>
-
-                <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Problem"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <EditText
-                        android:padding="8dp"
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/problem"
-                        android:background="@drawable/spinnerbg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:hint="Enter Here"
-
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            //status
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
-
-
-                <ImageView
-                    android:tint="@color/color1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/detail_icon"/>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Status"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <RelativeLayout
-                        android:layout_marginTop="25dp"
-                        android:layout_width="wrap_content"
-                        android:background="@drawable/spinnerbg"
-                        android:layout_height="wrap_content">
-
-                        <Spinner
-
-                            android:id="@+id/status"
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-
-                            >
-
-                        </Spinner>
-
-                    </RelativeLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            // Price Layout
-
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/Pricelayout"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_gravity="center">
-
-
-                    <ImageView
-                        android:tint="@color/color1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/rupees"/>
-
-                    <LinearLayout
-
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Charged Amount"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-                            />
-                        <EditText
-                            android:padding="8dp"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/chargedamount"
-                            android:background="@drawable/spinnerbg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textSize="15dp"
-                            android:hint="Enter Here"
-
-                            />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-                ///Collected Amount
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
-                    android:layout_gravity="center">
-
-
-                    <ImageView
-                        android:tint="@color/color1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/rupees"/>
-
-                    <LinearLayout
-
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <TextView
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Collected Amount"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-                            />
-                        <EditText
-                            android:padding="8dp"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/collectedamount"
-                            android:background="@drawable/spinnerbg"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textSize="15dp"
-                            android:hint="Enter Here"
-                            />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-                //Service Report No
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
                     android:layout_gravity="center">
 
 
@@ -315,48 +50,36 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Service Report No"
+                            android:text="Job Number"
                             android:textColor="@android:color/black"
                             android:textSize="18dp"
                             />
-                        <EditText
+                        <TextView
                             android:padding="8dp"
                             android:layout_marginTop="10dp"
-                            android:id="@+id/servicereport"
+                            android:id="@+id/jobNo"
                             android:background="@drawable/spinnerbg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="15dp"
-                            android:hint="Enter Here"
+                            android:text="1"
 
                             />
 
-
                     </LinearLayout>
-
 
                 </LinearLayout>
 
 
-            </LinearLayout>
-
-            //accessories layout
-
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/accesorieslay"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <!--//Product ///////////////////////////-->
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
                     android:layout_gravity="center">
 
 
@@ -379,36 +102,372 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Accessories"
+                            android:text="Product"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            />
+                        <EditText
+                            android:padding="8dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/actionTaken"
+                            android:background="@drawable/spinnerbg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:textSize="15dp"
+                            android:hint="Enter Here"
+
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--//Problem///////////////////////////-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_gravity="center">
+
+
+                    <ImageView
+                        android:tint="@color/color1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/detail_icon"/>
+
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Problem"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            />
+                        <EditText
+                            android:padding="8dp"
+                            android:layout_marginTop="10dp"
+                            android:id="@+id/problem"
+                            android:background="@drawable/spinnerbg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:textSize="15dp"
+                            android:hint="Enter Here"
+
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                //status
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_gravity="center">
+
+
+                    <ImageView
+                        android:tint="@color/color1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/detail_icon"/>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Status"
                             android:textColor="@android:color/black"
                             android:textSize="18dp"
                             />
                         <RelativeLayout
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="25dp"
                             android:layout_width="wrap_content"
                             android:background="@drawable/spinnerbg"
                             android:layout_height="wrap_content">
+
                             <Spinner
 
-                                android:id="@+id/accessories"
+                                android:id="@+id/status"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
+
                                 >
 
                             </Spinner>
 
                         </RelativeLayout>
-                        <EditText
-                            android:padding="8dp"
-                            android:layout_marginTop="10dp"
-                            android:id="@+id/accessoriesother"
-                            android:background="@drawable/spinnerbg"
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                // Price Layout
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/Pricelayout"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center">
+
+
+                        <ImageView
+                            android:tint="@color/color1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/rupees"/>
+
+                        <LinearLayout
+
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@android:color/black"
-                            android:textSize="15dp"
-                            android:hint="Enter Here"
-                            />
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Charged Amount"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                />
+                            <EditText
+                                android:padding="8dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/chargedamount"
+                                android:background="@drawable/spinnerbg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textSize="15dp"
+                                android:hint="Enter Here"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    ///Collected Amount
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center">
+
+
+                        <ImageView
+                            android:tint="@color/color1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/rupees"/>
+
+                        <LinearLayout
+
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Collected Amount"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                />
+                            <EditText
+                                android:padding="8dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/collectedamount"
+                                android:background="@drawable/spinnerbg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textSize="15dp"
+                                android:hint="Enter Here"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    //Service Report No
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center">
+
+
+                        <ImageView
+                            android:tint="@color/color1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/detail_icon"/>
+
+                        <LinearLayout
+
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Service Report No"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                />
+                            <EditText
+                                android:padding="8dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/servicereport"
+                                android:background="@drawable/spinnerbg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textSize="15dp"
+                                android:hint="Enter Here"
+
+                                />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                //accessories layout
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/accesorieslay"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_gravity="center">
+
+
+                        <ImageView
+                            android:tint="@color/color1"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/detail_icon"/>
+
+                        <LinearLayout
+
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Accessories"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                />
+                            <RelativeLayout
+                                android:layout_marginTop="10dp"
+                                android:layout_width="wrap_content"
+                                android:background="@drawable/spinnerbg"
+                                android:layout_height="wrap_content">
+                                <Spinner
+
+                                    android:id="@+id/accessories"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    >
+
+                                </Spinner>
+
+                            </RelativeLayout>
+                            <EditText
+                                android:padding="8dp"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/accessoriesother"
+                                android:background="@drawable/spinnerbg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:textSize="15dp"
+                                android:hint="Enter Here"
+                                />
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -416,45 +475,42 @@
                 </LinearLayout>
 
 
-            </LinearLayout>
+                //Submit Button
 
-
-
-
-            //Submit Button
-
-            <LinearLayout
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/submit"
-                android:layout_gravity="center"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/logbtn"
-                android:clickable="true">
-
-                <TextView
-                    android:gravity="center"
+                <LinearLayout
+                    android:layout_marginTop="25dp"
+                    android:id="@+id/submit"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="submit"
-                    android:textSize="18dp"
-                    android:textColor="@android:color/white"
-                    />
+                    android:layout_height="wrap_content"
+                    android:background="#976090"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="submit"
+                        android:textColor="@android:color/white"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+
+
+
+
 
             </LinearLayout>
+        </ScrollView>
 
 
 
 
-        </LinearLayout>
 
-    </ScrollView>
 
 
 
