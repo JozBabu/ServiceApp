@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_test"
+    android:background="#E2E2E2"
     tools:context=".Activity.Login">
 
     <LinearLayout
@@ -16,14 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <LinearLayout
+            android:padding="10dp"
+            android:elevation="2dp"
+            android:background="@android:color/white"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
 
             <LinearLayout
+
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
@@ -35,7 +41,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:tint="#F1ECBD"
+                    android:tint="#ff8f86"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_width="15dp"
@@ -51,8 +57,8 @@
                     android:layout_width="match_parent"
                     android:textSize="18dp"
                     android:background="@android:color/transparent"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#F1ECBD"
+                    android:textColor="#ff8f86"
+                    android:textColorHint="#ff8f86"
                     android:gravity="start"
                     android:hint="Username"
                     android:inputType="textCapSentences"
@@ -68,11 +74,11 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:background="@drawable/strokewhite"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:tint="#F1ECBD"
+                    android:tint="#ff8f86"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_width="15dp"
@@ -88,8 +94,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     android:background="@android:color/transparent"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="#F1ECBD"
+                    android:textColor="#ff8f86"
+                    android:textColorHint="#ff8f86"
                     android:gravity="start"
                     android:hint="Password"
                     android:imeOptions="actionDone"/>
@@ -106,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/logbtn"
+                android:background="@drawable/testbackground_grad"
                 android:clickable="true">
 
                 <TextView

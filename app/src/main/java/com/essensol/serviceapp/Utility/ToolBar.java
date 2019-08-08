@@ -26,7 +26,7 @@ public class ToolBar extends AppCompatActivity {
         name=findViewById(R.id.appname);
 
         //Font
-        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/MontserratMedium.ttf");
+        Typeface custom_font2 = Typeface.createFromAsset(getAssets(),  "fonts/MontserratBold.ttf");
         name.setTypeface(custom_font2);
 
     }

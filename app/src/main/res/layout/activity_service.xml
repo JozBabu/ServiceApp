@@ -9,8 +9,8 @@
         android:id="@+id/serviceTab"
         android:background="#492b51"
         app:tabTextColor="@android:color/white"
-        app:tabSelectedTextColor="#7e4c77"
-        app:tabIndicatorColor="#7e4c77"
+        app:tabSelectedTextColor="#B788EE"
+        app:tabIndicatorColor="#B788EE "
         app:tabIndicatorHeight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

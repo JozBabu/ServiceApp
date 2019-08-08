@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.essensol.serviceapp.Dialogue.BackButton;
 import com.essensol.serviceapp.Dialogue.LogoutDialogue;
 import com.essensol.serviceapp.Dialogue.Vehicle_km;
 import com.essensol.serviceapp.R;
@@ -118,7 +119,7 @@ public class Home extends AppCompatActivity {
         productText.setTypeface(custom_font2);
         productCount.setTypeface(custom_font2);
         profileText.setTypeface(custom_font2);
-        appname.setTypeface(custom_font2);
+        appname.setTypeface(custom_font);
 
         //ProfilePic Click
         profpic_glide.setOnClickListener(new View.OnClickListener() {
@@ -185,11 +186,7 @@ public class Home extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        moveTaskToBack(true);
-    }
+
 
 
     //KM Entering Dialogue
@@ -211,4 +208,23 @@ public class Home extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+      Back_dialogue();
+
+    }
+
+    //Logout Dialogue
+    public void Back_dialogue()
+    {
+        BackButton dialogFragment = new BackButton();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.framelayout, dialogFragment);
+        ft.commit();
+    }
+
+    public void Exit()
+    {
+        moveTaskToBack(true);
+    }
 }

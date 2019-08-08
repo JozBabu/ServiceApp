@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AA000000"
-    android:id="@+id/parentlay"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Dialogue.LogoutDialogue">
+    android:background="#AA000000"
+    tools:context=".Dialogue.BackButton">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+
             android:background="@android:color/white"
             android:orientation="vertical">
 
@@ -29,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Logout"
+                android:text="Close"
                 android:textColor="@android:color/black"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -39,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Are you sure you want to Logout ?"
+                android:text="Are you sure you want to Close APP ?"
                 android:textColor="@android:color/black" />
 
 
