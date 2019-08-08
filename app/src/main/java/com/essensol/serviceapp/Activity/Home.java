@@ -26,7 +26,7 @@ public class Home extends AppCompatActivity {
    SimpleDraweeView logout_icon;
    TextView name,role,empid,serviceText,serviceCount,sigin,taskText,taskCount,
             productText,productCount,profileText,appname;
-   LinearLayout service,task,productDelivery,profile,signInbtn;
+   LinearLayout service,task,productDelivery,paymentCollection,signInbtn;
    ImageView profpic_glide,serviceImg_glide,taskImg_glide,productImg_glide,profileicon_glide;
     private Context context=Home.this;
 
@@ -59,7 +59,7 @@ public class Home extends AppCompatActivity {
         service=(LinearLayout)findViewById(R.id.service);
         task=(LinearLayout)findViewById(R.id.task);
         productDelivery=(LinearLayout)findViewById(R.id.productDelivery);
-        profile=(LinearLayout)findViewById(R.id.profile);
+        paymentCollection=(LinearLayout)findViewById(R.id.paymentCollection);
         signInbtn=(LinearLayout)findViewById(R.id.signInbtn);
 
 
@@ -71,7 +71,7 @@ public class Home extends AppCompatActivity {
         int profilepic= R.drawable.employe_pic;
         int serviceicon= R.drawable.service_icon;
         int list= R.drawable.list;
-        int user= R.drawable.user;
+        int user= R.drawable.purse;
         int product=R.drawable.shopping_bag;
 
         //Employee Pic
@@ -176,10 +176,10 @@ public class Home extends AppCompatActivity {
         });
 
         //Click to Profile Page
-        profile.setOnClickListener(new View.OnClickListener() {
+        paymentCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Home.this, Profile.class);
+                Intent intent=new Intent(Home.this, PaymentCollection.class);
                 startActivity(intent);
             }
         });

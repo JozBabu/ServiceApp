@@ -25,7 +25,7 @@ import com.essensol.serviceapp.R;
 public class DeliveryDialogue extends DialogFragment {
 
     Spinner delivery_status;
-    String array_vehicleNo[]={"Completed","Bring Back","Postponed"};
+    String array_vehicleNo[]={"Completed","Postponed"};
     TextView title;
 
     public DeliveryDialogue() {

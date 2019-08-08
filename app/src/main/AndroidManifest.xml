@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/employeeicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.CompletedServiceDetails"></activity>
+        <activity android:name=".Activity.PaymentReport"></activity>
+        <activity android:name=".Activity.PaymentDetails" />
+        <activity android:name=".Activity.PaymentCollection" />
+        <activity android:name=".Activity.CompletedServiceDetails" />
         <activity android:name=".Activity.ProductDelivery_Details" />
         <activity android:name=".Dialogue.DeliveryDialogue" />
         <activity android:name=".Activity.Task_Details" />

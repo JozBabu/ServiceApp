@@ -492,7 +492,7 @@
                             android:padding="10dp">
 
                             <LinearLayout
-                                android:id="@+id/profile"
+                                android:id="@+id/paymentCollection"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
@@ -502,9 +502,32 @@
                                     android:id="@+id/profileText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Profile"
+                                    android:text="Payment Collection"
                                     android:textColor="@color/test"
                                     android:textSize="17dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:gravity="center"
+                                        android:layout_margin="5dp"
+                                        android:elevation="3dp"
+                                        android:padding="2dp"
+                                        android:background="@drawable/roundbackround"
+                                        android:id="@+id/paymentCount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="0"
+                                        android:textColor="@android:color/white"
+                                        android:textSize="20dp" />
+
+
+                                </LinearLayout>
 
                             </LinearLayout>
 

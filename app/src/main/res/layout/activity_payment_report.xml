@@ -2,79 +2,185 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/inner_grad"
-    tools:context=".Activity.Task_Details">
-
-    <FrameLayout
-        android:id="@+id/framelayout_task"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    tools:context=".Activity.PaymentReport">
 
     <ScrollView
-
+        android:fillViewport="true"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
 
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
+
+
+            /////////Charged Amount
+
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_margin="10dp"
                 android:padding="10dp"
                 android:layout_gravity="center">
 
+
+                <ImageView
+                    android:tint="@color/color1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/rupees"/>
+
                 <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
+
                     <TextView
-                        android:id="@+id/studentName"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="5dp"
-                        android:text="Essensol"
+                        android:text="Charged Amount"
                         android:textColor="@android:color/black"
                         android:textSize="18dp"
                         />
+                    <EditText
+                        android:padding="8dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/chargedamount"
+                        android:background="@drawable/spinnerbg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:hint="Enter Here"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            ///Collected Amount
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:tint="@color/color1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/rupees"/>
+
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
 
                     <TextView
-                        android:layout_width="0dp"
+
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight=".5"
-                        android:text="03 June 2019"
-                        android:id="@+id/date"
+                        android:text="Collected Amount"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        />
+                    <EditText
+                        android:padding="8dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/collectedamount"
+                        android:background="@drawable/spinnerbg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:hint="Enter Here"
                         />
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/msgSubject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:text="System Issue"
+            </LinearLayout>
 
-                    />
+
+            //Balance Amount
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:tint="@color/color1"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/rupees"/>
+
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Balance Amount"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        />
+                    <EditText
+                        android:padding="8dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/balanceamount"
+                        android:background="@drawable/spinnerbg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+                        android:hint="Enter Here"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+
+            //Service Report No
 
             <LinearLayout
 
@@ -97,7 +203,7 @@
                     android:orientation="vertical"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
 
@@ -105,18 +211,20 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Task Details"
+                        android:text="Service Report No"
                         android:textColor="@android:color/black"
                         android:textSize="18dp"
                         />
-                    <TextView
+                    <EditText
+                        android:padding="8dp"
                         android:layout_marginTop="10dp"
-                        android:id="@+id/details"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/servicereport"
+                        android:background="@drawable/spinnerbg"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="@string/issue"
+                        android:hint="Enter Here"
 
                         />
 
@@ -127,141 +235,40 @@
             </LinearLayout>
 
 
+
+            //Submit Button
 
             <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
-
-
-                <ImageView
-                    android:tint="@color/color1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/location"/>
-
-                <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Locaion"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/location_details"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:text="@string/location"
-
-                        />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
-
-
-                <ImageView
-                    android:tint="@color/color1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/clock"/>
-
-                <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Shedule"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/shedule_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:text="5 June 2019"
-
-                        />
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/shedule_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:text="10.30 AM"
-
-                        />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-
-
-            <Button
-                android:background="@drawable/logbtn"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="25dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:id="@+id/submit"
                 android:layout_gravity="center"
-                android:id="@+id/tasksubmitbtn"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:text="Completed" />
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/logbtn"
+                android:clickable="true">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Sumbit"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/white"
+                    />
+
+            </LinearLayout>
+
+
 
 
         </LinearLayout>
 
-
-
-
-
     </ScrollView>
-
-
-    </FrameLayout>
 
 </LinearLayout>
