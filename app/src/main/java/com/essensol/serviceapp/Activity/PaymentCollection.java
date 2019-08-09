@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Adapter.PaymentCollectionAdapter;
 import com.essensol.serviceapp.Adapter.Task_Adapter;
@@ -15,12 +16,18 @@ public class PaymentCollection extends ToolBar {
 
     RecyclerView paymentCollection_reecycler;
     PaymentCollectionAdapter paymentCollectionAdapter;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_payment_collection, contentFrameLayout);
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Payment Collection");
 
         paymentCollection_reecycler=(RecyclerView)findViewById(R.id.paymentCollection_reecycler);
 

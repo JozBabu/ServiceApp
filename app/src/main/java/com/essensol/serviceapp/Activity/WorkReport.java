@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.essensol.serviceapp.R;
@@ -20,11 +21,18 @@ public class WorkReport extends ToolBar {
     LinearLayout submit,Pricelayout,accesorieslay;
     Spinner status;
     String array_status[]={"status","Bring Back","Postponed","Close"};
+    TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_work_report, contentFrameLayout);
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Work Report");
 
         submit=(LinearLayout)findViewById(R.id.submit);
         Pricelayout=(LinearLayout)findViewById(R.id.Pricelayout);

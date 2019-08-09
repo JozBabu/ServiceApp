@@ -2,6 +2,7 @@ package com.essensol.serviceapp.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,14 +10,24 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
+import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.Utility.ToolBar;
+import com.essensol.serviceapp.Utility.Utils;
+import com.essensol.serviceapp.Utility._CONSTANTS;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends ToolBar {
 
@@ -27,17 +38,18 @@ public class Login extends ToolBar {
     Api_interface api_interface;
     EditText username,password;
 
+    SharedPreferences sp ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.activity_login, contentFrameLayout);
+        setContentView(R.layout.activity_login);
 
         login=(LinearLayout)findViewById(R.id.login);
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
 
-      //  api_interface=ApiClient.getRetrofit().create(Api_interface.class);
+        api_interface=ApiClient.getRetrofit().create(Api_interface.class);
 
 
         //click
@@ -45,36 +57,18 @@ public class Login extends ToolBar {
             @Override
             public void onClick(View view) {
 
-//                try {
 //
-//                    JSONObject values = new JSONObject();
-//                    values.put("UserName", username.getText().toString());
-//                    values.put("UserPassword", password.getText().toString());
-//                    jsonString = new JSONObject();
-//                    jsonString.put("Token", "0001");
-//                    jsonString.put("call", "GetloginAdminDetails");
-//                    jsonString.put("values", values);
-//
-//                    request = jsonString.toString();
-//
-//
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
 
 
-//                myprog =new ProgressDialog(Login.this);
-//
-//                myprog.setTitle("Service App");
-//                myprog.setMessage("Logging In");
-//                myprog.setCancelable(false);
-//                myprog.show();
+                myprog =new ProgressDialog(Login.this);
 
-                Log.e("test","logg"+"  ");
-                Intent intent=new Intent(Login.this,Home.class);
-                startActivity(intent);
-                finish();
+                myprog.setTitle("Service App");
+                myprog.setMessage("Logging In");
+                myprog.setCancelable(false);
+                myprog.show();
+                Login();
+
+
 
             }
         });
@@ -82,8 +76,65 @@ public class Login extends ToolBar {
 
     }
 
-    public void Login(final String request)
+    public void Login()
     {
+
+        String  uname= username.getText().toString();
+        String  Password= password.getText().toString();
+        Log.e("CALLL","uname->"+uname+"Pword-->"+Password);
+
+        api_interface.Login(uname,Password,"M","123131231231235354").enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                if(response.isSuccessful()&&response.code()==200)
+                {
+                    myprog.dismiss();
+                if(response.body().getResponseCode().equalsIgnoreCase("0"))
+                {
+                    List<LoginResponse.Result> responseResult = response.body().getResult();
+                    for(int i=0;i<responseResult.size();i++)
+                    {
+                        switch (responseResult.get(i).getLoginResult())
+                        {
+                            case "1":
+                                sp=getSharedPreferences("UserLog",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString(_CONSTANTS.UserId,responseResult.get(i).getUserId());
+                                editor.putString(_CONSTANTS.StaffId,responseResult.get(i).getStaffId());
+                                editor.apply();
+
+                                Intent intent=new Intent(Login.this,Home.class);
+                                startActivity(intent);
+                                finish();
+                                break;
+                            case "2":
+                            Utils.ShowCustomToast(responseResult.get(i).getLoginMsg(),Login.this);
+                            break;
+                            case "3":
+                                Utils.ShowCustomToast(responseResult.get(i).getLoginMsg(),Login.this);
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    myprog.dismiss();
+                }
+
+                }
+                else {
+                    myprog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                myprog.dismiss();
+                Utils.ShowCustomToast("faileedddddddddd",Login.this);
+            }
+        });
+
 
 
 

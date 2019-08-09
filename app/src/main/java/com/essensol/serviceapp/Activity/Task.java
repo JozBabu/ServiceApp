@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Adapter.ProductDeliveryAdapter;
 import com.essensol.serviceapp.Adapter.Task_Adapter;
@@ -16,12 +17,18 @@ public class Task extends ToolBar {
 
     RecyclerView task_recycle;
     Task_Adapter task_adapter;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_task, contentFrameLayout);
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Task");
 
         task_recycle=(RecyclerView)findViewById(R.id.task_recycle);
 

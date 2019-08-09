@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Adapter.PendingAdapter;
 import com.essensol.serviceapp.Adapter.ProductDeliveryAdapter;
@@ -18,12 +19,17 @@ public class Product_Delivery extends ToolBar {
 
     RecyclerView productDelivery_recycle;
     ProductDeliveryAdapter productDeliveryAdapter;
-
+    TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_product_delivery, contentFrameLayout);
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Product Delivery");
 
         productDelivery_recycle=(RecyclerView)findViewById(R.id.productDelivery_recycle);
 

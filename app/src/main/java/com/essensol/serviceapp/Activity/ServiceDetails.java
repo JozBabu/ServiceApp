@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.Utility.ToolBar;
@@ -17,12 +18,17 @@ public class ServiceDetails extends ToolBar {
     Chronometer focus;
     Button submitbtn;
     int flag=0;
-
+    TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_service_details, contentFrameLayout);
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Service Details");
 
          focus = (Chronometer) findViewById(R.id.chronometer1);
 

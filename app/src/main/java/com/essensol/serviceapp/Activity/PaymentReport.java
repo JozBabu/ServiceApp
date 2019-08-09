@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.Utility.ToolBar;
@@ -13,6 +14,7 @@ import com.essensol.serviceapp.Utility.ToolBar;
 public class PaymentReport extends ToolBar {
 
     LinearLayout submit;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,11 @@ public class PaymentReport extends ToolBar {
         FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.activity_payment_report, contentFrameLayout);
 
+
+        android.support.v7.widget.Toolbar tb= getToolBar();
+
+        title =tb.findViewById(R.id.appname);
+        title.setText("Payment Report");
 
         submit=(LinearLayout)findViewById(R.id.submit);
 

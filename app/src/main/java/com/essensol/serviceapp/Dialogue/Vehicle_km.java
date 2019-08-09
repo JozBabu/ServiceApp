@@ -75,7 +75,7 @@ public class Vehicle_km extends DialogFragment {
                 android.R.layout.simple_spinner_item, array_vehicleNo);
         spinner_adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         vehicleNo.setAdapter(spinner_adapter_day);
-
+//        vehicleNo.setEnabled(false);
 
         if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
             editText.setText(getArguments().getString("email"));
@@ -135,7 +135,7 @@ public class Vehicle_km extends DialogFragment {
         }
 
         if (setFullScreen)
-            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+            setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black);
     }
 
     @Override
@@ -144,10 +144,9 @@ public class Vehicle_km extends DialogFragment {
     }
 
     public interface DialogListener {
+
         void onFinishEditDialog(String inputText);
     }
-
-
 
 
 }
