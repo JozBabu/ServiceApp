@@ -12,16 +12,19 @@ import android.widget.LinearLayout;
 
 import com.essensol.serviceapp.Activity.CompletedServiceDetails;
 import com.essensol.serviceapp.Activity.ServiceDetails;
+import com.essensol.serviceapp.Model_Classes.CompletedServiceModel;
 import com.essensol.serviceapp.R;
+
+import java.util.List;
 
 public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.CompletedViewholder> {
 
     private Context context;
-    private String mData[];
+    private List<CompletedServiceModel> list;
 
-    public CompletedAdapter(Context context, String[] mData) {
+    public CompletedAdapter(Context context, List<CompletedServiceModel> list) {
         this.context = context;
-        this.mData = mData;
+        this.list = list;
     }
 
     @NonNull
@@ -47,7 +50,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
 
     @Override
     public int getItemCount() {
-        return mData.length;
+        return list.size();
     }
 
     public class CompletedViewholder extends RecyclerView.ViewHolder

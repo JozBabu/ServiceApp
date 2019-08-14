@@ -104,6 +104,7 @@ public class Login extends ToolBar {
                                 editor.putString(_CONSTANTS.StaffId,responseResult.get(i).getStaffId());
                                 editor.apply();
 
+                                Log.e("Staff ID","SStaff ID"+responseResult.get(i).getStaffId()+"   UserId"+responseResult.get(i).getUserId());
                                 Intent intent=new Intent(Login.this,Home.class);
                                 startActivity(intent);
                                 finish();
@@ -131,7 +132,7 @@ public class Login extends ToolBar {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 myprog.dismiss();
-                Utils.ShowCustomToast("faileedddddddddd",Login.this);
+                Utils.ShowCustomToast("Network Error,Please try again.",Login.this);
             }
         });
 

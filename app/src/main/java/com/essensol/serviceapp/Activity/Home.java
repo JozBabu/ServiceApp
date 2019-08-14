@@ -8,11 +8,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.essensol.serviceapp.Dialogue.BackButton;
@@ -23,10 +27,12 @@ import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.HomeResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
+import com.essensol.serviceapp.Utility.Utils;
 import com.essensol.serviceapp.Utility._CONSTANTS;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -38,12 +44,15 @@ public class Home extends AppCompatActivity {
 
     SimpleDraweeView logout_icon;
     TextView name, role, empid, serviceText, serviceCount, sigin, taskText, taskCount,
-            productText, productCount, profileText, appname,paymentCount;
-    LinearLayout service, task, productDelivery, paymentCollection, signInbtn;
+            productText, productCount, profileText, appname, paymentCount,km_text;
+    LinearLayout service, task, productDelivery, paymentCollection, signInbtn,KmEntering;
     ImageView profpic_glide, serviceImg_glide, taskImg_glide, productImg_glide, profileicon_glide;
     private Context context = Home.this;
     Api_interface api_interface;
     SharedPreferences sp;
+    ShimmerFrameLayout shimmer;
+    private String Status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +66,7 @@ public class Home extends AppCompatActivity {
 
         logout_icon = (SimpleDraweeView) findViewById(R.id.logout);
 
+        km_text = (TextView) findViewById(R.id.km_text);
         appname = (TextView) findViewById(R.id.appname);
         name = (TextView) findViewById(R.id.name);
         role = (TextView) findViewById(R.id.role);
@@ -69,34 +79,30 @@ public class Home extends AppCompatActivity {
         productText = (TextView) findViewById(R.id.productText);
         productCount = (TextView) findViewById(R.id.productCount);
         profileText = (TextView) findViewById(R.id.profileText);
-        paymentCount= (TextView) findViewById(R.id.paymentCount);
+        paymentCount = (TextView) findViewById(R.id.paymentCount);
+        shimmer = findViewById(R.id.frame);
 
         service = (LinearLayout) findViewById(R.id.service);
         task = (LinearLayout) findViewById(R.id.task);
         productDelivery = (LinearLayout) findViewById(R.id.productDelivery);
         paymentCollection = (LinearLayout) findViewById(R.id.paymentCollection);
         signInbtn = (LinearLayout) findViewById(R.id.signInbtn);
-
+        KmEntering = (LinearLayout) findViewById(R.id.KmEntering);
         //Api Interface
-         api_interface= ApiClient.getRetrofit().create(Api_interface.class);
+        api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
 
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logouticon).build();
         logout_icon.setImageURI(imageRequest1.getSourceUri());
 
+
         //Glide Image Loading
-        int profilepic = R.drawable.employe_pic;
         int serviceicon = R.drawable.service_icon;
         int list = R.drawable.list;
         int user = R.drawable.purse;
         int product = R.drawable.shopping_bag;
 
-        //Employee Pic
-        Glide
-                .with(context)
-                .load(profilepic)
-                .into(profpic_glide);
 
         //Service Icon
         Glide
@@ -140,6 +146,8 @@ public class Home extends AppCompatActivity {
         appname.setTypeface(custom_font);
         paymentCount.setTypeface(custom_font);
 
+        shimmer.startShimmer();
+
         //Home service Calling
         HomeService();
 
@@ -165,9 +173,16 @@ public class Home extends AppCompatActivity {
         signInbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Utils.ShowCustomToast("You are Signed In",Home.this);
+            }
+        });
+
+        //start reading button
+        KmEntering.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
                 dialogue_box();
-
             }
         });
 
@@ -209,6 +224,34 @@ public class Home extends AppCompatActivity {
 
     }
 
+
+
+    //Options Menu
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            super.onCreateOptionsMenu(menu);
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.options_menu, menu); //your file name
+            return true;
+        }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.logout_menu:
+                Logout_dialogue();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
     @Override
     public void onBackPressed() {
         Back_dialogue();
@@ -219,6 +262,9 @@ public class Home extends AppCompatActivity {
     //KM Entering Dialogue
     public void dialogue_box() {
         Vehicle_km dialogFragment = new Vehicle_km();
+        Bundle bundle=new Bundle();
+        bundle.putString("Type",Status);
+        dialogFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout, dialogFragment);
         ft.commit();
@@ -247,9 +293,11 @@ public class Home extends AppCompatActivity {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
 
+
+
         Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
 
-        api_interface.Home(uid).enqueue(new Callback<HomeResponse>() {
+        api_interface.Home(staffid).enqueue(new Callback<HomeResponse>() {
             @Override
             public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
 
@@ -267,10 +315,46 @@ public class Home extends AppCompatActivity {
                             productCount.setText(responseResult.get(i).getProductDeliveryCount());
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
+                            Log.e("ImageString",""+responseResult.get(i).getProfileImage());
+
+                            //Employee Pic
+                            String url=("http://192.168.1.6:1212"+responseResult.get(i).getProfileImage());
+                            Glide
+                                    .with(context)
+                                    .load(url)
+                                    .into(profpic_glide);
+
+                            Log.e("IO Status","    "+responseResult.get(i).getIOStatus());
+                            Log.e("Meter Status","    "+responseResult.get(i).getMeterReading());
+
+                            //Sign In/SignOut
+                            if (responseResult.get(i).getIOStatus().equals(true))
+                            {
+                                sigin.setText("SignOut");
+                            }
+                            else
+                            {
+                                sigin.setText("SignIn");
+                            }
+
+//                            //Ride Start and stop
+                            if (responseResult.get(i).getMeterReading().equals(true))
+                            {
+                                km_text.setText("End Ride");
+                                 Status="E";
+                            }
+                            else
+                            {
+                                km_text.setText("Start Ride");
+                                Status="S";
+                            }
+
+
                         }
+                        shimmer.stopShimmer();
+                        shimmer.setVisibility(View.GONE);
 
                     }
-
 
                 }
 

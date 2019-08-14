@@ -4,14 +4,15 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="loginbutton">#2c80e3</color>
-    <color name="color1">#345996</color>
+    <color name="color1">#ff8f86</color>
     <color name="color2">#ffc948</color>
-    <color name="color3">#ffff</color>
+    <color name="color3">#ffb567</color>
     <color name="GridColor">#2c80e3</color>
      <color name="toolbar">#2859a2</color>
     <color name="gradienttop">#b9d9f2</color>
     <color name="gradientend">#edf0f3</color>
-
+    <color name="shimmer">#ACACAC</color>
     <color name="test">#1A1E47</color>
+    <color name="neww">#ff8f86</color>
 
 </resources>

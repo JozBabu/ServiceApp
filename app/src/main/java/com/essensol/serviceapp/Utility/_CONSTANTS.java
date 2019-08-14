@@ -25,6 +25,32 @@ public interface _CONSTANTS {
     String ProductDeliveryCount = "ProductDeliveryCount";
     String PaymentCollectionCount = "PaymentCollectionCount";
 
+    String MobileNo="MobileNo";
+    String EmailId="EmailId";
+    String Address="Address";
+
+    String IOStatus="IOStatus";
+    String IsMeterReading="IsMeterReading";
+
+    String ServiceId = "ServiceId";
+    String ServiceDate = "ServiceDate";
+    String CustomerId = "CustomerId";
+    String ProblemDetails = "ProblemDetails";
+    String CustomerName = "CustomerName";
+
+    String VehicleId = "VehicleId";
+    String LicenseNo = "LicenseNo";
+
+    String Type="Type";
+    String MeterReading="MeterReading";
+
+
+ /*
+    "VehicleId": 1,
+            "LicenseNo": "KL-38 5464"
+
+     */
+
 
 }
 

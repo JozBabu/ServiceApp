@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class HomeResponse {
-
+public class ProfileResponse {
 
     @SerializedName("responseCode")
     @Expose
@@ -49,30 +48,17 @@ public class HomeResponse {
         @Expose
         private String ProfileImage;
 
-        @SerializedName(_CONSTANTS.ServiceCount)
+        @SerializedName(_CONSTANTS.MobileNo)
         @Expose
-        private String ServiceCount;
+        private String MobileNo;
 
-        @SerializedName(_CONSTANTS.TaskCount)
+        @SerializedName(_CONSTANTS.EmailId)
         @Expose
-        private String TaskCount;
+        private String EmailId;
 
-        @SerializedName(_CONSTANTS.ProductDeliveryCount)
+        @SerializedName(_CONSTANTS.Address)
         @Expose
-        private String ProductDeliveryCount;
-
-        @SerializedName(_CONSTANTS.PaymentCollectionCount)
-        @Expose
-        private String PaymentCollectionCount;
-
-        @SerializedName(_CONSTANTS.IOStatus)
-        @Expose
-        private Boolean IOStatus;
-
-        @SerializedName(_CONSTANTS.IsMeterReading)
-        @Expose
-        private Boolean IsMeterReading;
-
+        private String Address;
 
 
         public String getStaffName() {
@@ -91,30 +77,16 @@ public class HomeResponse {
             return ProfileImage;
         }
 
-        public String getServiceCount() {
-            return ServiceCount;
+        public String getMobileNo() {
+            return MobileNo;
         }
 
-        public String getTaskCount() {
-            return TaskCount;
+        public String getEmailId() {
+            return EmailId;
         }
 
-        public String getProductDeliveryCount() {
-            return ProductDeliveryCount;
-        }
-
-        public String getPaymentCollectionCount() {
-            return PaymentCollectionCount;
-        }
-
-        public Boolean getIOStatus() {
-            return IOStatus;
-        }
-
-        public Boolean getMeterReading() {
-            return IsMeterReading;
+        public String getAddress() {
+            return Address;
         }
     }
-
-
 }

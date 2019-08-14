@@ -9,19 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.ServiceDetails;
+import com.essensol.serviceapp.Model_Classes.PendingServiceModel;
 import com.essensol.serviceapp.R;
+
+import java.util.List;
 
 public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.PendingViewholder>{
 
 
-    private String mData[];
-    private Context context;
 
-    public PendingAdapter(String[] mData, Context context) {
-        this.mData = mData;
+    private Context context;
+    private List<PendingServiceModel> list;
+
+    public PendingAdapter(Context context, List<PendingServiceModel> list) {
         this.context = context;
+        this.list = list;
     }
 
     @NonNull
@@ -32,7 +37,14 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PendingViewholder pendingViewholder, int i) {
+    public void onBindViewHolder(@NonNull PendingViewholder pendingViewholder, final int i) {
+
+
+
+        pendingViewholder.custName.setText(list.get(i).getCustomerName());
+        pendingViewholder.date.setText(list.get(i).getServiceDate());
+        pendingViewholder.pblm_det.setText(list.get(i).getProblemDetails());
+
 
         pendingViewholder.pendingserivceclick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +52,9 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
 
                 Intent intent = new Intent(context, ServiceDetails.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("ServiceId",list.get(i).getServiceId());
                 context.getApplicationContext().startActivity(intent);
+
             }
         });
 
@@ -48,17 +62,22 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
 
     @Override
     public int getItemCount() {
-        return mData.length;
+        return list.size();
     }
 
     public class PendingViewholder extends RecyclerView.ViewHolder
     {
 
         LinearLayout pendingserivceclick;
+        TextView custName,date,pblm_det;
         public PendingViewholder(@NonNull View itemView) {
             super(itemView);
 
             pendingserivceclick=itemView.findViewById(R.id.pendingserivceclick);
+            custName=itemView.findViewById(R.id.custName);
+            date=itemView.findViewById(R.id.date);
+            pblm_det=itemView.findViewById(R.id.pblm_det);
+
         }
     }
 }
