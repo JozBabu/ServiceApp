@@ -1,8 +1,11 @@
 package com.essensol.serviceapp.Dialogue;
 
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +37,7 @@ import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.InsertMeterRedingResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
+import com.essensol.serviceapp.Utility.Utils;
 import com.essensol.serviceapp.Utility._CONSTANTS;
 
 import java.util.ArrayList;
@@ -54,14 +58,22 @@ public class Vehicle_km extends DialogFragment {
     String array_vehicleNo[]={"KL-07 BR 6831","KL-07 CC 2087","KL - 07 CV 4054"};
     TextView title;
     ArrayList<VehicleNo_model> iteems =new ArrayList<>();
-    String vehID;
+    String vehID="0";
     SharedPreferences sp;
     String type;
     EditText inKm;
+   Context activity;
 
     public Vehicle_km() {
         // Required empty public constructor
     }
+    @SuppressLint("ValidFragment")
+    public Vehicle_km(Context context) {
+        this.activity=context;
+    }
+
+
+
 
     @NonNull
     @Override
@@ -71,20 +83,16 @@ public class Vehicle_km extends DialogFragment {
 
                 return super.onCreateDialog(savedInstanceState);
 
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vehicle_km, container, false);
 
-    }
+        View RootView = inflater.inflate(R.layout.fragment_vehicle_km, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+        //Api Interface
+        api_interface= ApiClient.getRetrofit().create(Api_interface.class);
 
         Bundle bundle=this.getArguments();
         assert bundle != null;
@@ -92,25 +100,29 @@ public class Vehicle_km extends DialogFragment {
 
         Log.e("Statusssssss"," Dialogue  "+type);
 
-        inKm = view.findViewById(R.id.inKm);
+        inKm = RootView.findViewById(R.id.inKm);
 
-        title=view.findViewById(R.id.title);
-        vehicleNo=view.findViewById(R.id.vehicleNo);
+        title=RootView.findViewById(R.id.title);
+        vehicleNo=RootView.findViewById(R.id.vehicleNo);
+
+        if(type.equalsIgnoreCase("E")){
+            Log.e("Entered","if Condition");
+            vehicleNo.setEnabled(false);
+
+        }
 
         //Font
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/MontserratBold.ttf");
         Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/MontserratMedium.ttf");
         title.setTypeface(custom_font2);
 
-        //Api Interface
-        api_interface= ApiClient.getRetrofit().create(Api_interface.class);
-
         getVehicleNo();
-
         vehicleNo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 vehID = iteems.get(i).getVehicleId();
+
                 Log.e("vehID",""+vehID);
 
             }
@@ -121,8 +133,8 @@ public class Vehicle_km extends DialogFragment {
             }
         });
 
-        Button btnDone = view.findViewById(R.id.submitbtn);
-        Button cncelbutton=view.findViewById(R.id.cncelbutton);
+        Button btnDone = RootView.findViewById(R.id.submitbtn);
+        Button cncelbutton=RootView.findViewById(R.id.cncelbutton);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,8 +145,10 @@ public class Vehicle_km extends DialogFragment {
                     inKm.setError("Field is Mandatory");
                 }
                 else {
-                    Intent i = new Intent(getContext(),Home.class);
-                    startActivity(i);
+                    InsertMeterReaading();
+
+                    Intent intent=new Intent(getContext(),Home.class);
+                    startActivity(intent);
                     dismiss();
                 }
 
@@ -153,7 +167,7 @@ public class Vehicle_km extends DialogFragment {
             }
         });
 
-        LinearLayout parentlay=view.findViewById(R.id.parentlay);
+        LinearLayout parentlay=RootView.findViewById(R.id.parentlay);
         parentlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +178,17 @@ public class Vehicle_km extends DialogFragment {
         });
 
         setCancelable(false);
+        // Inflate the layout for this fragment
+        return RootView;
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+
     }
 
     @Override
@@ -216,7 +241,7 @@ public class Vehicle_km extends DialogFragment {
                             iteems.add(items);
                        }
 
-                            sendList_adapter = new ArrayAdapter<VehicleNo_model>(getContext(), android.R.layout.simple_spinner_dropdown_item, iteems);
+                            sendList_adapter = new ArrayAdapter<VehicleNo_model>(activity, android.R.layout.simple_spinner_dropdown_item, iteems);
                             vehicleNo.setAdapter(sendList_adapter);
 
                         }
@@ -245,28 +270,34 @@ public class Vehicle_km extends DialogFragment {
 
         Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
         Log.e("Meter ","Rading  "+Km);
+        Log.e("CALLL","sid-->"+vehID);
+        Log.e("Meter ","Rading  "+type);
 
-        api_interface.InsertmeterReading(staffid,uid,type,Km,vehID).enqueue(new Callback<InsertMeterRedingResponse>() {
+        api_interface.InsertmeterReading(staffid,vehID,Km,type,uid).enqueue(new Callback<InsertMeterRedingResponse>() {
             @Override
             public void onResponse(Call<InsertMeterRedingResponse> call, Response<InsertMeterRedingResponse> response) {
 
                 if(response.isSuccessful()&&response.code()==200)
                 {
-//                    if(response.body().getResponseCode().equalsIgnoreCase("0"))
-//                    {
-//                        List<InsertMeterRedingResponse.Result> responseResult = response.body().getResult();
-//                        for(int i=0;i<responseResult.size();i++)
-//                        {
-//                            Intent intent=new Intent(getContext(),Home.class);
-//                            startActivity(intent);
-//
-//                        }
-//                    }
+                    if(response.body().getResponseCode().equalsIgnoreCase("0"))
+                    {
+                        List<InsertMeterRedingResponse.Result> responseResult = response.body().getResult();
+                        for(int i=0;i<responseResult.size();i++)
+                        {
+
+                            Log.e("INSERTED "," SUCCESSFULLY ");
+
+                           dismiss();
+
+                        }
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<InsertMeterRedingResponse> call, Throwable t) {
+
+                Log.e("On Faliuree","  "+t.getLocalizedMessage());
 
             }
         });

@@ -41,15 +41,14 @@ public interface _CONSTANTS {
     String VehicleId = "VehicleId";
     String LicenseNo = "LicenseNo";
 
-    String Type="Type";
+    String EntryType="EntryType";
     String MeterReading="MeterReading";
+    String CreatedBy="CreatedBy";
 
-
- /*
-    "VehicleId": 1,
-            "LicenseNo": "KL-38 5464"
-
-     */
+    String result="result";
+    String errorcode="errorcode";
+    String msg="CreatedBy";
+    String PunchType="PunchType";
 
 
 }

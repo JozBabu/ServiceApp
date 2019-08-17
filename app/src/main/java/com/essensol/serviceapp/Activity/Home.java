@@ -27,6 +27,7 @@ import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.HomeResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
 import com.essensol.serviceapp.Utility.Utils;
 import com.essensol.serviceapp.Utility._CONSTANTS;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -51,8 +52,8 @@ public class Home extends AppCompatActivity {
     Api_interface api_interface;
     SharedPreferences sp;
     ShimmerFrameLayout shimmer;
-    private String Status;
-
+    private String Status,mode,PunchType;
+    String staffid,uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,8 +149,19 @@ public class Home extends AppCompatActivity {
 
         shimmer.startShimmer();
 
+        sp = getSharedPreferences("UserLog",MODE_PRIVATE);
+         uid= sp.getString(_CONSTANTS.UserId, null);
+         staffid= sp.getString(_CONSTANTS.StaffId, null);
+
         //Home service Calling
         HomeService();
+
+        appname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeService();
+            }
+        });
 
 
         //ProfilePic Click
@@ -169,20 +181,39 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //SignIn Click
-        signInbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.ShowCustomToast("You are Signed In",Home.this);
-            }
-        });
+
+
+            //SignIn Click
+            signInbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Status.equalsIgnoreCase("S")) {
+                        SignInService();
+                    }
+                    else if (Status.equalsIgnoreCase("E"))
+                    {
+                        Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
+                    }
+                }
+            });
+
+
 
         //start reading button
         KmEntering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                dialogue_box();
+                if (mode.equalsIgnoreCase("signOutt"))
+                {
+                    dialogue_box();
+                }
+                else
+                {
+                    Utils.ShowCustomToast("Please SignIn.",Home.this);
+                }
+
+
             }
         });
 
@@ -222,9 +253,16 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        HomeService();
+    }
 
     //Options Menu
 
@@ -261,7 +299,7 @@ public class Home extends AppCompatActivity {
 
     //KM Entering Dialogue
     public void dialogue_box() {
-        Vehicle_km dialogFragment = new Vehicle_km();
+        Vehicle_km dialogFragment = new Vehicle_km(Home.this);
         Bundle bundle=new Bundle();
         bundle.putString("Type",Status);
         dialogFragment.setArguments(bundle);
@@ -286,14 +324,7 @@ public class Home extends AppCompatActivity {
         ft.commit();
     }
 
-    public void HomeService()
-    {
-
-        sp = getSharedPreferences("UserLog",MODE_PRIVATE);
-        String uid= sp.getString(_CONSTANTS.UserId, null);
-        String staffid= sp.getString(_CONSTANTS.StaffId, null);
-
-
+    public void HomeService(){
 
         Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
 
@@ -331,13 +362,15 @@ public class Home extends AppCompatActivity {
                             if (responseResult.get(i).getIOStatus().equals(true))
                             {
                                 sigin.setText("SignOut");
+                                mode="signOutt";
                             }
                             else
                             {
                                 sigin.setText("SignIn");
+                                mode="signINN";
                             }
 
-//                            //Ride Start and stop
+                           //Ride Start and stop
                             if (responseResult.get(i).getMeterReading().equals(true))
                             {
                                 km_text.setText("End Ride");
@@ -351,18 +384,65 @@ public class Home extends AppCompatActivity {
 
 
                         }
+
                         shimmer.stopShimmer();
                         shimmer.setVisibility(View.GONE);
-
                     }
 
                 }
-
 
             }
 
             @Override
             public void onFailure(Call<HomeResponse> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+    public void SignInService()
+    {
+
+        if(mode.equalsIgnoreCase("signOutt"))
+        {
+             PunchType="O";
+        }
+        else if (mode.equalsIgnoreCase("signINN"))
+
+        {
+             PunchType="I";
+        }
+        Log.e("PunchType","  "+PunchType);
+        Log.e("staffid","  "+staffid);
+        Log.e("staffid","  "+uid);
+
+        api_interface.WorkSignInSignOut(staffid,PunchType,"M",uid).enqueue(new Callback<WorkSignInSignOutResponse>() {
+            @Override
+            public void onResponse(Call<WorkSignInSignOutResponse> call, Response<WorkSignInSignOutResponse> response) {
+
+                if(response.isSuccessful()&&response.code()==200) {
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+                        List<WorkSignInSignOutResponse.Result> responseResult = response.body().getResult();
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            Log.e("Msg","  "+responseResult.get(i).getMsg());
+                            Log.e("Msg","  "+responseResult.get(i).getErrorcode());
+                            Log.e("Msg","  "+responseResult.get(i).getResult());
+                            Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
+                            if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
+                                HomeService();
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WorkSignInSignOutResponse> call, Throwable t) {
 
             }
         });

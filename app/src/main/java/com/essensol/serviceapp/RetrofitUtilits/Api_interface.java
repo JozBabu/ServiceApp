@@ -7,6 +7,7 @@ import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
 import com.essensol.serviceapp.Utility._CONSTANTS;
 
 import retrofit2.Call;
@@ -54,13 +55,22 @@ public interface Api_interface {
     Call<VehicleNoResponse>VehcileNo();
 
     //Save Vehicle Km
-    @POST("CommonApi/CheckloginDetails")
+    @POST("VehicleApi/InsertMeterReadingDetails")
     @FormUrlEncoded
     Call<InsertMeterRedingResponse>InsertmeterReading(@Field(_CONSTANTS.StaffId)String StaffId,
-                                                      @Field(_CONSTANTS.UserId)String UserId,
                                                       @Field(_CONSTANTS.VehicleId)String VehicleId,
                                                       @Field(_CONSTANTS.MeterReading)String MeterReading,
-                                                      @Field(_CONSTANTS.Type)String Type);
+                                                      @Field(_CONSTANTS.EntryType)String EntryType,
+                                                      @Field(_CONSTANTS.CreatedBy)String CreatedBy);
+
+
+    //SignIn/SignOut
+    @POST("STPPApi/JobSignInSignOut")
+    @FormUrlEncoded
+    Call<WorkSignInSignOutResponse>WorkSignInSignOut(@Field(_CONSTANTS.StaffId)String StaffId,
+                                                     @Field(_CONSTANTS.PunchType)String PunchType,
+                                                     @Field(_CONSTANTS.DeviceType)String DeviceType,
+                                                     @Field(_CONSTANTS.CreatedBy)String CreatedBy);
 
 
 

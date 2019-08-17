@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class InsertMeterRedingResponse {
+public class WorkSignInSignOutResponse {
 
     @SerializedName("responseCode")
     @Expose
@@ -22,24 +22,12 @@ public class InsertMeterRedingResponse {
         return responseCode;
     }
 
-    public void setResponseCode(String responseCode) {
-        this.responseCode = responseCode;
-    }
-
     public String getResponseMessage() {
         return responseMessage;
     }
 
-    public void setResponseMessage(String responseMessage) {
-        this.responseMessage = responseMessage;
-    }
-
     public List<Result> getResult() {
         return result;
-    }
-
-    public void setResult(List<Result> result) {
-        this.result = result;
     }
 
     public class Result {
@@ -61,24 +49,12 @@ public class InsertMeterRedingResponse {
             return result;
         }
 
-        public void setResult(String result) {
-            this.result = result;
-        }
-
         public String getErrorcode() {
             return errorcode;
         }
 
-        public void setErrorcode(String errorcode) {
-            this.errorcode = errorcode;
-        }
-
         public String getMsg() {
             return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
         }
     }
 }
