@@ -43,7 +43,6 @@ public class Profile extends ToolBar {
         getLayoutInflater().inflate(R.layout.activity_profile, contentFrameLayout);
 
         android.support.v7.widget.Toolbar tb= getToolBar();
-
         title =tb.findViewById(R.id.appname);
         title.setText("Profile");
 
@@ -98,10 +97,9 @@ public class Profile extends ToolBar {
                             emp_address .setText(responseResult.get(i).getAddress());
 
                             //Employee Pic
-                            String url=("http://192.168.1.6:1212"+responseResult.get(i).getProfileImage());
+                            String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
 
                             if (!Profile.this.isFinishing()) {
-
 
                             Glide
                                     .with(context)

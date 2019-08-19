@@ -56,7 +56,6 @@ public class InsertMeterRedingResponse {
         @Expose
         private String msg;
 
-
         public String getResult() {
             return result;
         }

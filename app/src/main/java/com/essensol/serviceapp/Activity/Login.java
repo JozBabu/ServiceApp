@@ -1,8 +1,11 @@
 package com.essensol.serviceapp.Activity;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,6 +77,14 @@ public class Login extends ToolBar {
         });
 
 
+        if (ActivityCompat.checkSelfPermission(Login.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(Login.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(Login.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
+            return;
+        }
+
     }
 
     public void Login()
@@ -102,7 +113,9 @@ public class Login extends ToolBar {
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString(_CONSTANTS.UserId,responseResult.get(i).getUserId());
                                 editor.putString(_CONSTANTS.StaffId,responseResult.get(i).getStaffId());
+                                editor.putBoolean("LoggedUser", true);
                                 editor.apply();
+
 
                                 Log.e("Staff ID","SStaff ID"+responseResult.get(i).getStaffId()+"   UserId"+responseResult.get(i).getUserId());
                                 Intent intent=new Intent(Login.this,Home.class);

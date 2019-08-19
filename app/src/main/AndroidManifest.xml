@@ -3,6 +3,8 @@
     package="com.essensol.serviceapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".Utility.MyApplications"
@@ -12,16 +14,25 @@
         android:roundIcon="@mipmap/employeeicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.PaymentReport"></activity>
+
+        <activity android:name=".Activity.SplashSceen">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".Activity.PaymentReport" />
         <activity android:name=".Activity.PaymentDetails" />
         <activity android:name=".Activity.PaymentCollection" />
         <activity android:name=".Activity.CompletedServiceDetails" />
         <activity android:name=".Activity.ProductDelivery_Details" />
-        <activity android:name=".Dialogue.DeliveryDialogue" />
         <activity android:name=".Activity.Task_Details" />
         <activity android:name=".Activity.TaskReport" />
         <activity android:name=".Activity.WorkReport" />
-        <activity android:name=".Activity.ServiceDetails" />
+        <activity android:name=".Activity.ServiceDetails"></activity>
         <activity android:name=".Activity.Profile" />
         <activity android:name=".Activity.Product_Delivery" />
         <activity android:name=".Activity.Task" />
@@ -29,11 +40,7 @@
         <activity android:name=".Utility.ToolBar" />
         <activity android:name=".Activity.Home" />
         <activity android:name=".Activity.Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -4,8 +4,11 @@ import com.essensol.serviceapp.RetroftResponseClasses.CompletedServiceResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.HomeResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.InsertMeterRedingResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.PaymentCollectionListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.TaskListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
 import com.essensol.serviceapp.Utility._CONSTANTS;
@@ -73,5 +76,21 @@ public interface Api_interface {
                                                      @Field(_CONSTANTS.CreatedBy)String CreatedBy);
 
 
+
+    //Task  List
+    @POST("STPPApi/GetPendingServiceListByStaffId")
+    @FormUrlEncoded
+    Call<TaskListResponse>TaskList(@Field(_CONSTANTS.StaffId)String StaffId);
+
+
+    //ProductDelivery  List
+    @POST("STPPApi/GetPendingServiceListByStaffId")
+    @FormUrlEncoded
+    Call<ProductDeliveryListResponse>ProductDeliveryList(@Field(_CONSTANTS.StaffId)String StaffId);
+
+    //PaymentCollection  List
+    @POST("STPPApi/GetPendingServiceListByStaffId")
+    @FormUrlEncoded
+    Call<PaymentCollectionListResponse>PaymentCollectionList(@Field(_CONSTANTS.StaffId)String StaffId);
 
 }

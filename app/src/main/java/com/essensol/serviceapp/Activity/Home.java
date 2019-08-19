@@ -34,7 +34,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -81,7 +83,8 @@ public class Home extends AppCompatActivity {
         productCount = (TextView) findViewById(R.id.productCount);
         profileText = (TextView) findViewById(R.id.profileText);
         paymentCount = (TextView) findViewById(R.id.paymentCount);
-        shimmer = findViewById(R.id.frame);
+
+        shimmer = (ShimmerFrameLayout) findViewById(R.id.frame);
 
         service = (LinearLayout) findViewById(R.id.service);
         task = (LinearLayout) findViewById(R.id.task);
@@ -89,9 +92,9 @@ public class Home extends AppCompatActivity {
         paymentCollection = (LinearLayout) findViewById(R.id.paymentCollection);
         signInbtn = (LinearLayout) findViewById(R.id.signInbtn);
         KmEntering = (LinearLayout) findViewById(R.id.KmEntering);
-        //Api Interface
-        api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
+        //Initialising Api Interface
+        api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logouticon).build();
@@ -147,22 +150,16 @@ public class Home extends AppCompatActivity {
         appname.setTypeface(custom_font);
         paymentCount.setTypeface(custom_font);
 
+        //Shimmer
         shimmer.startShimmer();
 
+        //SharedPreference
         sp = getSharedPreferences("UserLog",MODE_PRIVATE);
-         uid= sp.getString(_CONSTANTS.UserId, null);
-         staffid= sp.getString(_CONSTANTS.StaffId, null);
+        uid= sp.getString(_CONSTANTS.UserId, null);
+        staffid= sp.getString(_CONSTANTS.StaffId, null);
 
         //Home service Calling
         HomeService();
-
-        appname.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HomeService();
-            }
-        });
-
 
         //ProfilePic Click
         profpic_glide.setOnClickListener(new View.OnClickListener() {
@@ -177,26 +174,32 @@ public class Home extends AppCompatActivity {
         logout_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("Clicked","Logout");
+
+
+                SharedPreferences sp = getSharedPreferences("UserLog",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("LoggedUser",false);
+                editor.apply();
+
                 Logout_dialogue();
+
             }
         });
 
-
-
-            //SignIn Click
-            signInbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (Status.equalsIgnoreCase("S")) {
-                        SignInService();
-                    }
-                    else if (Status.equalsIgnoreCase("E"))
-                    {
-                        Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
-                    }
+        //SignIn Click
+        signInbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Status.equalsIgnoreCase("S")) {
+                    SignInService();
                 }
-            });
-
+                else if (Status.equalsIgnoreCase("E"))
+                {
+                    Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
+                }
+            }
+        });
 
 
         //start reading button
@@ -212,7 +215,6 @@ public class Home extends AppCompatActivity {
                 {
                     Utils.ShowCustomToast("Please SignIn.",Home.this);
                 }
-
 
             }
         });
@@ -253,47 +255,118 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
-
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        HomeService();
+
+    //DashBoard Service
+    public void HomeService(){
+
+        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
+
+        api_interface.Home(staffid).enqueue(new Callback<HomeResponse>() {
+            @Override
+            public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
+
+                if(response.isSuccessful()&&response.code()==200) {
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+                        List<HomeResponse.Result> responseResult = response.body().getResult();
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            name.setText(responseResult.get(i).getStaffName());
+                            role.setText(responseResult.get(i).getDesignationName());
+                            empid.setText(responseResult.get(i).getStaffCode());
+                            taskCount.setText(responseResult.get(i).getTaskCount());
+                            serviceCount.setText(responseResult.get(i).getServiceCount());
+                            productCount.setText(responseResult.get(i).getProductDeliveryCount());
+                            paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
+
+                            Log.e("ImageString",""+responseResult.get(i).getProfileImage());
+
+                            //Employee Pic
+                            String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
+                            Glide
+                                    .with(context)
+                                    .load(url)
+                                    .into(profpic_glide);
+
+                            Log.e("IO Status","    "+responseResult.get(i).getIOStatus());
+                            Log.e("Meter Status","    "+responseResult.get(i).getMeterReading());
+
+                            //Sign In/SignOut
+                            if (responseResult.get(i).getIOStatus().equals(true)){
+                                sigin.setText("SignOut");
+                                mode="signOutt";
+                            }
+                            else{
+                                sigin.setText("SignIn");
+                                mode="signINN";
+                            }
+
+                           //Ride Start and stop
+                            if (responseResult.get(i).getMeterReading().equals(true)){
+                                km_text.setText("End Ride");
+                                 Status="E";
+                            }
+                            else{
+                                km_text.setText("Start Ride");
+                                Status="S";
+                            }
+                        }
+                        shimmer.stopShimmer();
+                        shimmer.setVisibility(View.GONE);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<HomeResponse> call, Throwable t) {
+
+            }
+        });
     }
 
-    //Options Menu
-
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            super.onCreateOptionsMenu(menu);
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.options_menu, menu); //your file name
-            return true;
+    //SignInSignOut Service
+    public void SignInService() {
+        if(mode.equalsIgnoreCase("signOutt")){
+             PunchType="O";
         }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.logout_menu:
-                Logout_dialogue();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-
+        else if (mode.equalsIgnoreCase("signINN")){
+             PunchType="I";
         }
-    }
+        Log.e("PunchType","  "+PunchType);
+        Log.e("staffid","  "+staffid);
+        Log.e("staffid","  "+uid);
 
-    @Override
-    public void onBackPressed() {
-        Back_dialogue();
+        api_interface.WorkSignInSignOut(staffid,PunchType,"M",uid).enqueue(new Callback<WorkSignInSignOutResponse>() {
+            @Override
+            public void onResponse(Call<WorkSignInSignOutResponse> call, Response<WorkSignInSignOutResponse> response) {
 
+                if(response.isSuccessful()&&response.code()==200) {
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+                        List<WorkSignInSignOutResponse.Result> responseResult = response.body().getResult();
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            Log.e("Msg","  "+responseResult.get(i).getMsg());
+                            Log.e("Msg","  "+responseResult.get(i).getErrorcode());
+                            Log.e("Msg","  "+responseResult.get(i).getResult());
+
+                            Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
+                            if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
+
+                                HomeService();
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WorkSignInSignOutResponse> call, Throwable t) {
+
+            }
+        });
     }
 
 
@@ -324,130 +397,17 @@ public class Home extends AppCompatActivity {
         ft.commit();
     }
 
-    public void HomeService(){
 
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        api_interface.Home(staffid).enqueue(new Callback<HomeResponse>() {
-            @Override
-            public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
-
-                if(response.isSuccessful()&&response.code()==200) {
-
-                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
-                        List<HomeResponse.Result> responseResult = response.body().getResult();
-                        for (int i = 0; i < responseResult.size(); i++) {
-
-                            name.setText(responseResult.get(i).getStaffName());
-                            role.setText(responseResult.get(i).getDesignationName());
-                            empid.setText(responseResult.get(i).getStaffCode());
-                            taskCount.setText(responseResult.get(i).getTaskCount());
-                            serviceCount.setText(responseResult.get(i).getServiceCount());
-                            productCount.setText(responseResult.get(i).getProductDeliveryCount());
-                            paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
-
-                            Log.e("ImageString",""+responseResult.get(i).getProfileImage());
-
-                            //Employee Pic
-                            String url=("http://192.168.1.6:1212"+responseResult.get(i).getProfileImage());
-                            Glide
-                                    .with(context)
-                                    .load(url)
-                                    .into(profpic_glide);
-
-                            Log.e("IO Status","    "+responseResult.get(i).getIOStatus());
-                            Log.e("Meter Status","    "+responseResult.get(i).getMeterReading());
-
-                            //Sign In/SignOut
-                            if (responseResult.get(i).getIOStatus().equals(true))
-                            {
-                                sigin.setText("SignOut");
-                                mode="signOutt";
-                            }
-                            else
-                            {
-                                sigin.setText("SignIn");
-                                mode="signINN";
-                            }
-
-                           //Ride Start and stop
-                            if (responseResult.get(i).getMeterReading().equals(true))
-                            {
-                                km_text.setText("End Ride");
-                                 Status="E";
-                            }
-                            else
-                            {
-                                km_text.setText("Start Ride");
-                                Status="S";
-                            }
-
-
-                        }
-
-                        shimmer.stopShimmer();
-                        shimmer.setVisibility(View.GONE);
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<HomeResponse> call, Throwable t) {
-
-            }
-        });
-
-
+        HomeService();
     }
 
-    public void SignInService()
-    {
 
-        if(mode.equalsIgnoreCase("signOutt"))
-        {
-             PunchType="O";
-        }
-        else if (mode.equalsIgnoreCase("signINN"))
-
-        {
-             PunchType="I";
-        }
-        Log.e("PunchType","  "+PunchType);
-        Log.e("staffid","  "+staffid);
-        Log.e("staffid","  "+uid);
-
-        api_interface.WorkSignInSignOut(staffid,PunchType,"M",uid).enqueue(new Callback<WorkSignInSignOutResponse>() {
-            @Override
-            public void onResponse(Call<WorkSignInSignOutResponse> call, Response<WorkSignInSignOutResponse> response) {
-
-                if(response.isSuccessful()&&response.code()==200) {
-
-                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
-                        List<WorkSignInSignOutResponse.Result> responseResult = response.body().getResult();
-                        for (int i = 0; i < responseResult.size(); i++) {
-
-                            Log.e("Msg","  "+responseResult.get(i).getMsg());
-                            Log.e("Msg","  "+responseResult.get(i).getErrorcode());
-                            Log.e("Msg","  "+responseResult.get(i).getResult());
-                            Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
-                            if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
-                                HomeService();
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<WorkSignInSignOutResponse> call, Throwable t) {
-
-            }
-        });
-
-
+    @Override
+    public void onBackPressed() {
+        Back_dialogue();
     }
-
 }
