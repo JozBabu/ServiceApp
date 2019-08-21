@@ -187,7 +187,10 @@ public class Home extends AppCompatActivity {
         signInbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Log.e("Click ","siginnnnnn");
                 if (Status.equalsIgnoreCase("S")) {
+
                     SignInService();
                 }
                 else if (Status.equalsIgnoreCase("E"))
@@ -273,6 +276,9 @@ public class Home extends AppCompatActivity {
                             productCount.setText(responseResult.get(i).getProductDeliveryCount());
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
+                            Log.e("Mode","io"+responseResult.get(i).getIOStatus());
+                            Log.e("Mode","meter"+responseResult.get(i).getMeterReading());
+
                             //Employee Pic
                             String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
                             Glide
@@ -325,27 +331,41 @@ public class Home extends AppCompatActivity {
         else if (mode.equalsIgnoreCase("signINN")){
              PunchType="I";
         }
+        Log.e("User"," ID"+uid);
+        Log.e("PunchType ","PunchType"+PunchType);
+        Log.e("staffid "," staffid"+staffid);
+
         api_interface.WorkSignInSignOut(staffid,PunchType,"M",uid).enqueue(new Callback<WorkSignInSignOutResponse>() {
             @Override
             public void onResponse(Call<WorkSignInSignOutResponse> call, Response<WorkSignInSignOutResponse> response) {
+                Log.e("Inside "," On response");
+                Log.e("Inside "," signIn Service" + response.code());
                 if(response.isSuccessful()&&response.code()==200) {
 
+                    Log.e("Inside ","getResponseCode  " + response.body().getResponseCode());
                     if (response.body().getResponseCode().equalsIgnoreCase("0")) {
 
                         List<WorkSignInSignOutResponse.Result> responseResult = response.body().getResult();
                         for (int i = 0; i < responseResult.size(); i++) {
                             String title=responseResult.get(i).getMsg();
                             Utils.setSnackBar(framelayout,title);
+                            Log.e("errorrrr","code"+responseResult.get(i).getErrorcode());
                             if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
+
                                 HomeService();
+
                             }
                         }
                     }
+                }
+                else {
+                    Utils.setSnackBar(framelayout,response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<WorkSignInSignOutResponse> call, Throwable t) {
+
                 Utils.setSnackBar(framelayout,"Network Error,Please try again.");
             }
         });

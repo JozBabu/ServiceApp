@@ -24,6 +24,10 @@ import com.essensol.serviceapp.Utility.ToolBar;
 import com.essensol.serviceapp.Utility.Utils;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
 public class ServiceDetails extends ToolBar implements LocationListener {
 
     Chronometer focus;
@@ -35,6 +39,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     String valuess;
     private LocationManager locationManager;
     double lat=0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
             }
         });
 
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
@@ -88,11 +96,15 @@ public class ServiceDetails extends ToolBar implements LocationListener {
         }
         Log.e("Vluesssss","  "+valuess);
         Log.e("lat&lng","  "+lat+lng);
+
+        
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
+
+
         lat=location.getLatitude();
         lng=location.getLongitude();
         valuess=String.valueOf(lat+","+lng);

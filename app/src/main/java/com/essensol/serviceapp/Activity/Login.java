@@ -1,10 +1,12 @@
 package com.essensol.serviceapp.Activity;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.essensol.serviceapp.R;
@@ -28,33 +32,47 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login extends ToolBar {
 
-    LinearLayout login,parentlayout;
+    LinearLayout login;
     String request;
-    ProgressDialog myprog;
+   // ProgressDialog myprog;
     JSONObject jsonString;
+    RelativeLayout parentlayout;
     Api_interface api_interface;
     EditText username,password;
-
     SharedPreferences sp ;
+    private AlertDialog myprog;
+    TextView signIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.loginn);
 
         login=(LinearLayout)findViewById(R.id.login);
-        parentlayout=(LinearLayout)findViewById(R.id.parentlayout);
+        parentlayout=(RelativeLayout)findViewById(R.id.parentlayout);
 
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
 
+
+
+
+        myprog = new SpotsDialog(getApplicationContext(), R.style.Custom);
+
+
         api_interface=ApiClient.getRetrofit().create(Api_interface.class);
+
+        //Fonts
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/MontserratBold.ttf");
+        Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");
+
 
 
         //click
@@ -62,9 +80,9 @@ public class Login extends ToolBar {
             @Override
             public void onClick(View view) {
                 myprog =new ProgressDialog(Login.this);
-                myprog.setTitle("Service App");
-                myprog.setMessage("Logging In");
-                myprog.setCancelable(false);
+//                myprog.setTitle("Service App");
+//                myprog.setMessage("Logging In");
+//                myprog.setCancelable(false);
                 myprog.show();
                 Login();
             }
