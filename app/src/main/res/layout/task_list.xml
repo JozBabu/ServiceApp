@@ -40,8 +40,8 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="5dp"
-                android:text="Task Name"
                 android:textColor="@color/GridColor"
+                android:textStyle="bold"
                 android:textSize="18dp"
                 />
 
@@ -53,23 +53,39 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:textSize="15dp"
-                    android:text="05 June 2019"
+
 
                     />
 
 
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
                 android:layout_marginTop="10dp"
-                android:id="@+id/msgSubject"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="#3D3D3D"
                 android:textSize="15dp"
-                android:text="Task Details"
-
                 />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_weight=".4"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="13dp"
+
+
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 

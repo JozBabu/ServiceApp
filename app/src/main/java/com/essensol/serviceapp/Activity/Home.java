@@ -1,27 +1,19 @@
 package com.essensol.serviceapp.Activity;
 
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.essensol.serviceapp.Dialogue.BackButton;
 import com.essensol.serviceapp.Dialogue.LogoutDialogue;
@@ -30,7 +22,6 @@ import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.HomeResponse;
-import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
 import com.essensol.serviceapp.Utility.Utils;
 import com.essensol.serviceapp.Utility._CONSTANTS;
@@ -38,11 +29,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.io.IOException;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,7 +38,7 @@ public class Home extends AppCompatActivity {
 
     SimpleDraweeView logout_icon;
     TextView name, role, empid, serviceText, serviceCount, sigin, taskText, taskCount,
-            productText, productCount, profileText, appname, paymentCount,km_text;
+             productText, productCount, profileText, appname, paymentCount,km_text;
     LinearLayout service, task, productDelivery, paymentCollection, signInbtn,KmEntering;
     ImageView profpic_glide, serviceImg_glide, taskImg_glide, productImg_glide, profileicon_glide;
     private Context context = Home.this;
@@ -61,6 +48,7 @@ public class Home extends AppCompatActivity {
     private String Status,mode,PunchType;
     FrameLayout framelayout;
     String staffid,uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,17 +91,20 @@ public class Home extends AppCompatActivity {
         //Initialising Api Interface
         api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------------------------------------------------//
+
+
+
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logoutbtn).build();
         logout_icon.setImageURI(imageRequest1.getSourceUri());
-
 
         //Glide Image Loading
         int serviceicon = R.drawable.service_icon;
         int list = R.drawable.list;
         int user = R.drawable.purse;
         int product = R.drawable.shopping_bag;
-
 
         //Service Icon
         Glide
@@ -181,8 +172,6 @@ public class Home extends AppCompatActivity {
         logout_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Clicked","Logout");
-
 
                 SharedPreferences sp = getSharedPreferences("UserLog",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
@@ -203,26 +192,21 @@ public class Home extends AppCompatActivity {
                 }
                 else if (Status.equalsIgnoreCase("E"))
                 {
-                //  Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
                     Utils.setSnackBar(framelayout,"You Need To End Ride to SignOut");
                 }
             }
         });
 
-
         //start reading button
         KmEntering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (mode.equalsIgnoreCase("signOutt"))
                 {
                     dialogue_box();
                 }
                 else
                 {
-               //  Utils.ShowCustomToast("Please SignIn.",Home.this);
-
                   Utils.setSnackBar(framelayout,"Please SignIn to start your ride");
                 }
 
@@ -266,20 +250,18 @@ public class Home extends AppCompatActivity {
         });
 
     }
-
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------------------------------------------------//
 
     //DashBoard Service
     public void HomeService(){
-
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
-
         api_interface.Home(staffid).enqueue(new Callback<HomeResponse>() {
             @Override
             public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
-
                 if(response.isSuccessful()&&response.code()==200) {
 
                     if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
                         List<HomeResponse.Result> responseResult = response.body().getResult();
                         for (int i = 0; i < responseResult.size(); i++) {
 
@@ -291,17 +273,12 @@ public class Home extends AppCompatActivity {
                             productCount.setText(responseResult.get(i).getProductDeliveryCount());
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
-                            Log.e("ImageString",""+responseResult.get(i).getProfileImage());
-
                             //Employee Pic
                             String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
                             Glide
                                     .with(context)
                                     .load(url)
                                     .into(profpic_glide);
-
-                            Log.e("IO Status","    "+responseResult.get(i).getIOStatus());
-                            Log.e("Meter Status","    "+responseResult.get(i).getMeterReading());
 
                             //Sign In/SignOut
                             if (responseResult.get(i).getIOStatus().equals(true)){
@@ -331,42 +308,35 @@ public class Home extends AppCompatActivity {
             @Override
             public void onFailure(Call<HomeResponse> call, Throwable t) {
 
+                Utils.setSnackBar(framelayout,"Network Error,Please try again.");
             }
         });
     }
 
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------------------------------------------------//
+
     //SignInSignOut Service
     public void SignInService() {
+
         if(mode.equalsIgnoreCase("signOutt")){
              PunchType="O";
         }
         else if (mode.equalsIgnoreCase("signINN")){
              PunchType="I";
         }
-        Log.e("PunchType","  "+PunchType);
-        Log.e("staffid","  "+staffid);
-        Log.e("staffid","  "+uid);
-
         api_interface.WorkSignInSignOut(staffid,PunchType,"M",uid).enqueue(new Callback<WorkSignInSignOutResponse>() {
             @Override
             public void onResponse(Call<WorkSignInSignOutResponse> call, Response<WorkSignInSignOutResponse> response) {
-
                 if(response.isSuccessful()&&response.code()==200) {
 
                     if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
                         List<WorkSignInSignOutResponse.Result> responseResult = response.body().getResult();
                         for (int i = 0; i < responseResult.size(); i++) {
-
-                            Log.e("Msg","  "+responseResult.get(i).getMsg());
-                            Log.e("Msg","  "+responseResult.get(i).getErrorcode());
-                            Log.e("Msg","  "+responseResult.get(i).getResult());
-
-                           // Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
                             String title=responseResult.get(i).getMsg();
-
                             Utils.setSnackBar(framelayout,title);
                             if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
-
                                 HomeService();
                             }
                         }
@@ -376,10 +346,13 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<WorkSignInSignOutResponse> call, Throwable t) {
-
+                Utils.setSnackBar(framelayout,"Network Error,Please try again.");
             }
         });
     }
+
+//---------------------------------------------------------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------------------------------------------------------------------//
 
     //KM Entering Dialogue
     public void dialogue_box() {
@@ -412,11 +385,8 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         HomeService();
-
     }
-
 
     @Override
     public void onBackPressed() {

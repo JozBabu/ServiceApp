@@ -5,24 +5,29 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.ServiceDetails;
 import com.essensol.serviceapp.Activity.Task_Details;
+import com.essensol.serviceapp.Model_Classes.TaskListModel;
 import com.essensol.serviceapp.R;
+
+import java.util.List;
 
 public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.Task_ViewHolder>{
 
 
     private Context context;
-    private String mData[];
+    private List<TaskListModel> list;
 
-    public Task_Adapter(Context context, String[] mData) {
+    public Task_Adapter(Context context, List<TaskListModel> list) {
         this.context = context;
-        this.mData = mData;
+        this.list = list;
     }
 
     @NonNull
@@ -31,11 +36,21 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.Task_ViewHol
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.task_list,viewGroup,false);
         return new Task_Adapter.Task_ViewHolder(view);
 
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull Task_ViewHolder task_viewHolder, int i) {
+
+        task_viewHolder.Name.setText(list.get(i).getTaskName());
+        task_viewHolder.date.setText(list.get(i).getCreatedOn());
+        task_viewHolder.details.setText(list.get(i).getDescription());
+        task_viewHolder.status.setText(list.get(i).getStatusName());
+
+     if (list.get(i).getStatusName().equalsIgnoreCase("Pending Task"))
+     {
+         task_viewHolder.status.setTextColor(Color.parseColor("#D81B60"));
+
+     }
 
         task_viewHolder.taskclick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,18 +66,22 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.Task_ViewHol
 
     @Override
     public int getItemCount() {
-        return mData.length;
+        return list.size();
     }
 
     public class Task_ViewHolder extends RecyclerView.ViewHolder
     {
-
         LinearLayout taskclick;
+        TextView Name,date,details,status;
 
         public Task_ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             taskclick=itemView.findViewById(R.id.taskclick);
+            Name=itemView.findViewById(R.id.Name);
+            date=itemView.findViewById(R.id.date);
+            details=itemView.findViewById(R.id.details);
+            status=itemView.findViewById(R.id.status);
         }
     }
 }

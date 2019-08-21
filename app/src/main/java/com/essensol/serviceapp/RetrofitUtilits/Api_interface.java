@@ -78,7 +78,7 @@ public interface Api_interface {
 
 
     //Task  List
-    @POST("STPPApi/GetPendingServiceListByStaffId")
+    @POST("STPPApi/GetTaskListByStaffId")
     @FormUrlEncoded
     Call<TaskListResponse>TaskList(@Field(_CONSTANTS.StaffId)String StaffId);
 

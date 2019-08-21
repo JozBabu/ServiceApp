@@ -63,10 +63,6 @@ public class BackButton extends DialogFragment {
         head.setTypeface(custom_font2);
 
 
-
-
-
-
         Button btnDone = view.findViewById(R.id.yesbutton);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override

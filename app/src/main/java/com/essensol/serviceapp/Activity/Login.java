@@ -61,22 +61,14 @@ public class Login extends ToolBar {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//
-
-
                 myprog =new ProgressDialog(Login.this);
                 myprog.setTitle("Service App");
                 myprog.setMessage("Logging In");
                 myprog.setCancelable(false);
                 myprog.show();
                 Login();
-
-
-
             }
         });
-
 
         if (ActivityCompat.checkSelfPermission(Login.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -88,27 +80,25 @@ public class Login extends ToolBar {
 
     }
 
-    public void Login()
-    {
+    public void Login(){
 
         String  uname= username.getText().toString();
         String  Password= password.getText().toString();
-        Log.e("CALLL","uname->"+uname+"Pword-->"+Password);
 
         api_interface.Login(uname,Password,"M","123131231231235354").enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                if(response.isSuccessful()&&response.code()==200)
-                {
+                if(response.isSuccessful()&&response.code()==200) {
                     myprog.dismiss();
-                if(response.body().getResponseCode().equalsIgnoreCase("0"))
-                {
+
+                if(response.body().getResponseCode().equalsIgnoreCase("0")) {
+
                     List<LoginResponse.Result> responseResult = response.body().getResult();
-                    for(int i=0;i<responseResult.size();i++)
-                    {
-                        switch (responseResult.get(i).getLoginResult())
-                        {
+                    for(int i=0;i<responseResult.size();i++) {
+
+                        switch (responseResult.get(i).getLoginResult()) {
+
                             case "1":
                                 sp=getSharedPreferences("UserLog",MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sp.edit();
@@ -117,45 +107,38 @@ public class Login extends ToolBar {
                                 editor.putBoolean("LoggedUser", true);
                                 editor.apply();
 
-
-                                Log.e("Staff ID","SStaff ID"+responseResult.get(i).getStaffId()+"   UserId"+responseResult.get(i).getUserId());
                                 Intent intent=new Intent(Login.this,Home.class);
                                 startActivity(intent);
                                 finish();
                                 break;
+
                             case "2":
-
-                            Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
-                            break;
+                                 Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
+                                 break;
                             case "3":
-
-                                Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
-                                break;
+                                 Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
+                                 break;
                         }
                     }
                 }
-                else
-                {
+
+                else {
                     myprog.dismiss();
                 }
-
-                }
+             }
                 else {
                     myprog.dismiss();
                 }
             }
-
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 myprog.dismiss();
-                Utils.ShowCustomToast("Network Error,Please try again.",Login.this);
+                Utils.setSnackBar(parentlayout,"Network Error,Please try again.");
             }
         });
-
-
-
-
     }
+
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

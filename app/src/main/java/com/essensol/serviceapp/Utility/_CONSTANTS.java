@@ -50,6 +50,11 @@ public interface _CONSTANTS {
     String msg="CreatedBy";
     String PunchType="PunchType";
 
+    String TaskId="TaskId";
+    String TaskName="TaskName";
+    String Description="Description";
+    String StatusName="StatusName";
+    String CreatedOn="CreatedOn";
 
 }
 
