@@ -1,5 +1,6 @@
 package com.essensol.serviceapp.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,5 +39,12 @@ public class PaymentCollection extends ToolBar {
         paymentCollection_reecycler.setAdapter(paymentCollectionAdapter);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(PaymentCollection.this,Home.class);
+        startActivity(intent);
     }
 }

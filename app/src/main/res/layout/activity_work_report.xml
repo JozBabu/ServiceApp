@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,11 +8,13 @@
 
 
 
-        <ScrollView
-            android:padding="5dp"
-            android:fillViewport="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <android.support.v4.widget.NestedScrollView
+
+        android:id="@+id/scroll"
+        android:layout_above="@+id/submit"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
             <LinearLayout
@@ -475,30 +477,7 @@
                 </LinearLayout>
 
 
-                //Submit Button
 
-                <LinearLayout
-                    android:layout_marginTop="25dp"
-                    android:id="@+id/submit"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/logbtn"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="submit"
-                        android:textColor="@android:color/white"
-                        android:textSize="18dp" />
-
-                </LinearLayout>
 
 
 
@@ -506,13 +485,32 @@
 
 
             </LinearLayout>
-        </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
+
+
+    //Submit Button
+
+    <LinearLayout
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logbtn"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="submit"
+            android:textColor="@android:color/white"
+            android:textSize="18dp" />
+
+    </LinearLayout>
 
 
 
 
 
-
-
-
-</LinearLayout>
+</RelativeLayout>

@@ -17,9 +17,11 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.Utility.ToolBar;
+import com.essensol.serviceapp.Utility.Utils;
 import com.google.android.gms.maps.model.LatLng;
 
 public class ServiceDetails extends ToolBar implements LocationListener {
@@ -28,7 +30,7 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     Button submitbtn;
     int flag=0;
     TextView title;
-
+    double lng=0;
     private LatLng latLng;
     String valuess;
     private LocationManager locationManager;
@@ -56,6 +58,7 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                     focus.start();
                     flag=1;
                     submitbtn.setText("Job SignOut");
+                    Utils.ShowCustomToast(valuess,ServiceDetails.this);
                 }
                 else
                 {
@@ -64,6 +67,7 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                     flag=0;
                     Intent i = new Intent(ServiceDetails.this,WorkReport.class);
                     startActivity(i);
+                    Utils.ShowCustomToast(valuess,ServiceDetails.this);
                 }
 
             }
@@ -83,15 +87,15 @@ public class ServiceDetails extends ToolBar implements LocationListener {
             onLocationChanged(location);
         }
         Log.e("Vluesssss","  "+valuess);
+        Log.e("lat&lng","  "+lat+lng);
     }
 
 
     @Override
     public void onLocationChanged(Location location) {
         lat=location.getLatitude();
-//        double lng=location.getLongitude();
-
-        valuess=String.valueOf(lat);
+        lng=location.getLongitude();
+        valuess=String.valueOf(lat+","+lng);
     }
 
     @Override

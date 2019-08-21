@@ -1,17 +1,21 @@
 package com.essensol.serviceapp.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,6 +59,7 @@ public class Home extends AppCompatActivity {
     SharedPreferences sp;
     ShimmerFrameLayout shimmer;
     private String Status,mode,PunchType;
+    FrameLayout framelayout;
     String staffid,uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +98,13 @@ public class Home extends AppCompatActivity {
         signInbtn = (LinearLayout) findViewById(R.id.signInbtn);
         KmEntering = (LinearLayout) findViewById(R.id.KmEntering);
 
+        framelayout=(FrameLayout)findViewById(R.id.framelayout);
+
         //Initialising Api Interface
         api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
         //Simpledrawerview Image loading
-        ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logouticon).build();
+        ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logoutbtn).build();
         logout_icon.setImageURI(imageRequest1.getSourceUri());
 
 
@@ -196,7 +203,8 @@ public class Home extends AppCompatActivity {
                 }
                 else if (Status.equalsIgnoreCase("E"))
                 {
-                    Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
+                //  Utils.ShowCustomToast("You Need To End Ride to SignOut",Home.this);
+                    Utils.setSnackBar(framelayout,"You Need To End Ride to SignOut");
                 }
             }
         });
@@ -213,7 +221,9 @@ public class Home extends AppCompatActivity {
                 }
                 else
                 {
-                    Utils.ShowCustomToast("Please SignIn.",Home.this);
+               //  Utils.ShowCustomToast("Please SignIn.",Home.this);
+
+                  Utils.setSnackBar(framelayout,"Please SignIn to start your ride");
                 }
 
             }
@@ -256,7 +266,6 @@ public class Home extends AppCompatActivity {
         });
 
     }
-
 
 
     //DashBoard Service
@@ -352,7 +361,10 @@ public class Home extends AppCompatActivity {
                             Log.e("Msg","  "+responseResult.get(i).getErrorcode());
                             Log.e("Msg","  "+responseResult.get(i).getResult());
 
-                            Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
+                           // Utils.ShowCustomToast(responseResult.get(i).getMsg(),getApplicationContext());
+                            String title=responseResult.get(i).getMsg();
+
+                            Utils.setSnackBar(framelayout,title);
                             if (responseResult.get(i).getErrorcode().equalsIgnoreCase("0")) {
 
                                 HomeService();
@@ -368,7 +380,6 @@ public class Home extends AppCompatActivity {
             }
         });
     }
-
 
     //KM Entering Dialogue
     public void dialogue_box() {
@@ -403,6 +414,7 @@ public class Home extends AppCompatActivity {
         super.onResume();
 
         HomeService();
+
     }
 
 

@@ -10,6 +10,7 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layoutAnimation="@anim/layout_animation"
         android:id="@+id/completedrecycle">
 
     </android.support.v7.widget.RecyclerView>

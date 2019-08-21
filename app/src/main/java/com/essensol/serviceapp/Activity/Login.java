@@ -34,7 +34,7 @@ import retrofit2.Response;
 
 public class Login extends ToolBar {
 
-    LinearLayout login;
+    LinearLayout login,parentlayout;
     String request;
     ProgressDialog myprog;
     JSONObject jsonString;
@@ -49,6 +49,8 @@ public class Login extends ToolBar {
         setContentView(R.layout.activity_login);
 
         login=(LinearLayout)findViewById(R.id.login);
+        parentlayout=(LinearLayout)findViewById(R.id.parentlayout);
+
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
 
@@ -64,7 +66,6 @@ public class Login extends ToolBar {
 
 
                 myprog =new ProgressDialog(Login.this);
-
                 myprog.setTitle("Service App");
                 myprog.setMessage("Logging In");
                 myprog.setCancelable(false);
@@ -123,10 +124,12 @@ public class Login extends ToolBar {
                                 finish();
                                 break;
                             case "2":
-                            Utils.ShowCustomToast(responseResult.get(i).getLoginMsg(),Login.this);
+
+                            Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
                             break;
                             case "3":
-                                Utils.ShowCustomToast(responseResult.get(i).getLoginMsg(),Login.this);
+
+                                Utils.setSnackBar(parentlayout,responseResult.get(i).getLoginMsg());
                                 break;
                         }
                     }

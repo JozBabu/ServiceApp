@@ -9,9 +9,10 @@
     tools:context=".Activity.Login">
 
     <LinearLayout
-
+        android:id="@+id/parentlayout"
         android:layout_gravity="center"
         android:gravity="center"
+        android:background="#E2E2E2"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -63,6 +64,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
@@ -79,7 +81,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/padlock"/>
+                    android:src="@drawable/lock"/>
 
                 <EditText
                     android:textSize="18dp"

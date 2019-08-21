@@ -45,7 +45,6 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
         pendingViewholder.date.setText(list.get(i).getServiceDate());
         pendingViewholder.pblm_det.setText(list.get(i).getProblemDetails());
 
-
         pendingViewholder.pendingserivceclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

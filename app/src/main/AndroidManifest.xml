@@ -32,16 +32,20 @@
         <activity android:name=".Activity.Task_Details" />
         <activity android:name=".Activity.TaskReport" />
         <activity android:name=".Activity.WorkReport" />
-        <activity android:name=".Activity.ServiceDetails"></activity>
+        <activity android:name=".Activity.ServiceDetails">
+
+
+
+        </activity>
         <activity android:name=".Activity.Profile" />
         <activity android:name=".Activity.Product_Delivery" />
         <activity android:name=".Activity.Task" />
         <activity android:name=".Activity.Service" />
         <activity android:name=".Utility.ToolBar" />
         <activity android:name=".Activity.Home" />
-        <activity android:name=".Activity.Login">
+        <activity android:name=".Activity.Login"/>
 
-        </activity>
+
     </application>
 
 </manifest>

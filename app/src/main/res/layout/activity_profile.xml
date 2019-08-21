@@ -98,6 +98,7 @@
                         android:layout_height="match_parent">
 
                     <LinearLayout
+                        android:layoutAnimation="@anim/layout_animation"
                         android:orientation="vertical"
                         android:layout_margin="15dp"
                         android:layout_gravity="center"

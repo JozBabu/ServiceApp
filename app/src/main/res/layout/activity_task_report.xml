@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,13 @@
     tools:context=".Activity.TaskReport"
    >
 
-<ScrollView
-    android:padding="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <android.support.v4.widget.NestedScrollView
+
+        android:id="@+id/scroll"
+        android:layout_above="@+id/submit"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -237,39 +240,34 @@
 
         //Submit Button
 
-        <LinearLayout
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:id="@+id/submit"
-            android:layout_gravity="center"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/logbtn"
-            android:clickable="true">
 
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Sumbit"
-                android:textSize="18dp"
-                android:textColor="@android:color/white"
-                />
 
-        </LinearLayout>
 
 
 
 
     </LinearLayout>
 
-</ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
+    <LinearLayout
 
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logbtn"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="submit"
+            android:textColor="@android:color/white"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
