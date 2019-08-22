@@ -5,16 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ImageView
-
-
-        android:src="@drawable/loginbg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <RelativeLayout
         android:id="@+id/parentlayout"
-        android:background="#AA000000"
+        android:background="#FAF3EC"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

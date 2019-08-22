@@ -74,7 +74,7 @@
 
 
             <LinearLayout
-                android:layoutAnimation="@anim/layout_animation"
+                android:layoutAnimation="@anim/home_anim"
                 android:elevation="5dp"
                 android:id="@+id/prolay"
                 android:layout_width="match_parent"
@@ -302,7 +302,7 @@
 
 
                 <android.support.v7.widget.GridLayout
-                    android:layoutAnimation="@anim/layout_animation"
+                    android:layoutAnimation="@anim/home_anim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:columnCount="2"
@@ -348,15 +348,15 @@
                                     android:orientation="horizontal">
 
                                     <TextView
-                                        android:layout_margin="5dp"
-                                        android:elevation="3dp"
-                                        android:gravity="center"
-                                        android:padding="2dp"
-                                        android:background="@drawable/roundbackround"
                                         android:id="@+id/serviceCount"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
                                         android:layout_marginTop="20dp"
+                                        android:background="@drawable/roundbackround"
+                                        android:elevation="3dp"
+                                        android:gravity="center"
+                                        android:padding="2dp"
                                         android:text="0"
                                         android:textColor="@android:color/white"
                                         android:textSize="20dp" />
@@ -366,14 +366,7 @@
 
                             </LinearLayout>
 
-                            <!--<com.facebook.drawee.view.SimpleDraweeView-->
-                            <!--android:id="@+id/serviceImg"-->
-                            <!--android:layout_width="40dp"-->
-                            <!--android:layout_height="40dp"-->
-                            <!--android:layout_gravity="center"-->
-                            <!--android:layout_alignParentBottom="true"-->
-                            <!--android:layout_alignParentRight="true"-->
-                            <!--android:tint="#FCD26D" />-->
+
 
                             <ImageView
                                 android:layout_margin="15dp"

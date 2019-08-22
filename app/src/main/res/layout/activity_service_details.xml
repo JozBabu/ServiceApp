@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,8 +8,9 @@
     android:background="@drawable/inner_grad"
     tools:context=".Activity.ServiceDetails">
 
-    <ScrollView
-        android:padding="2dp"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_above="@+id/submitbtn"
         android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -341,26 +342,26 @@
                 android:layout_height="wrap_content"
                 android:text="Chronometer" />
 
-            <Button
-                android:background="@drawable/logbtn"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/submitbtn"
-                android:layout_width="250dp"
-                android:layout_height="45dp"
-                android:text="Job Sign In" />
+
 
 
         </LinearLayout>
 
 
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/logbtn"
+        android:textColor="@android:color/white"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="center"
+        android:id="@+id/submitbtn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Job Sign In" />
 
 
 
-    </ScrollView>
-
-
-
-</LinearLayout>
+</RelativeLayout>

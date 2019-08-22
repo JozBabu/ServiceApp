@@ -244,9 +244,8 @@
         </android.support.v4.widget.NestedScrollView>
 
 
-
-
     <Button
+        android:layout_margin="10dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/logbtn"
         android:textColor="@android:color/white"

@@ -65,10 +65,6 @@ public class WorkReport extends ToolBar {
                     Pricelayout.setVisibility(View.GONE);
                     accesorieslay.setVisibility(View.GONE);
                 }
-                Log.e("postition","  "+position);
-                Log.e("Parent","  "+parent);
-                Log.e("Viewwwww","  "+view);
-                Log.e("iddddddddd","  "+id);
 
             }
 

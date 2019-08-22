@@ -3,6 +3,7 @@ package com.essensol.serviceapp.Activity;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,11 +15,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
@@ -47,8 +51,10 @@ public class Login extends ToolBar {
     Api_interface api_interface;
     EditText username,password;
     SharedPreferences sp ;
-    private AlertDialog myprog;
+    private SpotsDialog myprog;
+    ImageView loginbg;
     TextView signIn;
+    private Context context = Login.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,7 @@ public class Login extends ToolBar {
         username=(EditText)findViewById(R.id.username);
         password=(EditText)findViewById(R.id.password);
 
-
+//        loginbg=(ImageView)findViewById(R.id.loginbg);
 
 
         myprog = new SpotsDialog(getApplicationContext(), R.style.Custom);
@@ -73,16 +79,23 @@ public class Login extends ToolBar {
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/MontserratBold.ttf");
         Typeface custom_font2 = Typeface.createFromAsset(getAssets(), "fonts/MontserratMedium.ttf");
 
+        int bgimage=R.drawable.loginbg;
+
+//        //Login Background
+//        Glide
+//                .with(context)
+//                .load(bgimage)
+//                .into(loginbg);
 
 
         //click
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myprog =new ProgressDialog(Login.this);
-//                myprog.setTitle("Service App");
-//                myprog.setMessage("Logging In");
-//                myprog.setCancelable(false);
+                myprog =new SpotsDialog(Login.this);
+                myprog.setTitle("Service App");
+                myprog.setMessage("Logging In");
+                myprog.setCancelable(false);
                 myprog.show();
                 Login();
             }
@@ -108,7 +121,7 @@ public class Login extends ToolBar {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if(response.isSuccessful()&&response.code()==200) {
-                    myprog.dismiss();
+                   myprog.dismiss();
 
                 if(response.body().getResponseCode().equalsIgnoreCase("0")) {
 

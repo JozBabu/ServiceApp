@@ -76,7 +76,6 @@ public class CompletedTab extends Fragment {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
 
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
         api_interface.CompltedServicelist(staffid).enqueue(new Callback<CompletedServiceResponse>() {
             @Override
             public void onResponse(Call<CompletedServiceResponse> call, Response<CompletedServiceResponse> response) {

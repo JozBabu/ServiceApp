@@ -75,8 +75,6 @@ public class Profile extends ToolBar {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
 
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
-
         api_interface.Profile(staffid).enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {

@@ -105,8 +105,6 @@ public class DeliveryDialogue extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.e("API123", "onCreate");
-
         boolean setFullScreen = false;
         if (getArguments() != null) {
             setFullScreen = getArguments().getBoolean("fullScreen");

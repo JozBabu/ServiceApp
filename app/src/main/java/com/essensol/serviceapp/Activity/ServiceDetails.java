@@ -94,10 +94,7 @@ public class ServiceDetails extends ToolBar implements LocationListener {
             Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
             onLocationChanged(location);
         }
-        Log.e("Vluesssss","  "+valuess);
-        Log.e("lat&lng","  "+lat+lng);
 
-        
     }
 
 

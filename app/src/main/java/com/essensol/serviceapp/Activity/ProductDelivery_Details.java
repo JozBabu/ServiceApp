@@ -25,7 +25,7 @@ public class ProductDelivery_Details extends ToolBar {
         android.support.v7.widget.Toolbar tb= getToolBar();
 
         title =tb.findViewById(R.id.appname);
-        title.setText("Payment Collection");
+        title.setText("Product Delivery");
 
         productsubmitbtn=(Button)findViewById(R.id.productsubmitbtn);
 

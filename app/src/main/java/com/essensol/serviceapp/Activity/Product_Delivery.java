@@ -33,7 +33,7 @@ public class Product_Delivery extends ToolBar {
 
         productDelivery_recycle=(RecyclerView)findViewById(R.id.productDelivery_recycle);
 
-        String data[]={"1","2"};
+        String data[]={"1","2","3","4","5","6","7","8"};
 
         productDelivery_recycle.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         productDeliveryAdapter = new ProductDeliveryAdapter(getApplicationContext(),data);

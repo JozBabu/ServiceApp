@@ -32,12 +32,8 @@ public class SplashSceen extends AppCompatActivity {
 
         SharedPreferences settings1 = getSharedPreferences("UserLog", 0);
         isLogged = settings1.getBoolean("LoggedUser", false);
-        Log.e("checking boolllllll",""+isLogged);
 
         if (isLogged) {
-            Log.e("checking boolllllll","innn"+isLogged);
-
-
 
             final Intent i = new Intent(this, Home.class);
             Thread timer = new Thread() {

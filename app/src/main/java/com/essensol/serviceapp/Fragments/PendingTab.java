@@ -72,7 +72,6 @@ public class PendingTab extends Fragment {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
 
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
         api_interface.PendingServiceList(staffid).enqueue(new Callback<PendingServiceResponse>() {
             @Override
             public void onResponse(Call<PendingServiceResponse> call, Response<PendingServiceResponse> response) {

@@ -97,16 +97,12 @@ public class Vehicle_km extends DialogFragment {
         Bundle bundle=this.getArguments();
         assert bundle != null;
         type=  bundle.getString("Type");
-
-        Log.e("Statusssssss"," Dialogue  "+type);
-
         inKm = RootView.findViewById(R.id.inKm);
 
         title=RootView.findViewById(R.id.title);
         vehicleNo=RootView.findViewById(R.id.vehicleNo);
 
         if(type.equalsIgnoreCase("E")){
-            Log.e("Entered","if Condition");
             vehicleNo.setEnabled(false);
 
         }
@@ -122,8 +118,6 @@ public class Vehicle_km extends DialogFragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 vehID = iteems.get(i).getVehicleId();
-
-                Log.e("vehID",""+vehID);
 
             }
 
@@ -201,7 +195,6 @@ public class Vehicle_km extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.e("API123", "onCreate");
 
         boolean setFullScreen = false;
         if (getArguments() != null) {
@@ -268,10 +261,6 @@ public class Vehicle_km extends DialogFragment {
         String Km=inKm.getText().toString();
 
 
-        Log.e("CALLL","uid->"+uid+"sid-->"+staffid);
-        Log.e("Meter ","Rading  "+Km);
-        Log.e("CALLL","sid-->"+vehID);
-        Log.e("Meter ","Rading  "+type);
 
         api_interface.InsertmeterReading(staffid,vehID,Km,type,uid).enqueue(new Callback<InsertMeterRedingResponse>() {
             @Override
@@ -285,7 +274,6 @@ public class Vehicle_km extends DialogFragment {
                         for(int i=0;i<responseResult.size();i++)
                         {
 
-                            Log.e("INSERTED "," SUCCESSFULLY ");
 
                            dismiss();
 
@@ -296,8 +284,6 @@ public class Vehicle_km extends DialogFragment {
 
             @Override
             public void onFailure(Call<InsertMeterRedingResponse> call, Throwable t) {
-
-                Log.e("On Faliuree","  "+t.getLocalizedMessage());
 
             }
         });

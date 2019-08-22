@@ -14,6 +14,7 @@ import com.essensol.serviceapp.R;
 
 public class Utils {
 
+    //Custom Toast
     public static void ShowCustomToast(String message, Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         View layout = inflater.inflate(R.layout.toast_layout,null);

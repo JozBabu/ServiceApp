@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.ProductDelivery_Details">
 
-    <FrameLayout
-        android:id="@+id/framelayout_product"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <ScrollView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_above="@+id/productsubmitbtn"
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/framelayout_product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
         <LinearLayout
 
@@ -240,24 +244,27 @@
 
 
 
-            <Button
-                android:background="@drawable/logbtn"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="25dp"
-                android:layout_gravity="center"
-                android:id="@+id/productsubmitbtn"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:text="Completed" />
+
 
 
         </LinearLayout>
 
 
+            </FrameLayout>
+
+
+        </android.support.v4.widget.NestedScrollView>
 
 
 
-    </ScrollView>
-    </FrameLayout>
+    <Button
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/logbtn"
+        android:textColor="@android:color/white"
+        android:id="@+id/productsubmitbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Completed" />
 
-</LinearLayout>
+</RelativeLayout>

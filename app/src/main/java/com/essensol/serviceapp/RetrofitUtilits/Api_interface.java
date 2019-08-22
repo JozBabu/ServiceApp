@@ -68,7 +68,7 @@ public interface Api_interface {
 
 
     //SignIn/SignOut
-    @POST("STPPApi/JobSignInSignOut")
+    @POST("STPPApi/WorkSignInSignOut")
     @FormUrlEncoded
     Call<WorkSignInSignOutResponse>WorkSignInSignOut(@Field(_CONSTANTS.StaffId)String StaffId,
                                                      @Field(_CONSTANTS.PunchType)String PunchType,
