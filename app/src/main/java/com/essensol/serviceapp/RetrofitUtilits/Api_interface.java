@@ -84,7 +84,7 @@ public interface Api_interface {
 
 
     //ProductDelivery  List
-    @POST("STPPApi/GetPendingServiceListByStaffId")
+    @POST("STPPApi/GetProductDeliveryListByStaffId")
     @FormUrlEncoded
     Call<ProductDeliveryListResponse>ProductDeliveryList(@Field(_CONSTANTS.StaffId)String StaffId);
 

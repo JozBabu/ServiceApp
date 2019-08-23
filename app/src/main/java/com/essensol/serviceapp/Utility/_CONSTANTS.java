@@ -56,5 +56,11 @@ public interface _CONSTANTS {
     String StatusName="StatusName";
     String CreatedOn="CreatedOn";
 
+    String JobId="JobId";
+    String Name="Name";
+    String Product="Product";
+
+
+
 }
 
