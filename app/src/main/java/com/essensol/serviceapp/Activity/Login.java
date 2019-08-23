@@ -138,6 +138,7 @@ public class Login extends ToolBar {
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString(_CONSTANTS.UserId,responseResult.get(i).getUserId());
                                 editor.putString(_CONSTANTS.StaffId,responseResult.get(i).getStaffId());
+                                editor.putString(_CONSTANTS.BrId,responseResult.get(i).getBrId());
                                 editor.putBoolean("LoggedUser", true);
                                 editor.apply();
 

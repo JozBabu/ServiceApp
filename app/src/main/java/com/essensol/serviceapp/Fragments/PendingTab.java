@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.essensol.serviceapp.Adapter.PendingAdapter;
 import com.essensol.serviceapp.Model_Classes.PendingServiceModel;
@@ -18,6 +19,7 @@ import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
+import com.essensol.serviceapp.Utility.Utils;
 import com.essensol.serviceapp.Utility._CONSTANTS;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class PendingTab extends Fragment {
     SharedPreferences sp;
     Api_interface api_interface;
     ArrayList<PendingServiceModel> items_list;
+    LinearLayout parentlayout;
 
     public PendingTab() {
         // Required empty public constructor
@@ -51,6 +54,7 @@ public class PendingTab extends Fragment {
 
 
         pendingrecycle=RootView.findViewById(R.id.pendingrecycle);
+        parentlayout=RootView.findViewById(R.id.parentlayout);
         items_list=new ArrayList<>();
         //Api Interface
         api_interface= ApiClient.getRetrofit().create(Api_interface.class);
@@ -71,8 +75,9 @@ public class PendingTab extends Fragment {
         sp = getContext().getSharedPreferences("UserLog",MODE_PRIVATE);
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
+        String brid= sp.getString(_CONSTANTS.BrId, null);
 
-        api_interface.PendingServiceList(staffid).enqueue(new Callback<PendingServiceResponse>() {
+        api_interface.PendingServiceList(staffid,brid).enqueue(new Callback<PendingServiceResponse>() {
             @Override
             public void onResponse(Call<PendingServiceResponse> call, Response<PendingServiceResponse> response) {
 
@@ -97,6 +102,10 @@ public class PendingTab extends Fragment {
 
                         pendingAdapter = new PendingAdapter(getActivity(),items_list);
                         pendingrecycle.setAdapter(pendingAdapter);
+                    }
+                    else {
+
+                        Utils.setSnackBar(parentlayout,"No Data");
                     }
                 }
             }

@@ -1,15 +1,21 @@
 package com.essensol.serviceapp.Fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import com.essensol.serviceapp.Adapter.CompletedAdapter;
 import com.essensol.serviceapp.Adapter.PendingAdapter;
@@ -39,8 +45,11 @@ public class CompletedTab extends Fragment {
     Api_interface api_interface;
     ArrayList<CompletedServiceModel> items_list;
     SharedPreferences sp;
-
-
+    RadioGroup rg;
+    String Type;
+    Spinner FilterSpinner;
+    ProgressDialog dialog;
+    String array_filter[] = {"Today's", "Monthly","Yearly"};
     public CompletedTab() {
         // Required empty public constructor
     }
@@ -53,8 +62,18 @@ public class CompletedTab extends Fragment {
         View RootView = inflater.inflate(R.layout.fragment_completed_tab, container, false);
 
         completedrecycle = RootView.findViewById(R.id.completedrecycle);
+        FilterSpinner=RootView.findViewById(R.id.delivery_status);
+      //  rg=RootView.findViewById(R.id.radiogrp);
+
+        final ArrayAdapter<String> spinner_adapter_day = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, array_filter);
+        spinner_adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        FilterSpinner.setAdapter(spinner_adapter_day);
 
         items_list=new ArrayList<>();
+
+
+
 
         //Api Interface
         api_interface= ApiClient.getRetrofit().create(Api_interface.class);
@@ -63,26 +82,73 @@ public class CompletedTab extends Fragment {
 
 
      completedrecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+      //  getCompletedservicelist();
 
-     getCompletedservicelist();
+
+         dialog =new ProgressDialog(getActivity());
+
+        dialog.setTitle("Getting Information");
+        dialog.setMessage("This may take a while..");
+
+        FilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position==0)
+                {
+                   dialog.show();
+                    getCompletedservicelist("T");
+
+
+
+                }
+                else if (position==1)
+                {
+                    dialog.show();
+                    getCompletedservicelist("M");
+
+                }
+                else if (position==2)
+                {
+                    dialog.show();
+                    getCompletedservicelist("Y");
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         return RootView;
     }
 
-    public void getCompletedservicelist()
-    {
-
-        sp = getContext().getSharedPreferences("UserLog",MODE_PRIVATE);
+    public void getCompletedservicelist(String Type) {
+        sp = getActivity().getSharedPreferences("UserLog",MODE_PRIVATE);
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
+        String brid= sp.getString(_CONSTANTS.BrId, null);
 
-        api_interface.CompltedServicelist(staffid).enqueue(new Callback<CompletedServiceResponse>() {
+        Log.e("Filter","By    "+Type);
+        Log.e("staffid","      "+staffid);
+        Log.e("brid","    "+brid);
+
+        api_interface.CompltedServicelist(staffid,brid,Type).enqueue(new Callback<CompletedServiceResponse>() {
             @Override
             public void onResponse(Call<CompletedServiceResponse> call, Response<CompletedServiceResponse> response) {
+                items_list.clear();
+
+                dialog.dismiss();
+
 
                 if (response.isSuccessful() && response.code() == 200) {
+                    items_list.clear();
 
                     if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
 
                         List<CompletedServiceResponse.Result> responseResult = response.body().getResult();
 
@@ -104,7 +170,16 @@ public class CompletedTab extends Fragment {
 
                     completedAdapter = new CompletedAdapter(getActivity(),items_list);
                     completedrecycle.setAdapter(completedAdapter);
+
+                        completedAdapter.notifyDataSetChanged();
                     }
+
+                    else{
+                        completedAdapter = new CompletedAdapter(getActivity(),items_list);
+                        completedrecycle.setAdapter(completedAdapter);
+                        completedAdapter.notifyDataSetChanged();
+                    }
+
                 }
 
             }
@@ -116,4 +191,15 @@ public class CompletedTab extends Fragment {
         });
     }
 
+
+    public void reload()
+    {
+        // Reload current fragment
+        Fragment frg = null;
+        frg = getFragmentManager().findFragmentByTag("Your_Fragment_TAG");
+        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
+    }
 }

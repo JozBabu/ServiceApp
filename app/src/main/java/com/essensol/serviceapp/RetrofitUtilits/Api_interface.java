@@ -46,12 +46,12 @@ public interface Api_interface {
     //Pending Service List
     @POST("STPPApi/GetPendingServiceListByStaffId")
     @FormUrlEncoded
-    Call<PendingServiceResponse>PendingServiceList(@Field(_CONSTANTS.StaffId)String StaffId);
+    Call<PendingServiceResponse>PendingServiceList(@Field(_CONSTANTS.StaffId)String StaffId,@Field(_CONSTANTS.BrId)String BrId);
 
     //Completed Service List
     @POST("STPPApi/GetCompletedServiceListByStaffId")
     @FormUrlEncoded
-    Call<CompletedServiceResponse>CompltedServicelist(@Field(_CONSTANTS.StaffId)String StaffId);
+    Call<CompletedServiceResponse>CompltedServicelist(@Field(_CONSTANTS.StaffId)String StaffId,@Field(_CONSTANTS.BrId)String BrId,@Field(_CONSTANTS.FilterBy)String FilterBy);
 
     //Vehicle No Spinner Loading
     @POST("CommonApi/GetVehicleIdNumber")

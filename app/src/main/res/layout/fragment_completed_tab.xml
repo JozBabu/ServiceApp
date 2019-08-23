@@ -7,6 +7,34 @@
     android:background="@drawable/inner_grad"
     tools:context=".Fragments.CompletedTab">
 
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+
+        <RelativeLayout
+
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/spinnerbg"
+            android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/delivery_status"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            >
+
+        </Spinner>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
