@@ -95,7 +95,7 @@ public class Profile extends ToolBar {
                             emp_address .setText(responseResult.get(i).getAddress());
 
                             //Employee Pic
-                            String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
+                            String url=("http://192.168.1.15:1212"+responseResult.get(i).getProfileImage());
 
                             if (!Profile.this.isFinishing()) {
 

@@ -62,7 +62,8 @@ public class Vehicle_km extends DialogFragment {
     SharedPreferences sp;
     String type;
     EditText inKm;
-   Context activity;
+    Context activity;
+    String Km,vehicleKm;
 
     public Vehicle_km() {
         // Required empty public constructor
@@ -98,6 +99,9 @@ public class Vehicle_km extends DialogFragment {
         assert bundle != null;
         type=  bundle.getString("Type");
         inKm = RootView.findViewById(R.id.inKm);
+        vehicleKm=bundle.getString("VehicleKM");
+
+        Log.e("VehicleKm",""+vehicleKm);
 
         title=RootView.findViewById(R.id.title);
         vehicleNo=RootView.findViewById(R.id.vehicleNo);
@@ -129,7 +133,7 @@ public class Vehicle_km extends DialogFragment {
 
         Button btnDone = RootView.findViewById(R.id.submitbtn);
         Button cncelbutton=RootView.findViewById(R.id.cncelbutton);
-
+         Km=inKm.getText().toString();
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,8 +144,8 @@ public class Vehicle_km extends DialogFragment {
                 }
                 else {
                     InsertMeterReaading();
-
                     Intent intent=new Intent(getContext(),Home.class);
+                    intent.putExtra("VehicleKM",Km);
                     startActivity(intent);
                     dismiss();
                 }
@@ -180,8 +184,6 @@ public class Vehicle_km extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
 
     }
 
@@ -259,7 +261,6 @@ public class Vehicle_km extends DialogFragment {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
         String Km=inKm.getText().toString();
-
 
 
         api_interface.InsertmeterReading(staffid,vehID,Km,type,uid).enqueue(new Callback<InsertMeterRedingResponse>() {

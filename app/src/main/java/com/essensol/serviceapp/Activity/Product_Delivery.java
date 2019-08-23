@@ -96,7 +96,6 @@ public class Product_Delivery extends ToolBar {
                             productDelivery_recycle.setAdapter(productDeliveryAdapter);
                         }
 
-
                     }
 
                 }

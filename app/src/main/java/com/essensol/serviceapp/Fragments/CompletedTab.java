@@ -62,9 +62,9 @@ public class CompletedTab extends Fragment {
         String data[]={"1","2"};
 
 
-      //  completedrecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+     completedrecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
-      //  getCompletedservicelist();
+     getCompletedservicelist();
 
         return RootView;
     }
@@ -82,29 +82,32 @@ public class CompletedTab extends Fragment {
 
                 if (response.isSuccessful() && response.code() == 200) {
 
-//                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
-//
-//                        List<CompletedServiceResponse.Result> responseResult = response.body().getResult();
-//
-//                        for (int i = 0; i < responseResult.size(); i++) {
-//
-//                            CompletedServiceModel items = new CompletedServiceModel(
-//                                    responseResult.get(i).getServiceId(),
-//                                    responseResult.get(i).getServiceDate(),
-//                                    responseResult.get(i).getCustomerId(),
-//                                    responseResult.get(i).getProblemDetails(),
-//                                    responseResult.get(i).getCustomerName()
-//                            );
-//                            items_list.add(items);
-//
-//                        }
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
+                        List<CompletedServiceResponse.Result> responseResult = response.body().getResult();
+
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            CompletedServiceModel items = new CompletedServiceModel(
+                                    responseResult.get(i).getServiceId(),
+                                    responseResult.get(i).getServiceDate(),
+                                    responseResult.get(i).getCustomerId(),
+                                    responseResult.get(i).getProblemDetails(),
+                                    responseResult.get(i).getCustomerName()
+                            );
+
+                            items_list.add(items);
+
+                        }
+
+
 
                     completedAdapter = new CompletedAdapter(getActivity(),items_list);
                     completedrecycle.setAdapter(completedAdapter);
                     }
                 }
 
-          //  }
+            }
 
             @Override
             public void onFailure(Call<CompletedServiceResponse> call, Throwable t) {

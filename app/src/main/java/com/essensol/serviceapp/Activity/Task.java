@@ -108,4 +108,11 @@ public class Task extends ToolBar {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Task.this,Home.class);
+        startActivity(intent);
+    }
+
 }

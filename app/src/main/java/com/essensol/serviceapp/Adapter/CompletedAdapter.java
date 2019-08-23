@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.CompletedServiceDetails;
 import com.essensol.serviceapp.Activity.ServiceDetails;
@@ -46,6 +47,10 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
                 context.getApplicationContext().startActivity(intent);
             }
         });
+
+        completedViewholder.custName.setText(list.get(i).getCustomerName());
+        completedViewholder.date.setText(list.get(i).getServiceDate());
+        completedViewholder.ProblemDetails.setText(list.get(i).getProblemDetails());
     }
 
     @Override
@@ -57,11 +62,16 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
     {
 
         LinearLayout completedclick;
+        TextView custName,date,ProblemDetails;
 
         public CompletedViewholder(@NonNull View itemView) {
             super(itemView);
 
             completedclick=itemView.findViewById(R.id.completedclick);
+            custName=itemView.findViewById(R.id.custName);
+            date=itemView.findViewById(R.id.date);
+            ProblemDetails=itemView.findViewById(R.id.ProblemDetails);
+
         }
     }
 }

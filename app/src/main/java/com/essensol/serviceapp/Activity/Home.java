@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class Home extends AppCompatActivity {
     ShimmerFrameLayout shimmer;
     private String Status,mode,PunchType;
     FrameLayout framelayout;
-    String staffid,uid;
+    String staffid,uid,VehKm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,10 @@ public class Home extends AppCompatActivity {
 //---------------------------------------------------------------------------------------------------------------------------------------//
 //---------------------------------------------------------------------------------------------------------------------------------------//
 
+
+
+        Bundle bundle=new Bundle();
+        VehKm = bundle.getString("VehicleKM");
 
         //Simpledrawerview Image loading
         ImageRequest imageRequest1 = ImageRequestBuilder.newBuilderWithResourceId(R.drawable.logoutbtn).build();
@@ -194,6 +199,7 @@ public class Home extends AppCompatActivity {
                 }
                 else if (Status.equalsIgnoreCase("E"))
                 {
+
                     Utils.setSnackBar(framelayout,"You Need To End Ride to SignOut");
                 }
             }
@@ -205,10 +211,12 @@ public class Home extends AppCompatActivity {
             public void onClick(View v) {
                 if (mode.equalsIgnoreCase("signOutt"))
                 {
+
                     dialogue_box();
                 }
                 else
                 {
+
                   Utils.setSnackBar(framelayout,"Please SignIn to start your ride");
                 }
 
@@ -260,9 +268,14 @@ public class Home extends AppCompatActivity {
         api_interface.Home(staffid).enqueue(new Callback<HomeResponse>() {
             @Override
             public void onResponse(Call<HomeResponse> call, Response<HomeResponse> response) {
+
+
                 if(response.isSuccessful()&&response.code()==200) {
 
                     if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
+                        signInbtn.setVisibility(View.VISIBLE);
+                        KmEntering.setVisibility(View.VISIBLE);
 
                         List<HomeResponse.Result> responseResult = response.body().getResult();
                         for (int i = 0; i < responseResult.size(); i++) {
@@ -276,7 +289,7 @@ public class Home extends AppCompatActivity {
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
                             //Employee Pic
-                            String url=("http://192.168.1.16:1212"+responseResult.get(i).getProfileImage());
+                            String url=("http://192.168.1.15:1212"+responseResult.get(i).getProfileImage());
                             Glide
                                     .with(context)
                                     .load(url)
@@ -368,6 +381,7 @@ public class Home extends AppCompatActivity {
         Vehicle_km dialogFragment = new Vehicle_km(Home.this);
         Bundle bundle=new Bundle();
         bundle.putString("Type",Status);
+        bundle.putString("VehicleKM",VehKm);
         dialogFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout, dialogFragment);

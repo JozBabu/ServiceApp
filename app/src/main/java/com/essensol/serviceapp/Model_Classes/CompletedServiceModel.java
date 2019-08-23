@@ -4,13 +4,19 @@ public class CompletedServiceModel {
 
     private String ServiceId,ServiceDate,CustomerId,ProblemDetails,CustomerName;
 
+    /* "ServiceId": 1,
+             "ServiceDate": "17-08-2019",
+             "CustomerId": 3,
+             "ProblemDetails": "testproblem",
+             "CustomerName": "sajo"*/
+
     public CompletedServiceModel(String serviceId, String serviceDate, String customerId, String problemDetails, String customerName) {
         ServiceId = serviceId;
         ServiceDate = serviceDate;
         CustomerId = customerId;
         ProblemDetails = problemDetails;
         CustomerName = customerName;
-       }
+    }
 
     public String getServiceId() {
         return ServiceId;
