@@ -62,5 +62,10 @@ public interface _CONSTANTS {
 
     String FilterBy="FilterBy";
 
+    String JobNo="JobNo";
+    String ContactNo="ContactNo";
+    String EmailID="EmailID";
+    String AssignDate="AssignDate";
+
 }
 

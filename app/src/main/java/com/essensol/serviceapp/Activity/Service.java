@@ -37,7 +37,7 @@ public class Service extends ToolBar {
         TabItem = findViewById(R.id.pager);
         tabLayout = (TabLayout) findViewById(R.id.serviceTab);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Pending"));
+        tabLayout.addTab(tabLayout.newTab().setText("Assigned"));
         tabLayout.addTab(tabLayout.newTab().setText("Completed"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicator(R.color.gradienttop);

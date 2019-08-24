@@ -3,6 +3,7 @@ package com.essensol.serviceapp.Activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,13 +21,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.essensol.serviceapp.R;
+import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
+import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
+import com.essensol.serviceapp.RetroftResponseClasses.CompletedServiceResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
 import com.essensol.serviceapp.Utility.ToolBar;
 import com.essensol.serviceapp.Utility.Utils;
+import com.essensol.serviceapp.Utility._CONSTANTS;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ServiceDetails extends ToolBar implements LocationListener {
 
@@ -39,7 +50,10 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     String valuess;
     private LocationManager locationManager;
     double lat=0;
-
+    String ServiceId;
+    SharedPreferences sp;
+    Api_interface api_interface;
+    TextView cuatmosername,date,jobNo,details,cust_mob,location_details,shedule_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +68,25 @@ public class ServiceDetails extends ToolBar implements LocationListener {
          focus = (Chronometer) findViewById(R.id.chronometer1);
          submitbtn=(Button)findViewById(R.id.submitbtn);
 
+        cuatmosername=(TextView)findViewById(R.id.cuatmosername);
+        date=(TextView)findViewById(R.id.date);
+        jobNo=(TextView)findViewById(R.id.jobNo);
+        details=(TextView)findViewById(R.id.details);
+        cust_mob=(TextView)findViewById(R.id.cust_mob);
+        location_details=(TextView)findViewById(R.id.location_details);
+        shedule_date=(TextView)findViewById(R.id.shedule_date);
 
+
+
+         Bundle bundle=new Bundle();
+         ServiceId=bundle.getString("ServiceId");
+
+         Log.e("ServiceId",""+ServiceId);
+
+        //Api Interface
+        api_interface= ApiClient.getRetrofit().create(Api_interface.class);
+
+        GetServiceDetails();
 
 
         submitbtn.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +129,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
 
     }
 
-
     @Override
     public void onLocationChanged(Location location) {
-
-
         lat=location.getLatitude();
         lng=location.getLongitude();
         valuess=String.valueOf(lat+","+lng);
@@ -121,4 +150,52 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     public void onProviderDisabled(String provider) {
 
     }
+
+    public void GetServiceDetails(){
+
+        sp = getSharedPreferences("UserLog",MODE_PRIVATE);
+        String uid= sp.getString(_CONSTANTS.UserId, null);
+        String staffid= sp.getString(_CONSTANTS.StaffId, null);
+        String brid= sp.getString(_CONSTANTS.BrId, null);
+
+        api_interface.ServiceDetails(staffid,brid,ServiceId).enqueue(new Callback<ServiceDetailsResponse>() {
+            @Override
+            public void onResponse(Call<ServiceDetailsResponse> call, Response<ServiceDetailsResponse> response) {
+
+
+                if (response.isSuccessful() && response.code() == 200) {
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
+
+                        List<ServiceDetailsResponse.Result> responseResult = response.body().getResult();
+
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+
+                            cuatmosername.setText(responseResult.get(i).getCustomerName());
+                            date.setText(responseResult.get(i).getServiceDate());
+                            jobNo.setText(responseResult.get(i).getJobNo());
+                            details.setText(responseResult.get(i).getProblemDetails());
+                            cust_mob.setText(responseResult.get(i).getContactNo());
+                            location_details.setText(responseResult.get(i).getAddress());
+                            shedule_date.setText(responseResult.get(i).getAssignDate());
+
+                        }
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<ServiceDetailsResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+
+
+
+
 }

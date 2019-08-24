@@ -45,11 +45,10 @@ public class CompletedTab extends Fragment {
     Api_interface api_interface;
     ArrayList<CompletedServiceModel> items_list;
     SharedPreferences sp;
-    RadioGroup rg;
-    String Type;
     Spinner FilterSpinner;
     ProgressDialog dialog;
     String array_filter[] = {"Today's", "Monthly","Yearly"};
+
     public CompletedTab() {
         // Required empty public constructor
     }
@@ -131,10 +130,6 @@ public class CompletedTab extends Fragment {
         String uid= sp.getString(_CONSTANTS.UserId, null);
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
         String brid= sp.getString(_CONSTANTS.BrId, null);
-
-        Log.e("Filter","By    "+Type);
-        Log.e("staffid","      "+staffid);
-        Log.e("brid","    "+brid);
 
         api_interface.CompltedServicelist(staffid,brid,Type).enqueue(new Callback<CompletedServiceResponse>() {
             @Override

@@ -8,6 +8,7 @@ import com.essensol.serviceapp.RetroftResponseClasses.PaymentCollectionListRespo
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
@@ -92,5 +93,13 @@ public interface Api_interface {
     @POST("STPPApi/GetPendingServiceListByStaffId")
     @FormUrlEncoded
     Call<PaymentCollectionListResponse>PaymentCollectionList(@Field(_CONSTANTS.StaffId)String StaffId);
+
+
+    //Service Details
+    @POST("STPPApi/GetServiceDetailsById")
+    @FormUrlEncoded
+    Call<ServiceDetailsResponse>ServiceDetails(@Field(_CONSTANTS.StaffId)String StaffId,
+                                               @Field(_CONSTANTS.BrId)String BrId,
+                                               @Field(_CONSTANTS.ServiceId)String ServiceId);
 
 }
