@@ -24,6 +24,7 @@ import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.CompletedServiceResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.JobSignInSignOutResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
 import com.essensol.serviceapp.Utility.ToolBar;
 import com.essensol.serviceapp.Utility.Utils;
@@ -46,13 +47,12 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     int flag=0;
     TextView title;
     double lng=0;
-    private LatLng latLng;
-    String valuess;
     private LocationManager locationManager;
     double lat=0;
     String ServiceId;
     SharedPreferences sp;
     Api_interface api_interface;
+    private String JobStatus;
     TextView cuatmosername,date,jobNo,details,cust_mob,location_details,shedule_date;
 
     @Override
@@ -65,8 +65,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
         title =tb.findViewById(R.id.appname);
         title.setText("Service Details");
 
-         focus = (Chronometer) findViewById(R.id.chronometer1);
-         submitbtn=(Button)findViewById(R.id.submitbtn);
+        focus = (Chronometer) findViewById(R.id.chronometer1);
+        submitbtn=(Button)findViewById(R.id.submitbtn);
 
         cuatmosername=(TextView)findViewById(R.id.cuatmosername);
         date=(TextView)findViewById(R.id.date);
@@ -77,11 +77,9 @@ public class ServiceDetails extends ToolBar implements LocationListener {
         shedule_date=(TextView)findViewById(R.id.shedule_date);
 
 
+        Bundle bundle= getIntent().getExtras();
+        ServiceId=bundle.getString("ServiceId");
 
-         Bundle bundle=new Bundle();
-         ServiceId=bundle.getString("ServiceId");
-
-         Log.e("ServiceId",""+ServiceId);
 
         //Api Interface
         api_interface= ApiClient.getRetrofit().create(Api_interface.class);
@@ -92,25 +90,11 @@ public class ServiceDetails extends ToolBar implements LocationListener {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (flag==0) {
-                    focus.start();
-                    flag=1;
-                    submitbtn.setText("Job SignOut");
-                    Utils.ShowCustomToast(valuess,ServiceDetails.this);
-                }
-                else
-                {
-                    focus.setBase(SystemClock.elapsedRealtime());
-                    focus.stop();
-                    flag=0;
-                    Intent i = new Intent(ServiceDetails.this,WorkReport.class);
-                    startActivity(i);
-                    Utils.ShowCustomToast(valuess,ServiceDetails.this);
-                }
+
+                    JobSignInSignOut();
 
             }
         });
-
 
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -133,7 +117,6 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     public void onLocationChanged(Location location) {
         lat=location.getLatitude();
         lng=location.getLongitude();
-        valuess=String.valueOf(lat+","+lng);
     }
 
     @Override
@@ -171,8 +154,6 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                         List<ServiceDetailsResponse.Result> responseResult = response.body().getResult();
 
                         for (int i = 0; i < responseResult.size(); i++) {
-
-
                             cuatmosername.setText(responseResult.get(i).getCustomerName());
                             date.setText(responseResult.get(i).getServiceDate());
                             jobNo.setText(responseResult.get(i).getJobNo());
@@ -180,6 +161,17 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                             cust_mob.setText(responseResult.get(i).getContactNo());
                             location_details.setText(responseResult.get(i).getAddress());
                             shedule_date.setText(responseResult.get(i).getAssignDate());
+
+                            JobStatus=responseResult.get(i).getJobStatus();
+                            if(JobStatus.equalsIgnoreCase("false")){
+
+                                submitbtn.setText("Job SignIn");
+                            }
+                            else if(JobStatus.equalsIgnoreCase("true")){
+
+                                submitbtn.setText("Job SignOut");
+                            }
+
 
                         }
                     }
@@ -194,8 +186,31 @@ public class ServiceDetails extends ToolBar implements LocationListener {
 
     }
 
+    public void JobSignInSignOut(){
+
+        sp = getSharedPreferences("UserLog",MODE_PRIVATE);
+        String staffid= sp.getString(_CONSTANTS.StaffId, null);
+        String brid= sp.getString(_CONSTANTS.BrId, null);
+
+        Log.e("latitute "," Longitude "+lat+","+lng);
 
 
+
+//        api_interface.JobInOut(staffid,brid,lng).enqueue(new Callback<JobSignInSignOutResponse>() {
+//            @Override
+//            public void onResponse(Call<JobSignInSignOutResponse> call, Response<JobSignInSignOutResponse> response) {
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JobSignInSignOutResponse> call, Throwable t) {
+//
+//            }
+//        });
+
+
+    }
 
 
 }

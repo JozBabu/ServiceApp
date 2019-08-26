@@ -22,51 +22,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
                 android:orientation="vertical"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
+                android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/studentName"
+                        android:id="@+id/cuatmosername"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_marginStart="0dp"
                         android:layout_marginLeft="0dp"
                         android:layout_marginRight="5dp"
-                        android:text="Essensol"
+                        android:layout_weight="1"
                         android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
+                        android:textSize="18dp" />
 
                     <TextView
+                        android:id="@+id/date"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
-                        android:text="03 June 2019"
-                        android:id="@+id/date"
                         />
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/msgSubject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:text="System Issue"
 
-                    />
 
             </LinearLayout>
 
@@ -75,13 +63,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp"
                 android:padding="10dp"
                 android:layout_gravity="center">
 
 
                 <ImageView
-                    android:tint="@color/color1"
+                    android:tint="@color/neww"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/job"/>
+
+                <LinearLayout
+
+                    android:orientation="horizontal"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Job No :"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/jobNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:padding="10dp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:tint="@color/neww"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/detail_icon"/>
@@ -110,7 +148,56 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="@string/issue"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:padding="10dp"
+                android:layout_gravity="center">
+
+
+                <ImageView
+                    android:tint="@color/neww"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/phone"/>
+
+                <LinearLayout
+
+                    android:orientation="vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile No"
+                        android:textColor="@android:color/black"
+                        android:textSize="18dp"
+                        />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/cust_mob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+
 
                         />
 
@@ -127,13 +214,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp"
+
                 android:padding="10dp"
                 android:layout_gravity="center">
 
 
                 <ImageView
-                    android:tint="@color/color1"
+                    android:tint="@color/neww"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/location"/>
@@ -162,7 +249,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="@string/location"
 
                         />
 
@@ -179,13 +265,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp"
+
                 android:padding="10dp"
                 android:layout_gravity="center">
 
 
                 <ImageView
-                    android:tint="@color/color1"
+                    android:tint="@color/neww"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/clock"/>
@@ -203,7 +289,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Completed On"
+                        android:text="Shedule"
                         android:textColor="@android:color/black"
                         android:textSize="18dp"
                         />
@@ -214,25 +300,26 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="5 June 2019"
+
 
                         />
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/shedule_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:text="10.30 AM"
+                    <!--<TextView-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:id="@+id/shedule_time"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@android:color/black"-->
+                    <!--android:textSize="15dp"-->
+                    <!--android:text="10.30 AM"-->
 
-                        />
+                    <!--/>-->
 
 
                 </LinearLayout>
 
 
             </LinearLayout>
+
 
 
 

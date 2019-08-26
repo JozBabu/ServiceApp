@@ -72,6 +72,7 @@ public class Task extends ToolBar {
         api_interface.TaskList(staffid).enqueue(new Callback<TaskListResponse>() {
             @Override
             public void onResponse(Call<TaskListResponse> call, Response<TaskListResponse> response) {
+                items_list.clear();
 
                 if (response.isSuccessful() && response.code() == 200) {
 

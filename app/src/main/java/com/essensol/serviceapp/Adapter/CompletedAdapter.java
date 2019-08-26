@@ -36,7 +36,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompletedViewholder completedViewholder, int i) {
+    public void onBindViewHolder(@NonNull CompletedViewholder completedViewholder, final int i) {
 
         completedViewholder.completedclick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +44,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Comp
 
                 Intent intent = new Intent(context, CompletedServiceDetails.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("ServiceId",list.get(i).getServiceId());
                 context.getApplicationContext().startActivity(intent);
             }
         });

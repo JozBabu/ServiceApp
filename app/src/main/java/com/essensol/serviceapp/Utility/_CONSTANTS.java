@@ -66,6 +66,15 @@ public interface _CONSTANTS {
     String ContactNo="ContactNo";
     String EmailID="EmailID";
     String AssignDate="AssignDate";
+    String JobStatus="JobStatus";
+
+    String TaskDetails="TaskDetails";
+    String TaskDate="TaskDate";
+    String DueDate="DueDate";
+    String DueTime="DueTime";
+
+    String StatusId="StatusId";
+
 
 }
 

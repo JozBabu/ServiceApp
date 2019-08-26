@@ -209,14 +209,13 @@ public class Home extends AppCompatActivity {
         KmEntering.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mode.equalsIgnoreCase("signOutt"))
                 {
-
                     dialogue_box();
                 }
                 else
                 {
-
                   Utils.setSnackBar(framelayout,"Please SignIn to start your ride");
                 }
 
@@ -289,7 +288,7 @@ public class Home extends AppCompatActivity {
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
                             //Employee Pic
-                            String url=("http://192.168.1.15:1212"+responseResult.get(i).getProfileImage());
+                            String url=("http://192.168.1.9:1212"+responseResult.get(i).getProfileImage());
                             Glide
                                     .with(context)
                                     .load(url)

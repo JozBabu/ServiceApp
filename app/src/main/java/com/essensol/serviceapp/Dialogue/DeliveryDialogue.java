@@ -1,7 +1,9 @@
 package com.essensol.serviceapp.Dialogue;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,19 +23,36 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.Home;
+import com.essensol.serviceapp.Model_Classes.StatusList_model;
+import com.essensol.serviceapp.Model_Classes.VehicleNo_model;
 import com.essensol.serviceapp.R;
+import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
+import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
+import com.essensol.serviceapp.RetroftResponseClasses.TaskStatusListresponse;
+import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class DeliveryDialogue extends DialogFragment {
 
     Spinner delivery_status;
-    String array_vehicleNo[] = {"Completed", "Postponed"};
     TextView title;
-
+    Api_interface api_interface;
+    ArrayAdapter<StatusList_model> sendList_adapter;
+    ArrayList<StatusList_model> iteems =new ArrayList<>();
+    Button btnDone,cncelbutton;
+    String statusid;
 
     public DeliveryDialogue() {
         // Required empty public constructor
     }
+
 
     @NonNull
     @Override
@@ -51,28 +71,37 @@ public class DeliveryDialogue extends DialogFragment {
         title = RootView.findViewById(R.id.title);
         delivery_status = RootView.findViewById(R.id.delivery_status);
 
+        //Api Interface
+        api_interface= ApiClient.getRetrofit().create(Api_interface.class);
+
         //Font
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/MontserratBold.ttf");
         Typeface custom_font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/MontserratMedium.ttf");
         title.setTypeface(custom_font2);
 
-        //Set Value to spinner
-        final ArrayAdapter<String> spinner_adapter_day = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, array_vehicleNo);
-        spinner_adapter_day.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        delivery_status.setAdapter(spinner_adapter_day);
+        GetStatusList();
+
+        delivery_status.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                statusid=iteems.get(position).getStatusId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
-        if (getArguments() != null && !TextUtils.isEmpty(getArguments().getString("email")))
-            editText.setText(getArguments().getString("email"));
+        //*Button Clickss*//
 
-        Button btnDone = RootView.findViewById(R.id.submitbtn);
+        btnDone = RootView.findViewById(R.id.submitbtn);
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                DialogListener dialogListener = (DialogListener) getActivity();
-//                dialogListener.onFinishEditDialog(editText.getText().toString());
                 Intent i = new Intent(getContext(), Home.class);
                 startActivity(i);
 
@@ -81,7 +110,7 @@ public class DeliveryDialogue extends DialogFragment {
 
             }
         });
-        Button cncelbutton = RootView.findViewById(R.id.cncelbutton);
+        cncelbutton = RootView.findViewById(R.id.cncelbutton);
 
         cncelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +124,7 @@ public class DeliveryDialogue extends DialogFragment {
         return RootView;
 
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -119,8 +149,46 @@ public class DeliveryDialogue extends DialogFragment {
         super.onDestroyView();
     }
 
-    public interface DialogListener {
-        void onFinishEditDialog(String inputText);
+
+    /*  Get Status list service   */
+    public void GetStatusList(){
+
+        api_interface.TaskStatus().enqueue(new Callback<TaskStatusListresponse>() {
+            @Override
+            public void onResponse(Call<TaskStatusListresponse> call, Response<TaskStatusListresponse> response) {
+
+                if (response.isSuccessful() && response.code() == 200) {
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
+                        List<TaskStatusListresponse.Result> responseResult = response.body().getResult();
+
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            StatusList_model items = new StatusList_model(
+                                    responseResult.get(i).getStatusId(),
+                                    responseResult.get(i).getStatusName());
+
+
+                            iteems.add(items);
+                        }
+
+                        sendList_adapter = new ArrayAdapter<StatusList_model>(getActivity(), android.R.layout.simple_spinner_dropdown_item, iteems);
+                        delivery_status.setAdapter(sendList_adapter);
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<TaskStatusListresponse> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
 }

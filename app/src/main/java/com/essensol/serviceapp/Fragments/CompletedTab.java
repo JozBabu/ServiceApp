@@ -185,16 +185,4 @@ public class CompletedTab extends Fragment {
             }
         });
     }
-
-
-    public void reload()
-    {
-        // Reload current fragment
-        Fragment frg = null;
-        frg = getFragmentManager().findFragmentByTag("Your_Fragment_TAG");
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(frg);
-        ft.attach(frg);
-        ft.commit();
-    }
 }

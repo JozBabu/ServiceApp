@@ -347,8 +347,7 @@
         android:layout_gravity="center"
         android:id="@+id/submitbtn"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="Job Sign In" />
+        android:layout_height="45dp" />
 
 
 

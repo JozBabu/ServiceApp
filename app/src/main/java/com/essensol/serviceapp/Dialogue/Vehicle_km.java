@@ -55,7 +55,6 @@ public class Vehicle_km extends DialogFragment {
     Api_interface api_interface;
     Spinner vehicleNo;
     ArrayAdapter<VehicleNo_model> sendList_adapter;
-    String array_vehicleNo[]={"KL-07 BR 6831","KL-07 CC 2087","KL - 07 CV 4054"};
     TextView title;
     ArrayList<VehicleNo_model> iteems =new ArrayList<>();
     String vehID="0";
@@ -68,13 +67,11 @@ public class Vehicle_km extends DialogFragment {
     public Vehicle_km() {
         // Required empty public constructor
     }
+
     @SuppressLint("ValidFragment")
     public Vehicle_km(Context context) {
         this.activity=context;
     }
-
-
-
 
     @NonNull
     @Override
@@ -117,6 +114,7 @@ public class Vehicle_km extends DialogFragment {
         title.setTypeface(custom_font2);
 
         getVehicleNo();
+
         vehicleNo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -149,9 +147,6 @@ public class Vehicle_km extends DialogFragment {
                     startActivity(intent);
                     dismiss();
                 }
-
-
-
 
 
             }
@@ -262,7 +257,6 @@ public class Vehicle_km extends DialogFragment {
         String staffid= sp.getString(_CONSTANTS.StaffId, null);
         String Km=inKm.getText().toString();
 
-
         api_interface.InsertmeterReading(staffid,vehID,Km,type,uid).enqueue(new Callback<InsertMeterRedingResponse>() {
             @Override
             public void onResponse(Call<InsertMeterRedingResponse> call, Response<InsertMeterRedingResponse> response) {
@@ -274,7 +268,6 @@ public class Vehicle_km extends DialogFragment {
                         List<InsertMeterRedingResponse.Result> responseResult = response.body().getResult();
                         for(int i=0;i<responseResult.size();i++)
                         {
-
 
                            dismiss();
 
@@ -290,11 +283,5 @@ public class Vehicle_km extends DialogFragment {
         });
 
     }
-
-
-
-
-
-
 
 }

@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/studentName"
+                        android:id="@+id/TaskName"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -52,7 +52,6 @@
                         android:layout_marginStart="0dp"
                         android:layout_marginLeft="0dp"
                         android:layout_marginRight="5dp"
-                        android:text="Task Name"
                         android:textColor="@android:color/black"
                         android:textSize="18dp"
                         />
@@ -61,8 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
-                        android:text="03 June 2019"
-                        android:id="@+id/assgndate"
+                        android:id="@+id/Taskdate"
                         />
 
                 </LinearLayout>
@@ -108,7 +106,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="@string/issue"
 
                         />
 
@@ -120,54 +117,54 @@
 
 
 
-            <LinearLayout
+            <!--<LinearLayout-->
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:padding="10dp"
-                android:layout_gravity="center">
-
-
-                <ImageView
-                    android:tint="@color/neww"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/location"/>
-
-                <LinearLayout
-
-                    android:orientation="vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:padding="10dp"-->
+                <!--android:layout_gravity="center">-->
 
 
-                    <TextView
+                <!--<ImageView-->
+                    <!--android:tint="@color/neww"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="25dp"-->
+                    <!--android:src="@drawable/location"/>-->
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Locaion"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        />
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/location_details"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15dp"
-                        android:text="@string/location"
-                        />
+                <!--<LinearLayout-->
+
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_marginStart="10dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
 
 
-                </LinearLayout>
+                    <!--<TextView-->
+
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="Locaion"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="18dp"-->
+                        <!--/>-->
+                    <!--<TextView-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:id="@+id/location_details"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="15dp"-->
+                        <!--android:text="@string/location"-->
+                        <!--/>-->
 
 
-            </LinearLayout>
+                <!--</LinearLayout>-->
+
+
+            <!--</LinearLayout>-->
 
 
 
@@ -210,9 +207,8 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="5 June 2019"
-
                         />
+
                     <TextView
                         android:layout_marginTop="10dp"
                         android:id="@+id/shedule_time"
@@ -220,7 +216,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15dp"
-                        android:text="10.30 AM"
 
                         />
 

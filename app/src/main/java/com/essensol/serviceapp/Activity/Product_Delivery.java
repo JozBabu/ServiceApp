@@ -88,7 +88,7 @@ public class Product_Delivery extends ToolBar {
                                     responseResult.get(i).getName(),
                                     responseResult.get(i).getProduct(),
                                     responseResult.get(i).getCreatedOn()
-                                 //   JobId,Name,Product,CreatedOn
+
                             );
 
                             items_list.add(items);

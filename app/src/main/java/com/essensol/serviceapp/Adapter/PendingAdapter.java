@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
                 Intent intent = new Intent(context, ServiceDetails.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("ServiceId",list.get(i).getServiceId());
+
                 context.getApplicationContext().startActivity(intent);
 
             }

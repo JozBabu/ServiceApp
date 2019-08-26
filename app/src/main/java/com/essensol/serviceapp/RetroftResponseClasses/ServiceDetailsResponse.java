@@ -65,6 +65,11 @@ public class ServiceDetailsResponse {
         @Expose
         private String EmailID;
 
+        @SerializedName(_CONSTANTS.JobStatus)
+        @Expose
+        private String JobStatus;
+
+
 
         public String getJobNo() {
             return JobNo;
@@ -92,6 +97,10 @@ public class ServiceDetailsResponse {
 
         public String getEmailID() {
             return EmailID;
+        }
+
+        public String getJobStatus() {
+            return JobStatus;
         }
 
         public String getAssignDate() {
