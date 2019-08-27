@@ -27,7 +27,7 @@ public class Task_Details extends ToolBar {
     TextView title,TaskName,Taskdate,details,shedule_date,shedule_time;
     Api_interface  api_interface;
     SharedPreferences sp;
-    String TaskId,TaskIdD;
+    String TaskId,TaskIdD,TaskStatus;
 
 
     @Override
@@ -51,11 +51,17 @@ public class Task_Details extends ToolBar {
 
         Bundle bundle= getIntent().getExtras();
         TaskId=bundle.getString("TaskId");
+        TaskStatus=bundle.getString("TaskStaus");
 
         //Api Interface
         api_interface = ApiClient.getRetrofit().create(Api_interface.class);
 
         GetTaskDetails();
+
+        if (TaskStatus.equalsIgnoreCase("Completed"))
+        {
+            tasksubmitbtn.setVisibility(View.GONE);
+        }
 
         //Completed Click
         tasksubmitbtn.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +93,6 @@ public class Task_Details extends ToolBar {
                             details.setText(responseResult.get(i).getTaskDetails());
                             shedule_date.setText(responseResult.get(i).getDueDate());
                             shedule_time.setText(responseResult.get(i).getDueTime());
-
                             TaskIdD=responseResult.get(i).getTaskId();
 
                         }

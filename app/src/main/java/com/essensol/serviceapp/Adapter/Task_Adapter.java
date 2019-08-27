@@ -59,6 +59,7 @@ public class Task_Adapter extends RecyclerView.Adapter<Task_Adapter.Task_ViewHol
                 Intent intent = new Intent(context, Task_Details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("TaskId",list.get(i).getTaskId());
+                intent.putExtra("TaskStaus",list.get(i).getStatusName());
                 context.getApplicationContext().startActivity(intent);
             }
         });

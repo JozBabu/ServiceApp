@@ -124,10 +124,12 @@ public interface Api_interface {
     Call<TaskStatusListresponse>TaskStatus();
 
 //16.  TaskSubmit
-    @POST("STPPApi/GetServiceDetailsById")
+    @POST("STPPApi/UpdateTaskStatusByTaskId")
     @FormUrlEncoded
-    Call<TaskSubmitResponse>TaskSubmit(@Field(_CONSTANTS.StaffId)String StaffId,
-                                       @Field(_CONSTANTS.TaskId)String TaskId);
+    Call<TaskSubmitResponse>TaskSubmit(@Field(_CONSTANTS.TaskId)String TaskId,
+                                       @Field(_CONSTANTS.StatusId)String StatusId,
+                                       @Field(_CONSTANTS.CreatedBy)String CreatedBy);
+
 
 
 

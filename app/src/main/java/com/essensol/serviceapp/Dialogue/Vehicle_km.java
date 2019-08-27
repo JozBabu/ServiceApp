@@ -266,8 +266,11 @@ public class Vehicle_km extends DialogFragment {
                     if(response.body().getResponseCode().equalsIgnoreCase("0"))
                     {
                         List<InsertMeterRedingResponse.Result> responseResult = response.body().getResult();
+
                         for(int i=0;i<responseResult.size();i++)
                         {
+
+
 
                            dismiss();
 

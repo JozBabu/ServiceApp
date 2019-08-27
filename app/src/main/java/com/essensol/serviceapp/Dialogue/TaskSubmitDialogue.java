@@ -52,6 +52,7 @@ public class TaskSubmitDialogue extends DialogFragment {
     Button btnDone,cncelbutton;
     String statusid,TaskId;
 
+    private String errorcode;
     SharedPreferences sp;
 
     public TaskSubmitDialogue() {
@@ -111,13 +112,14 @@ public class TaskSubmitDialogue extends DialogFragment {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TaskSubmitTask();
 
-                Intent i = new Intent(getContext(), Home.class);
-                startActivity(i);
 
-                dismiss();
+                    TaskSubmitTask();
+                    Intent i = new Intent(getContext(), Home.class);
+                    startActivity(i);
 
+
+            //    dismiss();
 
             }
         });
@@ -207,14 +209,31 @@ public class TaskSubmitDialogue extends DialogFragment {
     public void TaskSubmitTask(){
 
         sp = getActivity().getSharedPreferences("UserLog", MODE_PRIVATE);
+        String uid = sp.getString(_CONSTANTS.UserId, null);
         String staffid = sp.getString(_CONSTANTS.StaffId, null);
 
 
-
-        api_interface.TaskSubmit(staffid,TaskId).enqueue(new Callback<TaskSubmitResponse>() {
+        api_interface.TaskSubmit(TaskId,statusid,uid).enqueue(new Callback<TaskSubmitResponse>() {
             @Override
             public void onResponse(Call<TaskSubmitResponse> call, Response<TaskSubmitResponse> response) {
 
+                if (response.isSuccessful() && response.code() == 200) {
+
+
+
+                    if (response.body().getResponseCode().equalsIgnoreCase("0")) {
+
+
+                        List<TaskSubmitResponse.Result> responseResult = response.body().getResult();
+
+                        for (int i = 0; i < responseResult.size(); i++) {
+
+                            dismiss();
+                        }
+
+                    }
+
+                }
 
             }
 

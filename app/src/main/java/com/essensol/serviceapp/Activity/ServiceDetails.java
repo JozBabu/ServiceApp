@@ -97,26 +97,26 @@ public class ServiceDetails extends ToolBar implements LocationListener {
         });
 
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-
-        if (ActivityCompat.checkSelfPermission(ServiceDetails.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(ServiceDetails.this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ServiceDetails.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
-            return;
-        }else{
-            Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-            onLocationChanged(location);
-        }
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//
+//        if (ActivityCompat.checkSelfPermission(ServiceDetails.this, Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(ServiceDetails.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(ServiceDetails.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},1);
+//            return;
+//        }else{
+//            Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
+//            onLocationChanged(location);
+//        }
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        lat=location.getLatitude();
-        lng=location.getLongitude();
+//        lat=location.getLatitude();
+//        lng=location.getLongitude();
     }
 
     @Override
