@@ -8,14 +8,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.essensol.serviceapp.Dialogue.DeliveryDialogue;
+import com.essensol.serviceapp.Dialogue.TaskSubmitDialogue;
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskDetailsResponse;
-import com.essensol.serviceapp.RetroftResponseClasses.TaskListResponse;
 import com.essensol.serviceapp.Utility.ToolBar;
-import com.essensol.serviceapp.Utility._CONSTANTS;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class Task_Details extends ToolBar {
     TextView title,TaskName,Taskdate,details,shedule_date,shedule_time;
     Api_interface  api_interface;
     SharedPreferences sp;
-    String TaskId;
+    String TaskId,TaskIdD;
 
 
     @Override
@@ -90,15 +88,20 @@ public class Task_Details extends ToolBar {
                             shedule_date.setText(responseResult.get(i).getDueDate());
                             shedule_time.setText(responseResult.get(i).getDueTime());
 
+                            TaskIdD=responseResult.get(i).getTaskId();
+
                         }
+
+                        tasksubmitbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialogue_box();
+                            }
+                        });
 
                     }
                 }
             }
-
-
-
-
 
             @Override
             public void onFailure(Call<TaskDetailsResponse> call, Throwable t) {
@@ -106,19 +109,16 @@ public class Task_Details extends ToolBar {
             }
         });
 
-
-
     }
 
-
-
-
-    public void dialogue_box()
-    {
-        DeliveryDialogue dialogFragment = new DeliveryDialogue();
+    public void dialogue_box(){
+        TaskSubmitDialogue dialogFragment = new TaskSubmitDialogue();
+        Bundle bundle=new Bundle();
+        bundle.putString("TaskId",TaskIdD);
+        dialogFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout_task, dialogFragment);
         ft.commit();
-
     }
+
 }

@@ -9,4 +9,6 @@
     <string name="location">Maliyekkal Tower , No.33/567 B3 ,
         Kottankavu Road Vennala P.O ,
         Kochi , Kerala pin - 682028</string>
+
+    <string name="url">http://192.168.1.13:1212/api/</string>
 </resources>

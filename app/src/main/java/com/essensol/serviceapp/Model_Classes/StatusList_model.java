@@ -27,9 +27,6 @@ public class StatusList_model {
 
     @Override
     public String toString() {
-        return "StatusList_model{" +
-                "StatusId='" + StatusId + '\'' +
-                ", StatusName='" + StatusName + '\'' +
-                '}';
+        return  StatusName;
     }
 }

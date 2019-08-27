@@ -52,6 +52,10 @@ public class TaskDetailsResponse {
         @Expose
         private String DueTime;
 
+        @SerializedName(_CONSTANTS.TaskId)
+        @Expose
+        private String TaskId;
+
         public String getTaskName() {
             return TaskName;
         }
@@ -70,6 +74,10 @@ public class TaskDetailsResponse {
 
         public String getDueTime() {
             return DueTime;
+        }
+
+        public String getTaskId() {
+            return TaskId;
         }
     }
 }

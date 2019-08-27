@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.essensol.serviceapp.Dialogue.DeliveryDialogue;
+import com.essensol.serviceapp.Dialogue.TaskSubmitDialogue;
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.Utility.ToolBar;
 
@@ -43,7 +43,7 @@ public class ProductDelivery_Details extends ToolBar {
 
     public void dialogue_box()
     {
-        DeliveryDialogue dialogFragment = new DeliveryDialogue();
+        TaskSubmitDialogue dialogFragment = new TaskSubmitDialogue();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout_product, dialogFragment);
         ft.commit();

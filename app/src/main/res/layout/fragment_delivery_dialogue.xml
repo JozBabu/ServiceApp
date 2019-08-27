@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#AA000000"
     android:id="@+id/parentlay"
-    tools:context=".Dialogue.DeliveryDialogue">
+    tools:context=".Dialogue.TaskSubmitDialogue">
 
 
     <android.support.v7.widget.CardView

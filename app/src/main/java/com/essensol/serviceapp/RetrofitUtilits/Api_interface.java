@@ -13,6 +13,7 @@ import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskStatusListresponse;
+import com.essensol.serviceapp.RetroftResponseClasses.TaskSubmitResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.WorkSignInSignOutResponse;
 import com.essensol.serviceapp.Utility._CONSTANTS;
@@ -121,6 +122,13 @@ public interface Api_interface {
 //15. TaskStatusSpinner
     @POST("STPPApi/GetTaskStatusList")
     Call<TaskStatusListresponse>TaskStatus();
+
+//16.  TaskSubmit
+    @POST("STPPApi/GetServiceDetailsById")
+    @FormUrlEncoded
+    Call<TaskSubmitResponse>TaskSubmit(@Field(_CONSTANTS.StaffId)String StaffId,
+                                       @Field(_CONSTANTS.TaskId)String TaskId);
+
 
 
 

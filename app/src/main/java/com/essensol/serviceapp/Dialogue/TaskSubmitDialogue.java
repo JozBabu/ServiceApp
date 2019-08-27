@@ -1,16 +1,15 @@
 package com.essensol.serviceapp.Dialogue;
 
 
-import android.annotation.SuppressLint;
+
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +23,14 @@ import android.widget.TextView;
 
 import com.essensol.serviceapp.Activity.Home;
 import com.essensol.serviceapp.Model_Classes.StatusList_model;
-import com.essensol.serviceapp.Model_Classes.VehicleNo_model;
+
 import com.essensol.serviceapp.R;
 import com.essensol.serviceapp.RetrofitUtilits.ApiClient;
 import com.essensol.serviceapp.RetrofitUtilits.Api_interface;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskStatusListresponse;
-import com.essensol.serviceapp.RetroftResponseClasses.VehicleNoResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.TaskSubmitResponse;
+import com.essensol.serviceapp.Utility._CONSTANTS;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
 
-public class DeliveryDialogue extends DialogFragment {
+
+public class TaskSubmitDialogue extends DialogFragment {
 
     Spinner delivery_status;
     TextView title;
@@ -47,9 +50,11 @@ public class DeliveryDialogue extends DialogFragment {
     ArrayAdapter<StatusList_model> sendList_adapter;
     ArrayList<StatusList_model> iteems =new ArrayList<>();
     Button btnDone,cncelbutton;
-    String statusid;
+    String statusid,TaskId;
 
-    public DeliveryDialogue() {
+    SharedPreferences sp;
+
+    public TaskSubmitDialogue() {
         // Required empty public constructor
     }
 
@@ -70,6 +75,11 @@ public class DeliveryDialogue extends DialogFragment {
 
         title = RootView.findViewById(R.id.title);
         delivery_status = RootView.findViewById(R.id.delivery_status);
+
+        Bundle bundle=this.getArguments();
+        assert bundle != null;
+        TaskId=  bundle.getString("TaskId");
+
 
         //Api Interface
         api_interface= ApiClient.getRetrofit().create(Api_interface.class);
@@ -101,6 +111,7 @@ public class DeliveryDialogue extends DialogFragment {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TaskSubmitTask();
 
                 Intent i = new Intent(getContext(), Home.class);
                 startActivity(i);
@@ -188,6 +199,30 @@ public class DeliveryDialogue extends DialogFragment {
             }
         });
 
+
+    }
+
+
+    /* Task Submit Service */
+    public void TaskSubmitTask(){
+
+        sp = getActivity().getSharedPreferences("UserLog", MODE_PRIVATE);
+        String staffid = sp.getString(_CONSTANTS.StaffId, null);
+
+
+
+        api_interface.TaskSubmit(staffid,TaskId).enqueue(new Callback<TaskSubmitResponse>() {
+            @Override
+            public void onResponse(Call<TaskSubmitResponse> call, Response<TaskSubmitResponse> response) {
+
+
+            }
+
+            @Override
+            public void onFailure(Call<TaskSubmitResponse> call, Throwable t) {
+
+            }
+        });
 
     }
 

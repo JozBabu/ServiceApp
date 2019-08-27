@@ -288,7 +288,7 @@ public class Home extends AppCompatActivity {
                             paymentCount.setText(responseResult.get(i).getPaymentCollectionCount());
 
                             //Employee Pic
-                            String url=("http://192.168.1.9:1212"+responseResult.get(i).getProfileImage());
+                            String url=(_CONSTANTS.imageUrl+responseResult.get(i).getProfileImage());
                             Glide
                                     .with(context)
                                     .load(url)
@@ -380,7 +380,6 @@ public class Home extends AppCompatActivity {
         Vehicle_km dialogFragment = new Vehicle_km(Home.this);
         Bundle bundle=new Bundle();
         bundle.putString("Type",Status);
-        bundle.putString("VehicleKM",VehKm);
         dialogFragment.setArguments(bundle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.framelayout, dialogFragment);

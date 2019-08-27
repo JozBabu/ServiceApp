@@ -2,6 +2,9 @@ package com.essensol.serviceapp.Utility;
 
 public interface _CONSTANTS {
 
+    String localUrl="http://192.168.1.13:1212/api/";
+    String imageUrl="http://192.168.1.13:1212";
+
     String UserName="UserName";
     String Password="UserPassword";
     String DeviceType="DeviceType";
