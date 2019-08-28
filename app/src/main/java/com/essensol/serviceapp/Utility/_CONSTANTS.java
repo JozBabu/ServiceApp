@@ -84,6 +84,16 @@ public interface _CONSTANTS {
     String Location="Location";
     String Latitude="Latitude";
     String Longitude="Longitude";
+    String ProductId="ProductId";
+
+    String ProblemId="ProblemId";
+    String Problem="Problem";
+
+    String JobStatusId="JobStatusId";
+    String JobStatusName="JobStatusName";
+
+    String AccessoryId="AccessoryId";
+    String AccessoryName="AccessoryName";
 
 }
 

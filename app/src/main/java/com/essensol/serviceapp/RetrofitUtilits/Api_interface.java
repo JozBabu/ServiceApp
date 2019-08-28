@@ -1,5 +1,6 @@
 package com.essensol.serviceapp.RetrofitUtilits;
 
+import com.essensol.serviceapp.RetroftResponseClasses.AccessoriesListresponse;
 import com.essensol.serviceapp.RetroftResponseClasses.CompletedServiceResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.HomeResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.InsertMeterRedingResponse;
@@ -7,10 +8,13 @@ import com.essensol.serviceapp.RetroftResponseClasses.JobSignInSignOutResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PaymentCollectionListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ProblemListresponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryListResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ProductListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ServiceJobReportStatusesresponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.TaskStatusListresponse;
@@ -143,7 +147,22 @@ public interface Api_interface {
                                                                @Field(_CONSTANTS.ProductDeliveryId)String ProductDeliveryId);
 
 
+//18. Product List
+    @POST("STPPApi/GetProductIdNameByCompId")
+    @FormUrlEncoded
+    Call<ProductListResponse>ProductList(@Field(_CONSTANTS.CompID)String CompId);
 
+//19. ProblemListSpinner
+    @POST("STPPApi/GetProblemIdName")
+    Call<ProblemListresponse>ProblemList();
+
+//20. Service Job Report Statuses List Spinner
+    @POST("STPPApi/ServiceJobReportStatuses")
+    Call<ServiceJobReportStatusesresponse>JobReportStatuses();
+
+//20. Accessories   List Spinner
+    @POST("STPPApi/ServiceJobReportAccessoryIdName")
+    Call<AccessoriesListresponse>AccessoriesList();
 
 
 

@@ -139,8 +139,11 @@ public class Login extends ToolBar {
                                 editor.putString(_CONSTANTS.UserId,responseResult.get(i).getUserId());
                                 editor.putString(_CONSTANTS.StaffId,responseResult.get(i).getStaffId());
                                 editor.putString(_CONSTANTS.BrId,responseResult.get(i).getBrId());
+                                editor.putString(_CONSTANTS.CompID,responseResult.get(i).getCompID());
                                 editor.putBoolean("LoggedUser", true);
                                 editor.apply();
+
+                                Log.e("CompId",""+responseResult.get(i).getCompID());
 
                                 Intent intent=new Intent(Login.this,Home.class);
                                 startActivity(intent);

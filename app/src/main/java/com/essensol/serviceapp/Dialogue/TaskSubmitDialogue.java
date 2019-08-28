@@ -186,7 +186,7 @@ public class TaskSubmitDialogue extends DialogFragment {
                             iteems.add(items);
                         }
 
-                        sendList_adapter = new ArrayAdapter<StatusList_model>(getActivity(), android.R.layout.simple_spinner_dropdown_item, iteems);
+                        sendList_adapter = new ArrayAdapter<StatusList_model>(getActivity(),  R.layout.spinnertextview, iteems);
                         delivery_status.setAdapter(sendList_adapter);
 
                     }

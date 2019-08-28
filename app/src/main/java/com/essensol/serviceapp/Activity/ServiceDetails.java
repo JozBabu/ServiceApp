@@ -42,6 +42,7 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,8 +63,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     private String JobStatus;
     TextView cuatmosername, date, jobNo, details, cust_mob, location_details, shedule_date;
     private String provider;
-    String city;
-    String iostatus;
+    String city="No Address";
+    String iostatus,JobNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +118,7 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                     iostatus="false";
                     JobSignInSignOut();
                     Intent intent=new Intent(ServiceDetails.this,WorkReport.class);
+                    intent.putExtra("JobNumber",JobNumber);
                     startActivity(intent);
                 }
 
@@ -175,12 +177,15 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     @Override
     public void onProviderEnabled(String provider) {
 
+        Utils.setSnackBar(parent_layout,provider);
+
 
     }
 
     @Override
     public void onProviderDisabled(String provider) {
 
+        Utils.setSnackBar(parent_layout,provider);
     }
 
     public void GetServiceDetails(){
@@ -211,6 +216,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
                             cust_mob.setText(responseResult.get(i).getContactNo());
                             location_details.setText(responseResult.get(i).getAddress());
                             shedule_date.setText(responseResult.get(i).getAssignDate());
+
+                            JobNumber=responseResult.get(i).getJobNo();
 
                             JobStatus=responseResult.get(i).getJobStatus();
                             if(JobStatus.equalsIgnoreCase("false")){
@@ -265,11 +272,6 @@ public class ServiceDetails extends ToolBar implements LocationListener {
 
 
 
-
-
-
-
-
                         }
                     }
 
@@ -289,7 +291,8 @@ public class ServiceDetails extends ToolBar implements LocationListener {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(ServiceDetails.this,PendingTab.class);
+        Intent intent = new Intent(ServiceDetails.this,Service.class);
+        intent.putExtra("ServiceId",ServiceId);
         startActivity(intent);
     }
 }

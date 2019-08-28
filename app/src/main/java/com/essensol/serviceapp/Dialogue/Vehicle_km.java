@@ -231,7 +231,7 @@ public class Vehicle_km extends DialogFragment {
                             iteems.add(items);
                        }
 
-                            sendList_adapter = new ArrayAdapter<VehicleNo_model>(activity, android.R.layout.simple_spinner_dropdown_item, iteems);
+                            sendList_adapter = new ArrayAdapter<VehicleNo_model>(activity,  R.layout.spinnertextview, iteems);
                             vehicleNo.setAdapter(sendList_adapter);
 
                         }
