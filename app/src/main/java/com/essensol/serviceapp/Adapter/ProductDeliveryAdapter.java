@@ -40,7 +40,7 @@ public class ProductDeliveryAdapter extends RecyclerView.Adapter<ProductDelivery
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductDeliveryViewholder productDeliveryViewholder, int i) {
+    public void onBindViewHolder(@NonNull ProductDeliveryViewholder productDeliveryViewholder,final int i) {
 
         productDeliveryViewholder.studentName.setText(list.get(i).getName());
         productDeliveryViewholder.msgSubject.setText(list.get(i).getProduct());
@@ -53,6 +53,7 @@ public class ProductDeliveryAdapter extends RecyclerView.Adapter<ProductDelivery
 
                 Intent intent = new Intent(context, ProductDelivery_Details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("JobId",list.get(i).getJobId());
                 context.getApplicationContext().startActivity(intent);
             }
         });

@@ -7,6 +7,7 @@ import com.essensol.serviceapp.RetroftResponseClasses.JobSignInSignOutResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.LoginResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PaymentCollectionListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.PendingServiceResponse;
+import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryDetailsResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProductDeliveryListResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ProfileResponse;
 import com.essensol.serviceapp.RetroftResponseClasses.ServiceDetailsResponse;
@@ -113,11 +114,16 @@ public interface Api_interface {
     Call<TaskDetailsResponse>TaskDetails(@Field(_CONSTANTS.TaskId)String TaskId);
 
 //14. JobSignInSignOut
-    @POST("STPPApi/GetServiceDetailsById")
+    @POST("STPPApi/InsertUpdateStaffJobLocation")
     @FormUrlEncoded
     Call<JobSignInSignOutResponse>JobInOut(@Field(_CONSTANTS.StaffId)String StaffId,
-                                           @Field(_CONSTANTS.BrId)String BrId,
-                                           @Field(_CONSTANTS.ServiceId)double lat);
+                                           @Field(_CONSTANTS.JobId)String JobId,
+                                           @Field(_CONSTANTS.Location)String Location,
+                                           @Field(_CONSTANTS.Latitude)double Latitude,
+                                           @Field(_CONSTANTS.Longitude)double Longitude,
+                                           @Field(_CONSTANTS.DeviceType)String DeviceType,
+                                           @Field(_CONSTANTS.CreatedBy)String CreatedBy,
+                                           @Field(_CONSTANTS.IOStatus)String IOStatus);
 
 //15. TaskStatusSpinner
     @POST("STPPApi/GetTaskStatusList")
@@ -129,6 +135,14 @@ public interface Api_interface {
     Call<TaskSubmitResponse>TaskSubmit(@Field(_CONSTANTS.TaskId)String TaskId,
                                        @Field(_CONSTANTS.StatusId)String StatusId,
                                        @Field(_CONSTANTS.CreatedBy)String CreatedBy);
+
+//17. ProductDelivery Details
+    @POST("STPPApi/ProductDeliveryDetailsByProductDeliveryId")
+    @FormUrlEncoded
+    Call<ProductDeliveryDetailsResponse>ProductDeliveryDetails(@Field(_CONSTANTS.BrId)String BrId,
+                                                               @Field(_CONSTANTS.ProductDeliveryId)String ProductDeliveryId);
+
+
 
 
 

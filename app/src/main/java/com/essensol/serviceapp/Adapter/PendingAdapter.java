@@ -53,7 +53,6 @@ public class PendingAdapter extends  RecyclerView.Adapter<PendingAdapter.Pending
                 Intent intent = new Intent(context, ServiceDetails.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("ServiceId",list.get(i).getServiceId());
-
                 context.getApplicationContext().startActivity(intent);
 
             }

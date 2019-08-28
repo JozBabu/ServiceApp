@@ -77,7 +77,13 @@ public interface _CONSTANTS {
     String DueTime="DueTime";
 
     String StatusId="StatusId";
+    String CustomerAddress="CustomerAddress";
+    String JobDate="JobDate";
+    String ProductDeliveryId="ProductDeliveryId";
 
+    String Location="Location";
+    String Latitude="Latitude";
+    String Longitude="Longitude";
 
 }
 
